@@ -30,6 +30,7 @@ export async function POST(
 ) {
   const { path } = await params;
   const endpoint = `/store/${path.join('/')}`;
+  const url = `${MEDUSA_URL}${endpoint}`;
   
   let body;
   try {
@@ -38,17 +39,25 @@ export async function POST(
     body = undefined;
   }
 
-  const response = await fetch(`${MEDUSA_URL}${endpoint}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-publishable-api-key': PUBLISHABLE_KEY,
-    },
-    body: body ? JSON.stringify(body) : undefined,
-  });
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-publishable-api-key': PUBLISHABLE_KEY,
+      },
+      body: body ? JSON.stringify(body) : undefined,
+    });
 
-  const data = await response.json();
-  return NextResponse.json(data, { status: response.status });
+    const data = await response.json();
+    return NextResponse.json(data, { status: response.status });
+  } catch (error) {
+    console.error(`Medusa proxy POST ${url} failed:`, error);
+    return NextResponse.json(
+      { error: 'Medusa backend unreachable', url, detail: String(error) },
+      { status: 500 }
+    );
+  }
 }
 
 export async function DELETE(

@@ -130,16 +130,23 @@ function CheckoutContent() {
     setError(null);
   };
 
-  // Pre-initialize payment as soon as user reaches shipping step
+  // Pre-initialize payment after a short delay on shipping step
+  // This gives the cart time to sync with Medusa
   const paymentInitRef = useRef<Promise<string | null> | null>(null);
 
   useEffect(() => {
     if (step === 'shipping' && !clientSecret && !paymentInitRef.current && cartId) {
-      console.log('[Checkout] Pre-initializing payment while user fills shipping form...');
-      paymentInitRef.current = initializePayment().catch(err => {
-        console.error('[Checkout] Pre-init payment failed:', err);
-        return null;
-      });
+      const timer = setTimeout(() => {
+        if (!paymentInitRef.current) {
+          console.log('[Checkout] Pre-initializing payment while user fills shipping form...');
+          paymentInitRef.current = initializePayment().catch(err => {
+            console.error('[Checkout] Pre-init payment failed (will retry on submit):', err);
+            paymentInitRef.current = null; // Reset so retry works
+            return null;
+          });
+        }
+      }, 2000); // Wait 2s for cart to be ready
+      return () => clearTimeout(timer);
     }
   }, [step, clientSecret, cartId, initializePayment]);
 
