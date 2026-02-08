@@ -135,19 +135,6 @@ function CheckoutContent() {
     setError(null);
 
     try {
-      // Update cart with shipping info in Medusa
-      await updateShippingAddress(
-        {
-          first_name: formData.firstName,
-          last_name: formData.lastName,
-          address_1: formData.address,
-          city: formData.city,
-          postal_code: formData.postalCode,
-          country_code: formData.country.toLowerCase(),
-        },
-        formData.email
-      );
-
       // Save customer data to localStorage before Stripe redirect
       localStorage.setItem('checkout_customer_data', JSON.stringify({
         email: formData.email,
@@ -155,14 +142,40 @@ function CheckoutContent() {
         lastName: formData.lastName,
         total: total,
       }));
-      
+
       // REUSE existing clientSecret if we have one (prevents duplicate PaymentIntents!)
       if (clientSecret) {
         console.log('[Checkout] Reusing existing clientSecret');
+        // Still update shipping in background
+        updateShippingAddress(
+          {
+            first_name: formData.firstName,
+            last_name: formData.lastName,
+            address_1: formData.address,
+            city: formData.city,
+            postal_code: formData.postalCode,
+            country_code: formData.country.toLowerCase(),
+          },
+          formData.email
+        ).catch(console.error);
         setStep('payment');
       } else {
-        // Initialize payment through our own Stripe (bypasses Medusa v2 bug #13160)
-        const secret = await initializePayment(formData.email);
+        // Run shipping update AND payment init in parallel
+        const shippingPromise = updateShippingAddress(
+          {
+            first_name: formData.firstName,
+            last_name: formData.lastName,
+            address_1: formData.address,
+            city: formData.city,
+            postal_code: formData.postalCode,
+            country_code: formData.country.toLowerCase(),
+          },
+          formData.email
+        );
+
+        const paymentPromise = initializePayment(formData.email);
+
+        const [, secret] = await Promise.all([shippingPromise, paymentPromise]);
         
         if (secret) {
           setClientSecret(secret);
