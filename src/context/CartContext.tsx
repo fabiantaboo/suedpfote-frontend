@@ -196,7 +196,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          amount: totalPrice,
+          amount: cart.reduce((sum, item) => sum + item.price * item.quantity, 0),
           email: email || '',
           metadata: { cart_id: cartId || '' },
         }),
@@ -214,7 +214,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       console.error('Failed to initialize payment:', error);
       throw error;
     }
-  }, [cartId, totalPrice]);
+  }, [cartId, cart]);
 
   const completeOrder = useCallback(async (): Promise<string | null> => {
     if (!cartId) throw new Error('No cart');
