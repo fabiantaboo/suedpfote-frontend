@@ -24,6 +24,7 @@ function CheckoutContent() {
   const [isLoadingPayment, setIsLoadingPayment] = useState(false);
   const [orderId, setOrderId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [accountCreated, setAccountCreated] = useState(false);
   const hasProcessedSuccess = useRef(false);
   const [formData, setFormData] = useState({
     email: '',
@@ -214,6 +215,9 @@ function CheckoutContent() {
           });
           const autoCreateData = await autoCreateRes.json();
           console.log('[Checkout] Auto-create customer:', autoCreateData);
+          if (!autoCreateData.alreadyExists) {
+            setAccountCreated(true);
+          }
         } catch (err) {
           console.error('Failed to auto-create customer:', err);
         }
@@ -299,13 +303,15 @@ function CheckoutContent() {
             <p className="text-zinc-600 mb-4">
               Vielen Dank für deine Bestellung! Du erhältst in Kürze eine Bestätigungs-E-Mail.
             </p>
-            <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-8 text-left">
-              <p className="text-amber-800 text-sm">
-                <strong>🎉 Dein Kundenkonto wurde erstellt!</strong><br />
-                Die Zugangsdaten werden dir per E-Mail zugeschickt. 
-                Damit kannst du deine Bestellungen verfolgen und Punkte einlösen.
-              </p>
-            </div>
+            {accountCreated && (
+              <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-8 text-left">
+                <p className="text-amber-800 text-sm">
+                  <strong>🎉 Dein Kundenkonto wurde erstellt!</strong><br />
+                  Die Zugangsdaten werden dir per E-Mail zugeschickt. 
+                  Damit kannst du deine Bestellungen verfolgen und Punkte einlösen.
+                </p>
+              </div>
+            )}
             <Link
               href="/"
               className="inline-flex items-center justify-center px-8 py-4 bg-zinc-900 text-white rounded-full font-medium hover:bg-zinc-700 transition"
