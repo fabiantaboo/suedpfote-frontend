@@ -197,7 +197,7 @@ export default function ProductPage() {
   } : null;
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white overflow-x-hidden">
       {/* Schema.org JSON-LD */}
       {schemaData && (
         <script
@@ -213,9 +213,9 @@ export default function ProductPage() {
       <CartDrawer isOpen={showCart} onClose={() => setShowCart(false)} />
 
       {/* Product */}
-      <main className="pt-20 sm:pt-24 pb-20 px-4 sm:px-6 overflow-x-hidden">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-6 sm:gap-12 lg:gap-20">
+      <main className="pt-20 sm:pt-24 pb-20 px-4 sm:px-6">
+        <div className="max-w-6xl mx-auto w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-12 lg:gap-20">
             {/* Image */}
             <div className={`aspect-square rounded-2xl sm:rounded-3xl ${bgColors[colorIndex]} flex items-center justify-center p-6 sm:p-12`}>
               {product.thumbnail ? (
@@ -225,6 +225,11 @@ export default function ProductPage() {
                   title={product.title}
                   loading="lazy"
                   className="w-full h-full object-contain"
+                  onError={(e) => {
+                    // Fallback if image fails to load
+                    (e.target as HTMLImageElement).style.display = 'none';
+                    (e.target as HTMLImageElement).parentElement!.innerHTML = '<div class="text-8xl">🤚</div>';
+                  }}
                 />
               ) : (
                 <div className="text-8xl">🤚</div>
@@ -232,14 +237,14 @@ export default function ProductPage() {
             </div>
 
             {/* Info */}
-            <div className="flex flex-col justify-center min-w-0">
+            <div className="flex flex-col justify-center min-w-0 overflow-hidden">
               <p className="text-xs sm:text-sm font-medium text-zinc-400 uppercase tracking-wide mb-2">
                 Linkshänder
               </p>
-              <h1 className="text-2xl sm:text-4xl font-bold text-zinc-900 mb-3 sm:mb-4 break-words">
+              <h1 className="text-2xl sm:text-4xl font-bold text-zinc-900 mb-3 sm:mb-4 break-words hyphens-auto" lang="de">
                 {product.title}
               </h1>
-              <p className="text-base sm:text-xl text-zinc-600 leading-relaxed mb-6 sm:mb-8">
+              <p className="text-sm sm:text-lg text-zinc-600 leading-relaxed mb-6 sm:mb-8 break-words">
                 {product.subtitle || product.description}
               </p>
 
