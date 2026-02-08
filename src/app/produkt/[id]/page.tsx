@@ -10,8 +10,6 @@ import Navigation from '@/components/Navigation';
 import CartDrawer from '@/components/CartDrawer';
 import Footer from '@/components/Footer';
 
-const MEDUSA_URL = process.env.NEXT_PUBLIC_MEDUSA_URL || 'http://localhost:9000';
-const PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY || '';
 const REGION_ID = process.env.NEXT_PUBLIC_MEDUSA_REGION_ID || '';
 
 const bgColors = [
@@ -54,19 +52,14 @@ export default function ProductPage() {
         const identifier = params.id as string;
         let url: string;
         
-        // Check if it's a Medusa product ID (starts with prod_) or a handle
+        // Use the API proxy to avoid CORS issues
         if (identifier.startsWith('prod_')) {
-          url = `${MEDUSA_URL}/store/products/${identifier}?region_id=${REGION_ID}`;
+          url = `/api/medusa/products/${identifier}?region_id=${REGION_ID}`;
         } else {
-          // Fetch by handle
-          url = `${MEDUSA_URL}/store/products?handle=${identifier}&region_id=${REGION_ID}`;
+          url = `/api/medusa/products?handle=${identifier}&region_id=${REGION_ID}`;
         }
 
-        const res = await fetch(url, {
-          headers: {
-            'x-publishable-api-key': PUBLISHABLE_KEY,
-          },
-        });
+        const res = await fetch(url);
         
         if (res.ok) {
           const data = await res.json();
