@@ -148,22 +148,22 @@ export default function ProductPage() {
   const price = product.variants?.[0]?.calculated_price?.calculated_amount || 0;
   const colorIndex = product.id.charCodeAt(product.id.length - 1) % bgColors.length;
 
-  const handleAddToCart = async () => {
+  const handleAddToCart = () => {
     if (!product) return;
     
-    await addToCart(
+    setAdded(true);
+    setTimeout(() => {
+      setAdded(false);
+      setShowCart(true);
+    }, 400);
+    
+    addToCart(
       product.variants?.[0]?.id || product.id,
       product.title,
       price,
       quantity,
       product.thumbnail
     );
-    
-    setAdded(true);
-    setTimeout(() => {
-      setAdded(false);
-      setShowCart(true);
-    }, 500);
   };
 
   // Schema.org JSON-LD for SEO
@@ -264,14 +264,14 @@ export default function ProductPage() {
                 <div className="flex items-center gap-3">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="w-10 h-10 rounded-full border border-zinc-200 flex items-center justify-center hover:bg-zinc-50 transition text-lg"
+                    className="w-10 h-10 rounded-full border border-zinc-200 flex items-center justify-center hover:bg-zinc-50 cursor-pointer transition text-lg"
                   >
                     −
                   </button>
                   <span className="w-8 text-center font-medium text-lg">{quantity}</span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="w-10 h-10 rounded-full border border-zinc-200 flex items-center justify-center hover:bg-zinc-50 transition text-lg"
+                    className="w-10 h-10 rounded-full border border-zinc-200 flex items-center justify-center hover:bg-zinc-50 cursor-pointer transition text-lg"
                   >
                     +
                   </button>
@@ -280,7 +280,7 @@ export default function ProductPage() {
 
               <button
                 onClick={handleAddToCart}
-                className={`w-full py-4 rounded-full font-medium text-lg transition-all duration-300 ${
+                className={`w-full py-4 rounded-full font-medium text-lg cursor-pointer transition-all duration-300 ${
                   added 
                     ? 'bg-emerald-500 text-white' 
                     : 'bg-zinc-900 text-white hover:bg-zinc-700'
