@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 
-const MEDUSA_URL = process.env.MEDUSA_BACKEND_URL || 'http://localhost:9000';
+const MEDUSA_URL = process.env.NEXT_PUBLIC_MEDUSA_URL || 'http://localhost:9000';
 const PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY || 'pk_47735dfa80c2310e7a8b18d8c2e5ecf3df3c5a7767938647e98be59f8d2d9d9f';
 const ADMIN_EMAIL = 'admin@suedpfote.de';
 const ADMIN_PASSWORD = 'Suedpfote2026!';

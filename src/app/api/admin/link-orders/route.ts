@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const MEDUSA_URL = process.env.MEDUSA_BACKEND_URL || 'http://localhost:9000';
+const MEDUSA_URL = process.env.NEXT_PUBLIC_MEDUSA_URL || 'http://localhost:9000';
 const ADMIN_EMAIL = 'admin@suedpfote.de';
 const ADMIN_PASSWORD = 'Suedpfote2026!';
 
