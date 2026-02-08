@@ -187,9 +187,16 @@ function CheckoutContent() {
         ).catch(console.error);
 
         // Use pre-initialized payment if available, otherwise init now
-        const secret = paymentInitRef.current 
+        let secret = paymentInitRef.current 
           ? await paymentInitRef.current 
-          : await initializePayment(formData.email);
+          : null;
+        
+        // If pre-init failed or wasn't started, try fresh
+        if (!secret) {
+          console.log('[Checkout] Pre-init unavailable, initializing payment now...');
+          paymentInitRef.current = null;
+          secret = await initializePayment(formData.email);
+        }
         
         if (secret) {
           setClientSecret(secret);
