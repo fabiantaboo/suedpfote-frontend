@@ -189,31 +189,32 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [cartId, refreshCart]);
 
   const initializePayment = useCallback(async (email?: string): Promise<string | null> => {
-    if (!cartId) throw new Error('No cart');
-
     try {
-      // Step 1: Create Payment Collection in Medusa
-      console.log('[Checkout] Creating payment collection for cart:', cartId);
-      const { payment_collection } = await medusa.createPaymentCollection(cartId);
-      setPaymentCollectionId(payment_collection.id);
-      console.log('[Checkout] Payment collection created:', payment_collection.id);
+      // Use our own Stripe route on Vercel (fast!) instead of Medusa (slow!)
+      console.log('[Checkout] Creating PaymentIntent via Vercel Stripe route...');
+      const res = await fetch('/api/create-payment-intent', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          amount: totalPrice,
+          email: email || '',
+          metadata: { cart_id: cartId || '' },
+        }),
+      });
 
-      // Step 2: Initialize Stripe Payment Session
-      // This calls Medusa's Stripe plugin which creates the PaymentIntent
-      console.log('[Checkout] Initializing Stripe payment session...');
-      const clientSecret = await medusa.initializePaymentSession(payment_collection.id, 'pp_stripe_stripe');
-      
-      if (!clientSecret) {
-        throw new Error('No client secret returned from Medusa');
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || 'Payment init failed');
       }
-      
-      console.log('[Checkout] Got client secret from Medusa/Stripe');
+
+      const { clientSecret } = await res.json();
+      console.log('[Checkout] Got client secret from Vercel/Stripe');
       return clientSecret;
     } catch (error) {
       console.error('Failed to initialize payment:', error);
       throw error;
     }
-  }, [cartId]);
+  }, [cartId, totalPrice]);
 
   const completeOrder = useCallback(async (): Promise<string | null> => {
     if (!cartId) throw new Error('No cart');
