@@ -11,6 +11,7 @@ import CheckoutForm from '@/components/CheckoutForm';
 import FreeShippingProgress from '@/components/FreeShippingProgress';
 import LoyaltyPoints, { addLoyaltyPoints } from '@/components/LoyaltyPoints';
 import { CheckIcon, CartIcon, HandIcon, LockIcon, CreditCardIcon, TrashIcon, SpinnerIcon } from '@/components/Icons';
+import CheckoutLoader from '@/components/CheckoutLoader';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY!);
 
@@ -348,6 +349,9 @@ function CheckoutContent() {
     <div className="min-h-screen bg-zinc-50">
       <Navigation />
       
+      {/* Fullscreen checkout loading animation */}
+      {isLoadingPayment && <CheckoutLoader />}
+
       <main className="pt-24 pb-20 px-6">
         <div className="max-w-6xl mx-auto">
           <h1 className="text-3xl font-bold text-zinc-900 mb-8">Kasse</h1>
