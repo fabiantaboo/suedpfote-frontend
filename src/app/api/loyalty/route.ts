@@ -47,9 +47,13 @@ export async function GET(request: NextRequest) {
     );
     const customersData = await customersRes.json();
     
-    const customer = customersData.customers?.find(
+    // Filter all matches, prefer the one with points (handles duplicates)
+    const matches = (customersData.customers || []).filter(
       (c: { email: string }) => c.email.toLowerCase() === email.toLowerCase()
     );
+    const customer = matches.sort((a: any, b: any) => 
+      (b.metadata?.loyalty_points || 0) - (a.metadata?.loyalty_points || 0)
+    )[0];
     
     if (!customer) {
       return NextResponse.json({ 
@@ -94,9 +98,13 @@ export async function POST(request: NextRequest) {
       { headers: { Authorization: `Bearer ${token}` } }
     );
     let customersData = await customersRes.json();
-    let customer = customersData.customers?.find(
+    // Filter all matches, prefer the one with points (handles duplicates)
+    let matches = (customersData.customers || []).filter(
       (c: { email: string }) => c.email.toLowerCase() === email.toLowerCase()
     );
+    let customer = matches.sort((a: any, b: any) => 
+      (b.metadata?.loyalty_points || 0) - (a.metadata?.loyalty_points || 0)
+    )[0];
 
     if (!customer && action === 'add') {
       // Create customer if doesn't exist
