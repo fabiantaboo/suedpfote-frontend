@@ -71,9 +71,12 @@ export default function Home() {
     e.stopPropagation();
     
     setAddedId(product.id);
-    setTimeout(() => setAddedId(null), 600);
+    setTimeout(() => {
+      setAddedId(null);
+      setShowCart(true);
+    }, 400);
     
-    await addToCart(
+    addToCart(
       product.variantId,
       product.name,
       product.price,
@@ -235,7 +238,7 @@ export default function Home() {
                       </div>
                       <button
                         onClick={(e) => handleAddToCart(e, product)}
-                        className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 ${
+                        className={`px-5 py-2.5 rounded-full text-sm font-medium cursor-pointer transition-all duration-200 ${
                           addedId === product.id
                             ? 'bg-emerald-500 text-white scale-95'
                             : 'bg-zinc-900 text-white hover:bg-zinc-700 hover:scale-105'
