@@ -58,7 +58,7 @@ export default function AGBPage() {
               (1) Alle Preise verstehen sich inklusive der gesetzlichen Mehrwertsteuer.
             </p>
             <p>
-              (2) Versandkosten werden gesondert ausgewiesen. Ab einem Bestellwert von 50 € liefern wir 
+              (2) Versandkosten werden gesondert ausgewiesen. Ab einem Bestellwert von 39 € liefern wir 
               versandkostenfrei innerhalb Deutschlands.
             </p>
             <p>

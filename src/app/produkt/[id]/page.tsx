@@ -299,7 +299,7 @@ export default function ProductPage() {
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-emerald-500 mt-1">✓</span>
-                    <span>Kostenloser Versand ab 50 €</span>
+                    <span>Kostenloser Versand ab 39 €</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-emerald-500 mt-1">✓</span>

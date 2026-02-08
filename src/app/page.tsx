@@ -324,7 +324,7 @@ export default function Home() {
                 <span className="text-2xl">&#128666;</span>
               </div>
               <p className="font-medium text-zinc-900">Kostenloser Versand</p>
-              <p className="text-sm text-zinc-500">Ab 50&euro; Bestellwert</p>
+              <p className="text-sm text-zinc-500">Ab 39 &euro; Bestellwert</p>
             </div>
             <div className="flex flex-col items-center gap-2">
               <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
@@ -373,7 +373,7 @@ export default function Home() {
               },
               {
                 q: "Wie lange dauert der Versand?",
-                a: "Wir versenden innerhalb von 1-2 Werktagen. Die Lieferung dauert in Deutschland 2-4 Werktage. Ab 50\u20AC Bestellwert ist der Versand kostenlos!"
+                a: "Wir versenden innerhalb von 1-2 Werktagen. Die Lieferung dauert in Deutschland 2-4 Werktage. Ab 39 \u20AC Bestellwert ist der Versand kostenlos!"
               },
               {
                 q: "Kann ich Produkte zurückgeben?",
@@ -425,7 +425,7 @@ export default function Home() {
                   "name": "Wie lange dauert der Versand?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Wir versenden innerhalb von 1-2 Werktagen. Die Lieferung dauert in Deutschland 2-4 Werktage. Ab 50\u20ac Bestellwert ist der Versand kostenlos!"
+                    "text": "Wir versenden innerhalb von 1-2 Werktagen. Die Lieferung dauert in Deutschland 2-4 Werktage. Ab 39 \u20ac Bestellwert ist der Versand kostenlos!"
                   }
                 },
                 {
