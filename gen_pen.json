@@ -1,0 +1,10 @@
+{
+  "contents": [{
+    "parts": [{
+      "text": "Generate a photorealistic product image: An elegant black fountain pen with gold trim, designed for left-handed calligraphy, cap off showing the nib. Pure white background, professional studio lighting, minimalist product photography. High-end luxury aesthetic, the pen has a slight angle showing its ergonomic grip."
+    }]
+  }],
+  "generationConfig": {
+    "responseModalities": ["TEXT", "IMAGE"]
+  }
+}

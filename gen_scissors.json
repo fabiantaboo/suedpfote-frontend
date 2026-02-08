@@ -1,0 +1,10 @@
+{
+  "contents": [{
+    "parts": [{
+      "text": "Generate a photorealistic product image: Premium left-handed scissors made of brushed Japanese steel, ergonomic grip, on a pure white background with soft professional studio lighting. Minimalist product photography, the scissors are slightly open showing the blades. High-end, Apple-style aesthetic."
+    }]
+  }],
+  "generationConfig": {
+    "responseModalities": ["TEXT", "IMAGE"]
+  }
+}

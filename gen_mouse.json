@@ -1,0 +1,10 @@
+{
+  "contents": [{
+    "parts": [{
+      "text": "Generate a photorealistic product image: A vertical ergonomic computer mouse designed for left-handed users, matte black with subtle blue accent lighting. Pure white background, professional studio lighting, minimalist product photography. The mouse has a unique curved shape that fits the left hand perfectly."
+    }]
+  }],
+  "generationConfig": {
+    "responseModalities": ["TEXT", "IMAGE"]
+  }
+}

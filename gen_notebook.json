@@ -1,0 +1,10 @@
+{
+  "contents": [{
+    "parts": [{
+      "text": "Generate a photorealistic product image: A minimalist spiral notebook A5 size, sage green cover, the spiral binding is on the RIGHT side (for left-handed users). Pure white background, professional studio lighting. Clean Muji-style aesthetic, slightly open to show dotted pages inside."
+    }]
+  }],
+  "generationConfig": {
+    "responseModalities": ["TEXT", "IMAGE"]
+  }
+}

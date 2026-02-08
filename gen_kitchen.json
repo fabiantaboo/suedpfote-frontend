@@ -1,0 +1,10 @@
+{
+  "contents": [{
+    "parts": [{
+      "text": "Generate a photorealistic product image: A premium kitchen tool set for left-handed users - a can opener, vegetable peeler, and corkscrew, all in brushed stainless steel. Arranged elegantly on a pure white background, professional studio lighting. Minimalist, high-end product photography."
+    }]
+  }],
+  "generationConfig": {
+    "responseModalities": ["TEXT", "IMAGE"]
+  }
+}

@@ -1,0 +1,34 @@
+import { NextRequest, NextResponse } from 'next/server';
+import Stripe from 'stripe';
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: '2024-12-18.acacia',
+});
+
+export async function POST(request: NextRequest) {
+  try {
+    const { amount, email, metadata } = await request.json();
+
+    // Amount is in cents
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: Math.round(amount * 100),
+      currency: 'eur',
+      receipt_email: email,
+      metadata: metadata || {},
+      automatic_payment_methods: {
+        enabled: true,
+      },
+    });
+
+    return NextResponse.json({
+      clientSecret: paymentIntent.client_secret,
+    });
+  } catch (error: unknown) {
+    console.error('Stripe error:', error);
+    const message = error instanceof Error ? error.message : 'Payment failed';
+    return NextResponse.json(
+      { error: message },
+      { status: 500 }
+    );
+  }
+}

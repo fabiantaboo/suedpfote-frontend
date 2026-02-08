@@ -1,0 +1,18 @@
+# Südpfote - Linkshänder Shop
+# https://suedpfote.de
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://suedpfote.de/sitemap.xml
+
+# Crawl-delay für höfliches Crawling
+Crawl-delay: 1
+
+# Blockiere interne Seiten
+Disallow: /api/
+Disallow: /admin/
+Disallow: /checkout/
+Disallow: /warenkorb/
+Disallow: /konto/
