@@ -87,7 +87,7 @@ export async function createCart(): Promise<Cart> {
 
 export async function getCart(cartId: string): Promise<Cart | null> {
   try {
-    const { cart } = await medusaFetch<{ cart: Cart }>(`/store/carts/${cartId}`);
+    const { cart } = await medusaFetch<{ cart: Cart }>(`/store/carts/${cartId}?fields=*payment_collection`);
     return cart;
   } catch {
     return null;
@@ -146,6 +146,17 @@ export async function updateCart(
 
 // Payment API
 export async function createPaymentCollection(cartId: string): Promise<{ payment_collection: PaymentCollection }> {
+  // First check if cart already has a payment collection
+  try {
+    const cart = await getCart(cartId);
+    if (cart?.payment_collection?.id) {
+      console.log('[Medusa] Reusing existing payment collection:', cart.payment_collection.id);
+      return { payment_collection: cart.payment_collection };
+    }
+  } catch {
+    // Cart fetch failed, try creating anyway
+  }
+
   // Medusa v2: POST /store/payment-collections with cart_id in body
   const result = await medusaFetch<{ payment_collection: PaymentCollection }>(
     `/store/payment-collections`,
