@@ -130,6 +130,19 @@ function CheckoutContent() {
     setError(null);
   };
 
+  // Pre-initialize payment as soon as user reaches shipping step
+  const paymentInitRef = useRef<Promise<string | null> | null>(null);
+
+  useEffect(() => {
+    if (step === 'shipping' && !clientSecret && !paymentInitRef.current && cartId) {
+      console.log('[Checkout] Pre-initializing payment while user fills shipping form...');
+      paymentInitRef.current = initializePayment().catch(err => {
+        console.error('[Checkout] Pre-init payment failed:', err);
+        return null;
+      });
+    }
+  }, [step, clientSecret, cartId, initializePayment]);
+
   const handleShippingSubmit = async () => {
     setIsLoadingPayment(true);
     setError(null);
@@ -160,8 +173,8 @@ function CheckoutContent() {
         ).catch(console.error);
         setStep('payment');
       } else {
-        // Run shipping update AND payment init in parallel
-        const shippingPromise = updateShippingAddress(
+        // Update shipping in background
+        updateShippingAddress(
           {
             first_name: formData.firstName,
             last_name: formData.lastName,
@@ -171,11 +184,12 @@ function CheckoutContent() {
             country_code: formData.country.toLowerCase(),
           },
           formData.email
-        );
+        ).catch(console.error);
 
-        const paymentPromise = initializePayment(formData.email);
-
-        const [, secret] = await Promise.all([shippingPromise, paymentPromise]);
+        // Use pre-initialized payment if available, otherwise init now
+        const secret = paymentInitRef.current 
+          ? await paymentInitRef.current 
+          : await initializePayment(formData.email);
         
         if (secret) {
           setClientSecret(secret);
