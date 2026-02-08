@@ -346,39 +346,39 @@ function CheckoutContent() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-50">
+    <div className="min-h-screen bg-zinc-50 overflow-x-hidden">
       <Navigation />
       
       {/* Fullscreen checkout loading animation */}
       {isLoadingPayment && <CheckoutLoader totalPrice={total} />}
 
-      <main className="pt-24 pb-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <h1 className="text-3xl font-bold text-zinc-900 mb-8">Kasse</h1>
+      <main className="pt-20 sm:pt-24 pb-20 px-3 sm:px-6">
+        <div className="max-w-6xl mx-auto w-full">
+          <h1 className="text-2xl sm:text-3xl font-bold text-zinc-900 mb-6 sm:mb-8">Kasse</h1>
           
           {/* Progress Steps */}
-          <div className="flex items-center gap-4 mb-12">
+          <div className="flex items-center gap-2 sm:gap-4 mb-8 sm:mb-12">
             <button
               onClick={() => setStep('cart')}
-              className={`flex items-center gap-2 ${step === 'cart' ? 'text-zinc-900 font-medium' : 'text-zinc-400'}`}
+              className={`flex items-center gap-1.5 sm:gap-2 ${step === 'cart' ? 'text-zinc-900 font-medium' : 'text-zinc-400'}`}
             >
-              <span className={`w-8 h-8 rounded-full flex items-center justify-center text-sm ${step === 'cart' ? 'bg-zinc-900 text-white' : 'bg-zinc-200'}`}>1</span>
-              Warenkorb
+              <span className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm shrink-0 ${step === 'cart' ? 'bg-zinc-900 text-white' : 'bg-zinc-200'}`}>1</span>
+              <span className="text-xs sm:text-base">Warenkorb</span>
             </button>
             <div className="flex-1 h-px bg-zinc-200" />
             <button
               onClick={() => cart.length > 0 && setStep('shipping')}
-              className={`flex items-center gap-2 ${step === 'shipping' || step === 'payment' ? 'text-zinc-900 font-medium' : 'text-zinc-400'}`}
+              className={`flex items-center gap-1.5 sm:gap-2 ${step === 'shipping' || step === 'payment' ? 'text-zinc-900 font-medium' : 'text-zinc-400'}`}
             >
-              <span className={`w-8 h-8 rounded-full flex items-center justify-center text-sm ${step === 'shipping' || step === 'payment' ? 'bg-zinc-900 text-white' : 'bg-zinc-200'}`}>2</span>
-              Versand
+              <span className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm shrink-0 ${step === 'shipping' || step === 'payment' ? 'bg-zinc-900 text-white' : 'bg-zinc-200'}`}>2</span>
+              <span className="text-xs sm:text-base">Versand</span>
             </button>
             <div className="flex-1 h-px bg-zinc-200" />
             <button
-              className={`flex items-center gap-2 ${step === 'payment' ? 'text-zinc-900 font-medium' : 'text-zinc-400'}`}
+              className={`flex items-center gap-1.5 sm:gap-2 ${step === 'payment' ? 'text-zinc-900 font-medium' : 'text-zinc-400'}`}
             >
-              <span className={`w-8 h-8 rounded-full flex items-center justify-center text-sm ${step === 'payment' ? 'bg-zinc-900 text-white' : 'bg-zinc-200'}`}>3</span>
-              Bezahlung
+              <span className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm shrink-0 ${step === 'payment' ? 'bg-zinc-900 text-white' : 'bg-zinc-200'}`}>3</span>
+              <span className="text-xs sm:text-base">Bezahlung</span>
             </button>
           </div>
 
@@ -388,47 +388,49 @@ function CheckoutContent() {
             </div>
           )}
 
-          <div className="grid lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-12">
             {/* Main Content */}
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 min-w-0">
               {step === 'cart' && (
-                <div className="bg-white rounded-2xl p-6 shadow-sm">
-                  <h2 className="text-xl font-semibold text-zinc-900 mb-6">Warenkorb</h2>
+                <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm">
+                  <h2 className="text-lg sm:text-xl font-semibold text-zinc-900 mb-4 sm:mb-6">Warenkorb</h2>
                   <div className="space-y-4">
                     {cart.map((item) => (
-                      <div key={item.id} className="flex items-center gap-4 p-4 bg-zinc-50 rounded-xl">
-                        <div className="w-20 h-20 rounded-xl bg-zinc-100 flex items-center justify-center p-3">
-                          {item.image ? (
-                            <img src={item.image} alt={item.name} className="w-full h-full object-contain" />
-                          ) : (
-                            <HandIcon className="w-8 h-8 text-zinc-400" />
-                          )}
+                      <div key={item.id} className="p-3 sm:p-4 bg-zinc-50 rounded-xl">
+                        <div className="flex items-center gap-3 sm:gap-4">
+                          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl bg-zinc-100 flex items-center justify-center p-2 sm:p-3 shrink-0">
+                            {item.image ? (
+                              <img src={item.image} alt={item.name} className="w-full h-full object-contain" />
+                            ) : (
+                              <HandIcon className="w-6 h-6 sm:w-8 sm:h-8 text-zinc-400" />
+                            )}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h3 className="font-medium text-zinc-900 text-sm sm:text-base truncate">{item.name}</h3>
+                            <p className="text-zinc-500 text-sm">€{item.price.toFixed(2)}</p>
+                          </div>
+                          <button
+                            onClick={() => removeFromCart(item.id)}
+                            className="p-1.5 text-zinc-400 hover:text-red-500 transition shrink-0"
+                          >
+                            <TrashIcon className="w-4 h-4 sm:w-5 sm:h-5" />
+                          </button>
                         </div>
-                        <div className="flex-1">
-                          <h3 className="font-medium text-zinc-900">{item.name}</h3>
-                          <p className="text-zinc-500">€{item.price.toFixed(2)}</p>
-                        </div>
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center justify-end gap-2 mt-2">
                           <button
                             onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                            className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center hover:bg-zinc-100"
+                            className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-zinc-200 flex items-center justify-center hover:bg-zinc-100 text-sm"
                           >
                             −
                           </button>
-                          <span className="w-6 text-center">{item.quantity}</span>
+                          <span className="w-6 text-center text-sm">{item.quantity}</span>
                           <button
                             onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                            className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center hover:bg-zinc-100"
+                            className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-zinc-200 flex items-center justify-center hover:bg-zinc-100 text-sm"
                           >
                             +
                           </button>
                         </div>
-                        <button
-                          onClick={() => removeFromCart(item.id)}
-                          className="p-2 text-zinc-400 hover:text-red-500 transition"
-                        >
-                          <TrashIcon className="w-5 h-5" />
-                        </button>
                       </div>
                     ))}
                   </div>
@@ -442,8 +444,8 @@ function CheckoutContent() {
               )}
 
               {step === 'shipping' && (
-                <div className="bg-white rounded-2xl p-6 shadow-sm">
-                  <h2 className="text-xl font-semibold text-zinc-900 mb-6">Lieferadresse</h2>
+                <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm">
+                  <h2 className="text-lg sm:text-xl font-semibold text-zinc-900 mb-4 sm:mb-6">Lieferadresse</h2>
                   <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); handleShippingSubmit(); }}>
                     <div>
                       <label className="block text-sm text-zinc-600 mb-1">E-Mail *</label>
