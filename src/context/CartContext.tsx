@@ -94,11 +94,23 @@ export function CartProvider({ children }: { children: ReactNode }) {
     quantity: number,
     image: string | null
   ) => {
-    setIsLoading(true);
+    // Optimistic update: show item in cart immediately
+    setCart(prev => {
+      const existing = prev.find(item => item.variantId === variantId);
+      if (existing) {
+        return prev.map(item =>
+          item.variantId === variantId
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
+        );
+      }
+      return [...prev, { id: `temp-${Date.now()}`, variantId, name, price, quantity, image }];
+    });
+
+    // Sync with Medusa in background
     try {
       let currentCartId = cartId;
 
-      // Create cart if doesn't exist
       if (!currentCartId) {
         const newCart = await medusa.createCart();
         currentCartId = newCart.id;
@@ -106,25 +118,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
         localStorage.setItem(CART_ID_KEY, currentCartId);
       }
 
-      // Add item to Medusa cart
       const updatedCart = await medusa.addLineItem(currentCartId, variantId, quantity);
       setCart(transformCart(updatedCart));
     } catch (error) {
-      console.error('Failed to add to cart:', error);
-      // Fallback: add to local state for UX
-      setCart(prev => {
-        const existing = prev.find(item => item.variantId === variantId);
-        if (existing) {
-          return prev.map(item =>
-            item.variantId === variantId
-              ? { ...item, quantity: item.quantity + quantity }
-              : item
-          );
-        }
-        return [...prev, { id: `temp-${Date.now()}`, variantId, name, price, quantity, image }];
-      });
-    } finally {
-      setIsLoading(false);
+      console.error('Failed to sync cart with server:', error);
+      // Optimistic state stays - user sees their item
     }
   }, [cartId, transformCart]);
 
