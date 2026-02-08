@@ -94,7 +94,7 @@ export default function Home() {
       <CartDrawer isOpen={showCart} onClose={() => setShowCart(false)} />
 
       {/* Hero */}
-      <section className="pt-32 pb-20 px-6 overflow-hidden">
+      <section className="pt-28 sm:pt-32 pb-16 sm:pb-20 px-4 sm:px-6 overflow-hidden">
         <div className="max-w-3xl mx-auto text-center relative">
           <div className="absolute -top-10 -left-20 w-40 h-40 bg-gradient-to-br from-amber-100 to-orange-100 rounded-full blur-3xl opacity-50" />
           <div className="absolute -bottom-10 -right-20 w-40 h-40 bg-gradient-to-br from-violet-100 to-purple-100 rounded-full blur-3xl opacity-50" />
@@ -102,7 +102,7 @@ export default function Home() {
           <p className="text-sm font-medium text-zinc-400 uppercase tracking-widest mb-4 relative">
             Für die anderen 10%
           </p>
-          <h1 className="text-5xl md:text-7xl font-bold text-zinc-900 tracking-tight leading-tight mb-6 relative">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-zinc-900 tracking-tight leading-tight mb-6 relative">
             Write Different.
           </h1>
           <p className="text-xl text-zinc-500 max-w-xl mx-auto leading-relaxed relative">
@@ -144,27 +144,27 @@ export default function Home() {
 
       {/* Stats */}
       <section className="py-16 border-b border-zinc-100">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-3 gap-4 sm:gap-8 text-center">
           <div className="group">
-            <p className="text-5xl font-bold text-zinc-900 group-hover:scale-110 transition-transform">8 Mio</p>
+            <p className="text-3xl sm:text-5xl font-bold text-zinc-900 group-hover:scale-110 transition-transform">8 Mio</p>
             <p className="text-sm text-zinc-500 mt-2">Linkshänder in Deutschland</p>
           </div>
           <div className="group">
-            <p className="text-5xl font-bold text-zinc-900 group-hover:scale-110 transition-transform">10%</p>
+            <p className="text-3xl sm:text-5xl font-bold text-zinc-900 group-hover:scale-110 transition-transform">10%</p>
             <p className="text-sm text-zinc-500 mt-2">der Weltbevölkerung</p>
           </div>
           <div className="group">
-            <p className="text-5xl font-bold text-zinc-900 group-hover:scale-110 transition-transform">100%</p>
+            <p className="text-3xl sm:text-5xl font-bold text-zinc-900 group-hover:scale-110 transition-transform">100%</p>
             <p className="text-sm text-zinc-500 mt-2">für Links designed</p>
           </div>
         </div>
       </section>
 
       {/* Products */}
-      <section id="produkte" className="py-20 px-6">
+      <section id="produkte" className="py-16 sm:py-20 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-zinc-900 mb-4">Unsere Kollektion</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-zinc-900 mb-4">Unsere Kollektion</h2>
             <p className="text-zinc-500 max-w-lg mx-auto text-lg">
               Jedes Produkt wurde speziell für die linke Hand entwickelt. 
               Keine Kompromisse.
@@ -288,19 +288,19 @@ export default function Home() {
       </section>
 
       {/* Newsletter */}
-      <section className="py-20 px-6 border-t border-zinc-100">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 border-t border-zinc-100">
         <div className="max-w-xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-zinc-900 mb-4">
+          <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 mb-4">
             Bleib auf dem Laufenden
           </h2>
-          <p className="text-zinc-500 mb-8 text-lg">
+          <p className="text-zinc-500 mb-8 text-base sm:text-lg">
             Neue Produkte, Tipps für Linkshänder, und 10% auf deine erste Bestellung.
           </p>
           <form className="flex flex-col sm:flex-row gap-3" onSubmit={(e) => e.preventDefault()}>
             <input
               type="email"
               placeholder="deine@email.de"
-              className="flex-1 px-6 py-4 rounded-full border border-zinc-200 focus:outline-none focus:border-zinc-400 focus:ring-4 focus:ring-zinc-100 transition text-lg"
+              className="flex-1 min-w-0 px-5 sm:px-6 py-3.5 sm:py-4 rounded-full border border-zinc-200 focus:outline-none focus:border-zinc-400 focus:ring-4 focus:ring-zinc-100 transition text-base sm:text-lg"
             />
             <button
               type="submit"
@@ -451,9 +451,9 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-zinc-900 text-white py-16 px-6">
+      <footer className="bg-zinc-900 text-white py-12 sm:py-16 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-5 gap-12 mb-12">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 sm:gap-12 mb-12">
             <div className="md:col-span-2">
               <div className="mb-4">
                 <Image src="/logo-t.png" alt="Südpfote" width={140} height={46} />

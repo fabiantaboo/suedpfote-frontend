@@ -213,11 +213,11 @@ export default function ProductPage() {
       <CartDrawer isOpen={showCart} onClose={() => setShowCart(false)} />
 
       {/* Product */}
-      <main className="pt-24 pb-20 px-6">
+      <main className="pt-20 sm:pt-24 pb-20 px-4 sm:px-6 overflow-x-hidden">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 lg:gap-20">
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-12 lg:gap-20">
             {/* Image */}
-            <div className={`aspect-square rounded-3xl ${bgColors[colorIndex]} flex items-center justify-center p-12`}>
+            <div className={`aspect-square rounded-2xl sm:rounded-3xl ${bgColors[colorIndex]} flex items-center justify-center p-6 sm:p-12`}>
               {product.thumbnail ? (
                 <img 
                   src={product.thumbnail}
@@ -232,46 +232,46 @@ export default function ProductPage() {
             </div>
 
             {/* Info */}
-            <div className="flex flex-col justify-center">
-              <p className="text-sm font-medium text-zinc-400 uppercase tracking-wide mb-2">
+            <div className="flex flex-col justify-center min-w-0">
+              <p className="text-xs sm:text-sm font-medium text-zinc-400 uppercase tracking-wide mb-2">
                 Linkshänder
               </p>
-              <h1 className="text-4xl font-bold text-zinc-900 mb-4">
+              <h1 className="text-2xl sm:text-4xl font-bold text-zinc-900 mb-3 sm:mb-4 break-words">
                 {product.title}
               </h1>
-              <p className="text-xl text-zinc-600 leading-relaxed mb-8">
+              <p className="text-base sm:text-xl text-zinc-600 leading-relaxed mb-6 sm:mb-8">
                 {product.subtitle || product.description}
               </p>
 
               {/* Features */}
-              <div className="flex flex-wrap gap-2 mb-8">
-                <span className="px-3 py-1.5 bg-zinc-100 text-zinc-700 text-sm rounded-full">
+              <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-6 sm:mb-8">
+                <span className="px-2.5 py-1 sm:px-3 sm:py-1.5 bg-zinc-100 text-zinc-700 text-xs sm:text-sm rounded-full">
                   Für Linkshänder
                 </span>
-                <span className="px-3 py-1.5 bg-zinc-100 text-zinc-700 text-sm rounded-full">
+                <span className="px-2.5 py-1 sm:px-3 sm:py-1.5 bg-zinc-100 text-zinc-700 text-xs sm:text-sm rounded-full">
                   Premium Qualität
                 </span>
-                <span className="px-3 py-1.5 bg-zinc-100 text-zinc-700 text-sm rounded-full">
+                <span className="px-2.5 py-1 sm:px-3 sm:py-1.5 bg-zinc-100 text-zinc-700 text-xs sm:text-sm rounded-full">
                   Schneller Versand
                 </span>
               </div>
 
               {/* Price & Add to Cart */}
-              <div className="flex items-center gap-6 mb-8">
-                <span className="text-3xl font-bold text-zinc-900">
+              <div className="flex items-center gap-4 sm:gap-6 mb-6 sm:mb-8">
+                <span className="text-2xl sm:text-3xl font-bold text-zinc-900">
                   €{price.toFixed(2)}
                 </span>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 sm:gap-3">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="w-10 h-10 rounded-full border border-zinc-200 flex items-center justify-center hover:bg-zinc-50 cursor-pointer transition text-lg"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-zinc-200 flex items-center justify-center hover:bg-zinc-50 cursor-pointer transition text-lg"
                   >
                     −
                   </button>
-                  <span className="w-8 text-center font-medium text-lg">{quantity}</span>
+                  <span className="w-6 sm:w-8 text-center font-medium text-lg">{quantity}</span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="w-10 h-10 rounded-full border border-zinc-200 flex items-center justify-center hover:bg-zinc-50 cursor-pointer transition text-lg"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-zinc-200 flex items-center justify-center hover:bg-zinc-50 cursor-pointer transition text-lg"
                   >
                     +
                   </button>
@@ -280,7 +280,7 @@ export default function ProductPage() {
 
               <button
                 onClick={handleAddToCart}
-                className={`w-full py-4 rounded-full font-medium text-lg cursor-pointer transition-all duration-300 ${
+                className={`w-full py-3.5 sm:py-4 rounded-full font-medium text-base sm:text-lg cursor-pointer transition-all duration-300 ${
                   added 
                     ? 'bg-emerald-500 text-white' 
                     : 'bg-zinc-900 text-white hover:bg-zinc-700'
@@ -290,19 +290,19 @@ export default function ProductPage() {
               </button>
 
               {/* Info */}
-              <div className="mt-12 pt-8 border-t border-zinc-100">
-                <h3 className="font-semibold text-zinc-900 mb-4">Warum Südpfote?</h3>
-                <ul className="space-y-3 text-zinc-600">
+              <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-zinc-100">
+                <h3 className="font-semibold text-zinc-900 mb-3 sm:mb-4">Warum Südpfote?</h3>
+                <ul className="space-y-2.5 sm:space-y-3 text-sm sm:text-base text-zinc-600">
                   <li className="flex items-start gap-2">
-                    <span className="text-emerald-500 mt-1">✓</span>
+                    <span className="text-emerald-500 mt-0.5">✓</span>
                     <span>Speziell für Linkshänder entwickelt</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-emerald-500 mt-1">✓</span>
+                    <span className="text-emerald-500 mt-0.5">✓</span>
                     <span>Kostenloser Versand ab 39 €</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-emerald-500 mt-1">✓</span>
+                    <span className="text-emerald-500 mt-0.5">✓</span>
                     <span>30 Tage Rückgaberecht</span>
                   </li>
                 </ul>
