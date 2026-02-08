@@ -172,7 +172,7 @@ export default function LoyaltyPoints({
     return (
       <div className="bg-white rounded-2xl p-6 border border-zinc-200">
         <div className="flex items-center gap-3 mb-6">
-          <CoinsIcon className="w-10 h-10 text-amber-500" filled />
+          <CoinsIcon className="w-10 h-10 text-amber-500" />
           <div>
             <h3 className="font-bold text-xl text-zinc-900">Meine Treuepunkte</h3>
             <p className="text-2xl font-bold text-amber-500">
