@@ -130,26 +130,6 @@ function CheckoutContent() {
     setError(null);
   };
 
-  // Pre-initialize payment after a short delay on shipping step
-  // This gives the cart time to sync with Medusa
-  const paymentInitRef = useRef<Promise<string | null> | null>(null);
-
-  useEffect(() => {
-    if (step === 'shipping' && !clientSecret && !paymentInitRef.current && cartId) {
-      const timer = setTimeout(() => {
-        if (!paymentInitRef.current) {
-          console.log('[Checkout] Pre-initializing payment while user fills shipping form...');
-          paymentInitRef.current = initializePayment().catch(err => {
-            console.error('[Checkout] Pre-init payment failed (will retry on submit):', err);
-            paymentInitRef.current = null; // Reset so retry works
-            return null;
-          });
-        }
-      }, 2000); // Wait 2s for cart to be ready
-      return () => clearTimeout(timer);
-    }
-  }, [step, clientSecret, cartId, initializePayment]);
-
   const handleShippingSubmit = async () => {
     setIsLoadingPayment(true);
     setError(null);
@@ -163,47 +143,28 @@ function CheckoutContent() {
         total: total,
       }));
 
-      // REUSE existing clientSecret if we have one (prevents duplicate PaymentIntents!)
+      // STEP 1: Set shipping address + shipping method FIRST (must complete before payment!)
+      console.log('[Checkout] Setting shipping address...');
+      await updateShippingAddress(
+        {
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          address_1: formData.address,
+          city: formData.city,
+          postal_code: formData.postalCode,
+          country_code: formData.country.toLowerCase(),
+        },
+        formData.email
+      );
+      console.log('[Checkout] Shipping address set successfully');
+
+      // STEP 2: Now initialize payment (Stripe gets correct total incl. shipping)
       if (clientSecret) {
         console.log('[Checkout] Reusing existing clientSecret');
-        // Still update shipping in background
-        updateShippingAddress(
-          {
-            first_name: formData.firstName,
-            last_name: formData.lastName,
-            address_1: formData.address,
-            city: formData.city,
-            postal_code: formData.postalCode,
-            country_code: formData.country.toLowerCase(),
-          },
-          formData.email
-        ).catch(console.error);
         setStep('payment');
       } else {
-        // Update shipping in background
-        updateShippingAddress(
-          {
-            first_name: formData.firstName,
-            last_name: formData.lastName,
-            address_1: formData.address,
-            city: formData.city,
-            postal_code: formData.postalCode,
-            country_code: formData.country.toLowerCase(),
-          },
-          formData.email
-        ).catch(console.error);
-
-        // Use pre-initialized payment if available, otherwise init now
-        let secret = paymentInitRef.current 
-          ? await paymentInitRef.current 
-          : null;
-        
-        // If pre-init failed or wasn't started, try fresh
-        if (!secret) {
-          console.log('[Checkout] Pre-init unavailable, initializing payment now...');
-          paymentInitRef.current = null;
-          secret = await initializePayment(formData.email);
-        }
+        console.log('[Checkout] Initializing payment after shipping is set...');
+        const secret = await initializePayment(formData.email);
         
         if (secret) {
           setClientSecret(secret);
