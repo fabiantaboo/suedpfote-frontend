@@ -350,7 +350,7 @@ function CheckoutContent() {
       <Navigation />
       
       {/* Fullscreen checkout loading animation */}
-      {isLoadingPayment && <CheckoutLoader />}
+      {isLoadingPayment && <CheckoutLoader totalPrice={total} />}
 
       <main className="pt-24 pb-20 px-6">
         <div className="max-w-6xl mx-auto">

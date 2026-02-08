@@ -1,99 +1,163 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
-const MESSAGES = [
-  { text: 'Deine Bestellung wird vorbereitet...', emoji: '📦' },
-  { text: 'Versandkosten werden berechnet...', emoji: '🚚' },
-  { text: 'Sichere Verbindung wird aufgebaut...', emoji: '🔒' },
-  { text: 'Fast geschafft!', emoji: '✨' },
+type CheckoutLoaderProps = {
+  totalPrice?: number;
+};
+
+const STEPS = [
+  { text: 'Deine Bestellung wird geprüft', emoji: '📦', subtext: 'Qualität ist uns wichtig' },
+  { text: 'Versanddetails werden berechnet', emoji: '🚚', subtext: 'Kostenloser Versand ab 39€' },
+  { text: 'Sichere Verbindung zu deiner Bank', emoji: '🔒', subtext: 'SSL-verschlüsselt & sicher' },
+  { text: 'Fast geschafft!', emoji: '✨', subtext: 'Gleich kannst du bezahlen' },
 ];
 
-export default function CheckoutLoader() {
-  const [messageIndex, setMessageIndex] = useState(0);
+const FUN_FACTS = [
+  '10–15% der Weltbevölkerung sind Linkshänder',
+  'Linkshänder sind oft kreativer & lösungsorientierter',
+  '5 der letzten 8 US-Präsidenten waren Linkshänder',
+  'Leonardo da Vinci, Einstein & Beethoven – alle Linkshänder',
+  'Im Englischen heißt es "Southpaw" – daher Südpfote 🤚',
+];
+
+export default function CheckoutLoader({ totalPrice = 0 }: CheckoutLoaderProps) {
+  const [stepIndex, setStepIndex] = useState(0);
+  const [factIndex, setFactIndex] = useState(() => Math.floor(Math.random() * FUN_FACTS.length));
   const [progress, setProgress] = useState(0);
+  const [factVisible, setFactVisible] = useState(true);
+
+  const loyaltyPoints = Math.round(totalPrice * 10);
 
   useEffect(() => {
-    // Cycle messages every 1.8s
-    const msgInterval = setInterval(() => {
-      setMessageIndex(prev => (prev + 1) % MESSAGES.length);
-    }, 1800);
+    const stepInterval = setInterval(() => {
+      setStepIndex(prev => Math.min(prev + 1, STEPS.length - 1));
+    }, 2200);
 
-    // Smooth progress bar (fills to ~90% over 8s, never hits 100 until done)
+    const factInterval = setInterval(() => {
+      setFactVisible(false);
+      setTimeout(() => {
+        setFactIndex(prev => (prev + 1) % FUN_FACTS.length);
+        setFactVisible(true);
+      }, 300);
+    }, 4000);
+
     const progressInterval = setInterval(() => {
       setProgress(prev => {
-        if (prev >= 90) return prev;
-        return prev + (90 - prev) * 0.08;
+        if (prev >= 92) return prev;
+        return prev + (92 - prev) * 0.06;
       });
-    }, 100);
+    }, 80);
 
     return () => {
-      clearInterval(msgInterval);
+      clearInterval(stepInterval);
+      clearInterval(factInterval);
       clearInterval(progressInterval);
     };
   }, []);
 
-  const current = MESSAGES[messageIndex];
+  const current = STEPS[stepIndex];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/95 backdrop-blur-sm">
-      <div className="text-center px-8 max-w-sm">
-        {/* Animated hand/paw */}
-        <div className="mb-8 relative">
-          <div className="w-20 h-20 mx-auto rounded-full bg-zinc-100 flex items-center justify-center animate-pulse">
-            <span className="text-4xl animate-bounce">{current.emoji}</span>
-          </div>
-          {/* Floating particles */}
-          <div className="absolute inset-0 pointer-events-none">
-            {[...Array(3)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute w-2 h-2 bg-zinc-200 rounded-full"
-                style={{
-                  left: `${30 + i * 20}%`,
-                  top: `${20 + i * 15}%`,
-                  animation: `float ${2 + i * 0.5}s ease-in-out infinite`,
-                  animationDelay: `${i * 0.3}s`,
-                }}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Message with fade transition */}
-        <p
-          key={messageIndex}
-          className="text-lg font-medium text-zinc-800 mb-2 animate-fadeIn"
-        >
-          {current.text}
-        </p>
-        <p className="text-sm text-zinc-400 mb-8">Einen Moment bitte</p>
-
-        {/* Progress bar */}
-        <div className="w-full h-1.5 bg-zinc-100 rounded-full overflow-hidden">
-          <div
-            className="h-full bg-zinc-800 rounded-full transition-all duration-300 ease-out"
-            style={{ width: `${progress}%` }}
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-white">
+      <div className="w-full max-w-md px-8 text-center">
+        
+        {/* Logo */}
+        <div className="mb-10">
+          <Image
+            src="/logo.png"
+            alt="Südpfote"
+            width={140}
+            height={50}
+            className="mx-auto opacity-90"
           />
         </div>
 
-        {/* Südpfote branding */}
-        <p className="mt-6 text-xs text-zinc-300 tracking-widest uppercase">
-          🤚 Südpfote
-        </p>
+        {/* Step indicator dots */}
+        <div className="flex justify-center gap-2 mb-8">
+          {STEPS.map((_, i) => (
+            <div
+              key={i}
+              className={`h-1.5 rounded-full transition-all duration-500 ${
+                i <= stepIndex
+                  ? 'w-8 bg-zinc-800'
+                  : 'w-1.5 bg-zinc-200'
+              }`}
+            />
+          ))}
+        </div>
+
+        {/* Animated emoji */}
+        <div className="mb-6">
+          <span
+            key={stepIndex}
+            className="inline-block text-5xl animate-fadeIn"
+          >
+            {current.emoji}
+          </span>
+        </div>
+
+        {/* Main text */}
+        <div key={`text-${stepIndex}`} className="animate-fadeIn mb-2">
+          <p className="text-xl font-semibold text-zinc-900">
+            {current.text}
+          </p>
+          <p className="text-sm text-zinc-400 mt-1">
+            {current.subtext}
+          </p>
+        </div>
+
+        {/* Progress bar */}
+        <div className="mt-8 mb-10">
+          <div className="w-full h-1 bg-zinc-100 rounded-full overflow-hidden">
+            <div
+              className="h-full bg-zinc-800 rounded-full transition-all duration-200 ease-out"
+              style={{ width: `${progress}%` }}
+            />
+          </div>
+        </div>
+
+        {/* Loyalty points teaser */}
+        {loyaltyPoints > 0 && (
+          <div className="mb-8 py-3 px-5 bg-amber-50 rounded-xl inline-block">
+            <p className="text-sm text-amber-800 font-medium">
+              🎉 Du erhältst <span className="font-bold">{loyaltyPoints} Punkte</span> für diese Bestellung
+            </p>
+            <p className="text-xs text-amber-600 mt-0.5">
+              = €{(loyaltyPoints / 100).toFixed(2)} Rabatt auf deine nächste Bestellung
+            </p>
+          </div>
+        )}
+
+        {/* Fun fact */}
+        <div className="min-h-[3rem]">
+          <p className="text-xs text-zinc-300 uppercase tracking-wider mb-1">Wusstest du?</p>
+          <p
+            className={`text-sm text-zinc-500 transition-all duration-300 ${
+              factVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
+            }`}
+          >
+            {FUN_FACTS[factIndex]}
+          </p>
+        </div>
+
+        {/* Values */}
+        <div className="mt-10 flex justify-center gap-6 text-xs text-zinc-300">
+          <span>🌱 Nachhaltig</span>
+          <span>🇩🇪 Aus Deutschland</span>
+          <span>❤️ Für Linkshänder</span>
+        </div>
+
       </div>
 
       <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0) scale(1); opacity: 0.3; }
-          50% { transform: translateY(-12px) scale(1.2); opacity: 0.6; }
-        }
         @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(8px); }
+          from { opacity: 0; transform: translateY(10px); }
           to { opacity: 1; transform: translateY(0); }
         }
         .animate-fadeIn {
-          animation: fadeIn 0.4s ease-out;
+          animation: fadeIn 0.5s ease-out;
         }
       `}</style>
     </div>
