@@ -173,20 +173,21 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const updateShippingAddress = useCallback(async (address: medusa.Address, email: string) => {
     if (!cartId) throw new Error('No cart');
 
+    // Step 1: Update cart with address + email
     await medusa.updateCart(cartId, {
       email,
       shipping_address: address,
       billing_address: address,
     });
 
-    // Get shipping options and add the first one
+    // Step 2: Get shipping options and add one
     const shippingOptions = await medusa.getShippingOptions(cartId);
     if (shippingOptions.length > 0) {
       await medusa.addShippingMethod(cartId, shippingOptions[0].id);
     }
 
-    await refreshCart();
-  }, [cartId, refreshCart]);
+    // Skip refreshCart — caller will proceed to payment immediately
+  }, [cartId]);
 
   const initializePayment = useCallback(async (email?: string): Promise<string | null> => {
     if (!cartId) throw new Error('No cart');

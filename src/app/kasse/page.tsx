@@ -143,9 +143,9 @@ function CheckoutContent() {
         total: total,
       }));
 
-      // STEP 1: Set shipping address + shipping method FIRST (must complete before payment!)
+      // Set shipping address + method, then initialize payment
       console.log('[Checkout] Setting shipping address...');
-      await updateShippingAddress(
+      const shippingPromise = updateShippingAddress(
         {
           first_name: formData.firstName,
           last_name: formData.lastName,
@@ -156,14 +156,15 @@ function CheckoutContent() {
         },
         formData.email
       );
-      console.log('[Checkout] Shipping address set successfully');
 
-      // STEP 2: Now initialize payment (Stripe gets correct total incl. shipping)
+      // Wait for shipping, then immediately init payment
+      await shippingPromise;
+      
       if (clientSecret) {
         console.log('[Checkout] Reusing existing clientSecret');
         setStep('payment');
       } else {
-        console.log('[Checkout] Initializing payment after shipping is set...');
+        console.log('[Checkout] Initializing payment...');
         const secret = await initializePayment(formData.email);
         
         if (secret) {
