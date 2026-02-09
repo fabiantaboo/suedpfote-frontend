@@ -1,16 +1,17 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 type CheckoutLoaderProps = {
   totalPrice?: number;
 };
 
 const STEPS = [
-  { text: 'Bestellung wird geprüft', icon: '🤚' },
-  { text: 'Versand wird berechnet', icon: '📦' },
-  { text: 'Sichere Verbindung', icon: '🔒' },
-  { text: 'Fast geschafft', icon: '✨' },
+  'Bestellung wird geprüft',
+  'Versand wird berechnet',
+  'Sichere Verbindung',
+  'Fast geschafft',
 ];
 
 const FUN_FACTS = [
@@ -49,23 +50,25 @@ export default function CheckoutLoader({ totalPrice = 0 }: CheckoutLoaderProps) 
     };
   }, []);
 
-  const current = STEPS[stepIndex];
-
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-zinc-900">
       <div className="w-full max-w-sm px-8 text-center">
 
-        {/* Paw logo */}
+        {/* Logo in weiß */}
         <div className="mb-12">
-          <span className="text-5xl">🐾</span>
+          <Image
+            src="/logo.png"
+            alt="Südpfote"
+            width={160}
+            height={56}
+            className="mx-auto invert brightness-200"
+            priority
+          />
         </div>
 
         {/* Step text */}
-        <p className="text-lg font-medium text-white mb-1">
-          {current.text}
-        </p>
-        <p className="text-sm text-zinc-500 mb-8">
-          {current.icon}
+        <p className="text-lg font-medium text-white mb-8">
+          {STEPS[stepIndex]}
         </p>
 
         {/* Minimal progress bar */}
@@ -77,7 +80,7 @@ export default function CheckoutLoader({ totalPrice = 0 }: CheckoutLoaderProps) 
         </div>
 
         {/* Fun fact */}
-        <p className="text-xs text-zinc-600 transition-opacity duration-300">
+        <p className="text-xs text-zinc-600">
           {FUN_FACTS[factIndex]}
         </p>
 
