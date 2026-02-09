@@ -11,6 +11,17 @@ import {
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY!);
 
+const FREE_SHIPPING_THRESHOLD = 39;
+const SHIPPING_COST = 4.99;
+
+function getShippingCost(subtotal: number): number {
+  return subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_COST;
+}
+
+function getTotalWithShipping(subtotal: number): number {
+  return subtotal + getShippingCost(subtotal);
+}
+
 // Error Boundary to prevent crashes
 class ExpressCheckoutErrorBoundary extends Component<
   { children: ReactNode },
@@ -41,6 +52,9 @@ function ExpressCheckoutForm({ price, productTitle, variantId }: ExpressCheckout
   const [error, setError] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
 
+  const shipping = getShippingCost(price);
+  const total = getTotalWithShipping(price);
+
   const onConfirm = useCallback(async () => {
     if (!stripe || !elements) return;
 
@@ -54,8 +68,13 @@ function ExpressCheckoutForm({ price, productTitle, variantId }: ExpressCheckout
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        amount: price,
-        metadata: { product: productTitle, variant_id: variantId },
+        amount: total,
+        metadata: {
+          product: productTitle,
+          variant_id: variantId,
+          subtotal: price.toFixed(2),
+          shipping: shipping.toFixed(2),
+        },
       }),
     });
     const { clientSecret, error: serverError } = await res.json();
@@ -76,10 +95,15 @@ function ExpressCheckoutForm({ price, productTitle, variantId }: ExpressCheckout
     if (confirmError) {
       setError(confirmError.message || 'Zahlung fehlgeschlagen');
     }
-  }, [stripe, elements, price, productTitle, variantId]);
+  }, [stripe, elements, price, total, shipping, productTitle, variantId]);
 
   return (
     <div className="w-full">
+      {shipping > 0 && (
+        <p className="text-xs text-zinc-400 mb-2 text-center">
+          zzgl. {SHIPPING_COST.toFixed(2).replace('.', ',')} € Versand · Ab {FREE_SHIPPING_THRESHOLD} € versandkostenfrei
+        </p>
+      )}
       <ExpressCheckoutElement
         onConfirm={onConfirm}
         onReady={() => setReady(true)}
@@ -102,13 +126,15 @@ function ExpressCheckoutForm({ price, productTitle, variantId }: ExpressCheckout
 export default function ExpressCheckout({ price, productTitle, variantId }: ExpressCheckoutProps) {
   if (price <= 0) return null;
 
+  const total = getTotalWithShipping(price);
+
   return (
     <ExpressCheckoutErrorBoundary>
       <Elements
         stripe={stripePromise}
         options={{
           mode: 'payment',
-          amount: Math.round(price * 100),
+          amount: Math.round(total * 100),
           currency: 'eur',
           appearance: {
             theme: 'stripe',
