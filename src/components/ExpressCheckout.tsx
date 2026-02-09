@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, Component, ReactNode } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import {
   Elements,
@@ -10,6 +10,24 @@ import {
 } from '@stripe/react-stripe-js';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY!);
+
+// Error Boundary to prevent crashes
+class ExpressCheckoutErrorBoundary extends Component<
+  { children: ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: { children: ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  render() {
+    if (this.state.hasError) return null;
+    return this.props.children;
+  }
+}
 
 interface ExpressCheckoutProps {
   price: number;
@@ -21,6 +39,7 @@ function ExpressCheckoutForm({ price, productTitle, variantId }: ExpressCheckout
   const stripe = useStripe();
   const elements = useElements();
   const [error, setError] = useState<string | null>(null);
+  const [ready, setReady] = useState(false);
 
   const onConfirm = useCallback(async () => {
     if (!stripe || !elements) return;
@@ -31,7 +50,6 @@ function ExpressCheckoutForm({ price, productTitle, variantId }: ExpressCheckout
       return;
     }
 
-    // Create PaymentIntent on server
     const res = await fetch('/api/create-payment-intent', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -61,9 +79,10 @@ function ExpressCheckoutForm({ price, productTitle, variantId }: ExpressCheckout
   }, [stripe, elements, price, productTitle, variantId]);
 
   return (
-    <div className="w-full">
+    <div className={`w-full ${!ready ? 'hidden' : ''}`}>
       <ExpressCheckoutElement
         onConfirm={onConfirm}
+        onReady={() => setReady(true)}
         options={{
           paymentMethods: {
             amazonPay: 'always' as any,
@@ -84,25 +103,27 @@ export default function ExpressCheckout({ price, productTitle, variantId }: Expr
   if (price <= 0) return null;
 
   return (
-    <Elements
-      stripe={stripePromise}
-      options={{
-        mode: 'payment',
-        amount: Math.round(price * 100),
-        currency: 'eur',
-        appearance: {
-          theme: 'stripe',
-          variables: {
-            borderRadius: '12px',
+    <ExpressCheckoutErrorBoundary>
+      <Elements
+        stripe={stripePromise}
+        options={{
+          mode: 'payment',
+          amount: Math.round(price * 100),
+          currency: 'eur',
+          appearance: {
+            theme: 'stripe',
+            variables: {
+              borderRadius: '12px',
+            },
           },
-        },
-      }}
-    >
-      <ExpressCheckoutForm
-        price={price}
-        productTitle={productTitle}
-        variantId={variantId}
-      />
-    </Elements>
+        }}
+      >
+        <ExpressCheckoutForm
+          price={price}
+          productTitle={productTitle}
+          variantId={variantId}
+        />
+      </Elements>
+    </ExpressCheckoutErrorBoundary>
   );
 }
