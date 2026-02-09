@@ -79,16 +79,16 @@ function ExpressCheckoutForm({ price, productTitle, variantId }: ExpressCheckout
   }, [stripe, elements, price, productTitle, variantId]);
 
   return (
-    <div className={`w-full ${!ready ? 'hidden' : ''}`}>
+    <div className="w-full">
       <ExpressCheckoutElement
         onConfirm={onConfirm}
         onReady={() => setReady(true)}
         options={{
           paymentMethods: {
-            amazonPay: 'always' as any,
-            applePay: 'never' as any,
-            googlePay: 'never' as any,
-            link: 'never' as any,
+            amazonPay: 'auto' as any,
+            applePay: 'auto' as any,
+            googlePay: 'auto' as any,
+            link: 'auto' as any,
           },
         }}
       />
