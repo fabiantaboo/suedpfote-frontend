@@ -1,7 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import dynamic from 'next/dynamic';
 import { useCart } from '@/context/CartContext';
+
+const ExpressCheckout = dynamic(() => import('@/components/ExpressCheckout'), { ssr: false });
 
 type Props = {
   variantId: string;
@@ -57,6 +60,20 @@ export function AddToCartSection({ variantId, productTitle, price, thumbnail }: 
       >
         {added ? '✓ Hinzugefügt!' : `In den Warenkorb · €${(price * quantity).toFixed(2)}`}
       </button>
+
+      {/* Express Checkout - Amazon Pay */}
+      <div className="mt-4">
+        <div className="flex items-center gap-3 mb-3">
+          <div className="flex-1 h-px bg-zinc-200" />
+          <span className="text-xs text-zinc-400 uppercase tracking-wide">Express Checkout</span>
+          <div className="flex-1 h-px bg-zinc-200" />
+        </div>
+        <ExpressCheckout
+          price={price * quantity}
+          productTitle={productTitle}
+          variantId={variantId}
+        />
+      </div>
     </>
   );
 }
