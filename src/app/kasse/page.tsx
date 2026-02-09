@@ -145,29 +145,38 @@ function CheckoutContent() {
         total: total,
       }));
 
-      // Set shipping address + method, then initialize payment
-      console.log('[Checkout] Setting shipping address...');
-      const shippingPromise = updateShippingAddress(
-        {
-          first_name: formData.firstName,
-          last_name: formData.lastName,
-          address_1: formData.address,
-          city: formData.city,
-          postal_code: formData.postalCode,
-          country_code: formData.country.toLowerCase(),
-        },
-        formData.email
-      );
-
-      // Wait for shipping, then immediately init payment
-      await shippingPromise;
-      
       if (clientSecret) {
+        // Already have payment ready - just update address and go
         console.log('[Checkout] Reusing existing clientSecret');
+        updateShippingAddress(
+          {
+            first_name: formData.firstName,
+            last_name: formData.lastName,
+            address_1: formData.address,
+            city: formData.city,
+            postal_code: formData.postalCode,
+            country_code: formData.country.toLowerCase(),
+          },
+          formData.email
+        ); // fire-and-forget, don't block
         setStep('payment');
       } else {
-        console.log('[Checkout] Initializing payment...');
-        const secret = await initializePayment(formData.email);
+        // Run shipping + payment in parallel
+        console.log('[Checkout] Setting shipping address + initializing payment in PARALLEL...');
+        const [, secret] = await Promise.all([
+          updateShippingAddress(
+            {
+              first_name: formData.firstName,
+              last_name: formData.lastName,
+              address_1: formData.address,
+              city: formData.city,
+              postal_code: formData.postalCode,
+              country_code: formData.country.toLowerCase(),
+            },
+            formData.email
+          ),
+          initializePayment(formData.email),
+        ]);
         
         if (secret) {
           setClientSecret(secret);
