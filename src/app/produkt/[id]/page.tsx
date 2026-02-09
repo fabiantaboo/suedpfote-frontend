@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import { getProductByHandle, getAllProducts } from '@/lib/medusa-server';
 import { AddToCartSection } from '@/components/ProductClient';
 import CartToggle from '@/components/CartToggle';
@@ -61,6 +61,11 @@ export default async function ProductPage({ params }: Props) {
 
   if (!product) {
     notFound();
+  }
+
+  // Redirect technical IDs to SEO-friendly handles
+  if (id.startsWith('prod_') && product.handle) {
+    redirect(`/produkt/${product.handle}`);
   }
 
   const price = product.variants?.[0]?.calculated_price?.calculated_amount || 0;
