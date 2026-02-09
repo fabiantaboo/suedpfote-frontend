@@ -12,7 +12,7 @@ import {
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY!);
 
 const FREE_SHIPPING_THRESHOLD = 39;
-const SHIPPING_COST = 4.99;
+const SHIPPING_COST = 2.99;
 
 function getShippingCost(subtotal: number): number {
   return subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_COST;
