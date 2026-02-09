@@ -4,15 +4,43 @@ import Link from 'next/link';
 export const metadata: Metadata = {
   title: 'Unsere Story | Warum wir für Linkshänder kämpfen',
   description: 'Die Geschichte hinter Südpfote. Wir glauben, dass 10% der Weltbevölkerung bessere Produkte verdienen. Das ist unsere Mission.',
+  alternates: { canonical: 'https://suedpfote.de/story' },
   openGraph: {
     title: 'Unsere Story | Südpfote',
     description: 'Die Geschichte hinter Südpfote. Wir glauben, dass 10% der Weltbevölkerung bessere Produkte verdienen.',
+    url: 'https://suedpfote.de/story',
   },
 };
 
 export default function StoryPage() {
+  const aboutSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: 'Über Südpfote',
+    description: 'Die Geschichte hinter Südpfote - Premium Produkte für Linkshänder.',
+    url: 'https://suedpfote.de/story',
+    mainEntity: {
+      '@type': 'Organization',
+      name: 'Südpfote',
+      url: 'https://suedpfote.de',
+      foundingDate: '2026',
+      description: 'Premium Produkte für Linkshänder. Der Shop für die anderen 10%.',
+    },
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://suedpfote.de' },
+      { '@type': 'ListItem', position: 2, name: 'Unsere Story', item: 'https://suedpfote.de/story' },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-white">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-40 bg-white/80 backdrop-blur-lg border-b border-zinc-100">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
