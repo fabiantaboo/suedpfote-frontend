@@ -6,8 +6,7 @@ import { useRouter } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
 
-const BACKEND_URL = 'https://suedpfote-backend.onrender.com';
-const API_KEY = 'pk_47735dfa80c2310e7a8b18d8c2e5ecf3df3c5a7767938647e98be59f8d2d9d9f';
+const SEARCH_URL = '/api/search';
 
 type SearchProduct = {
   id: string;
@@ -46,8 +45,8 @@ export default function SearchBar() {
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), 8000);
       const res = await fetch(
-        `${BACKEND_URL}/store/products?q=${encodeURIComponent(term)}&limit=8`,
-        { headers: { 'x-publishable-api-key': API_KEY }, signal: controller.signal }
+        `${SEARCH_URL}?q=${encodeURIComponent(term)}`,
+        { signal: controller.signal }
       );
       clearTimeout(timeout);
       const data = await res.json();
