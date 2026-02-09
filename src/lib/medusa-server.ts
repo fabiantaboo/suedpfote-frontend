@@ -42,7 +42,7 @@ export async function getProductByHandle(handle: string): Promise<MedusaProduct 
 export async function getAllProducts(): Promise<MedusaProduct[]> {
   try {
     const res = await fetch(
-      `${MEDUSA_URL}/store/products?region_id=${REGION_ID}`,
+      `${MEDUSA_URL}/store/products?region_id=${REGION_ID}&limit=50`,
       {
         headers: { 'x-publishable-api-key': PUBLISHABLE_KEY },
         next: { revalidate: 300 },
