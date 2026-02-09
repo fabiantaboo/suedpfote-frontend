@@ -29,29 +29,27 @@ export default function ImpressumPage() {
           <div className="prose prose-zinc max-w-none">
             <h2>Angaben gemäß § 5 TMG</h2>
             <p>
-              Südpfote<br />
-              [Firmenname]<br />
-              [Straße und Hausnummer]<br />
-              [PLZ] [Stadt]<br />
+              Südpfote (Fabian Budde)<br />
+              Wird nach Umzug aktualisiert<br />
+              Wird nach Umzug aktualisiert<br />
               Deutschland
             </p>
 
             <h2>Kontakt</h2>
             <p>
-              E-Mail: hallo@suedpfote.de<br />
-              Telefon: [Telefonnummer]
+              E-Mail: info@suedpfote.de<br />
+              Telefon: Auf Anfrage
             </p>
 
             <h2>Umsatzsteuer-ID</h2>
             <p>
-              Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br />
-              [USt-IdNr.]
+              Kleinunternehmer gem. §19 UStG
             </p>
 
             <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
             <p>
-              [Name des Verantwortlichen]<br />
-              [Adresse]
+              Fabian Budde<br />
+              Wird nach Umzug aktualisiert
             </p>
 
             <h2>EU-Streitschlichtung</h2>
