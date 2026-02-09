@@ -156,6 +156,7 @@ export default async function ProductPage({ params }: Props) {
                     height={600}
                     className="w-full h-full object-contain"
                     priority
+                    unoptimized={product.thumbnail.startsWith('http')}
                   />
                 ) : (
                   <div className="text-8xl">🤚</div>
@@ -217,12 +218,21 @@ export default async function ProductPage({ params }: Props) {
             </div>
 
             {/* Ausführliche Produktbeschreibung */}
-            {product.description && (product.description.includes('---') || product.description.includes('—')) && (
+            {product.description && product.description.length > 200 && (
               <div className="mt-20 pt-12 border-t border-zinc-200">
                 <h2 className="text-2xl font-bold text-zinc-900 mb-8">Produktdetails</h2>
                 <div className="prose prose-zinc max-w-none">
                   {product.description.split('\n\n').map((section: string, index: number) => {
-                    if ((section.startsWith('---') && section.endsWith('---')) || (section.startsWith('—') && section.endsWith('—'))) {
+                    const trimmed = section.trim();
+                    if (trimmed.startsWith('- ') && trimmed.endsWith(' -') && trimmed.length < 80) {
+                      const title = trimmed.replace(/^-\s*/, '').replace(/\s*-$/, '').trim();
+                      return (
+                        <h3 key={index} className="text-lg font-semibold text-zinc-900 mt-8 mb-4 flex items-center gap-2">
+                          <span className="w-8 h-0.5 bg-zinc-900"></span>
+                          {title}
+                        </h3>
+                      );
+                    } else if ((section.startsWith('---') && section.endsWith('---')) || (section.startsWith('—') && section.endsWith('—'))) {
                       const title = section.replace(/---/g, '').replace(/—/g, '').trim();
                       return (
                         <h3 key={index} className="text-lg font-semibold text-zinc-900 mt-8 mb-4 flex items-center gap-2">
@@ -230,8 +240,8 @@ export default async function ProductPage({ params }: Props) {
                           {title}
                         </h3>
                       );
-                    } else if (section.includes('\n-') || section.includes('\n•')) {
-                      const items = section.split('\n').filter((line: string) => line.startsWith('-') || line.startsWith('•'));
+                    } else if (section.includes('\n-') || section.includes('\n•') || section.includes('\n ')) {
+                      const items = section.split('\n').filter((line: string) => line.trim().startsWith('-') || line.trim().startsWith('•') || line.trim().startsWith('✓'));
                       return (
                         <ul key={index} className="space-y-2 mb-6">
                           {items.map((item: string, i: number) => (
@@ -266,7 +276,7 @@ export default async function ProductPage({ params }: Props) {
                       <Link href={`/produkt/${rp.handle || rp.id}`} key={rp.id} className="group block">
                         <div className={`aspect-square rounded-2xl ${rpColor} flex items-center justify-center p-8 mb-4 transition-all group-hover:shadow-lg`}>
                           {rp.thumbnail ? (
-                            <Image src={rp.thumbnail} alt={`${rp.title} - Linkshänder Produkt`} width={300} height={300} className="w-full h-full object-contain group-hover:scale-105 transition-transform" />
+                            <Image src={rp.thumbnail} alt={`${rp.title} - Linkshänder Produkt`} width={300} height={300} className="w-full h-full object-contain group-hover:scale-105 transition-transform" unoptimized={rp.thumbnail!.startsWith('http')} />
                           ) : (
                             <div className="text-6xl">🤚</div>
                           )}
