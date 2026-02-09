@@ -43,15 +43,19 @@ export default function SearchBar() {
 
     setIsLoading(true);
     try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 8000);
       const res = await fetch(
         `${BACKEND_URL}/store/products?q=${encodeURIComponent(term)}&limit=8`,
-        { headers: { 'x-publishable-api-key': API_KEY } }
+        { headers: { 'x-publishable-api-key': API_KEY }, signal: controller.signal }
       );
+      clearTimeout(timeout);
       const data = await res.json();
       setResults(data.products || []);
       setIsOpen(true);
     } catch {
       setResults([]);
+      setIsOpen(true);
     } finally {
       setIsLoading(false);
     }
