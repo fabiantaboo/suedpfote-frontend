@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Impressum',
@@ -13,8 +14,7 @@ export default function ImpressumPage() {
       <nav className="fixed top-0 left-0 right-0 z-40 bg-white/80 backdrop-blur-lg border-b border-zinc-100">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-2xl">🐾</span>
-            <span className="font-semibold text-zinc-900 tracking-tight">Südpfote</span>
+            <Image src="/logo-t.png" alt="Südpfote" width={140} height={46} />
           </Link>
           <Link href="/" className="text-sm text-zinc-600 hover:text-zinc-900 transition">
             ← Zurück zum Shop
