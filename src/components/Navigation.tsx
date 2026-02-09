@@ -6,6 +6,7 @@ import { useCart } from '@/context/CartContext';
 import { useAuth } from '@/context/AuthContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faUser, faHandPeace } from '@fortawesome/free-solid-svg-icons';
+import SearchBar from './SearchBar';
 
 type NavigationProps = {
   onCartClick?: () => void;
@@ -39,6 +40,8 @@ export default function Navigation({ onCartClick }: NavigationProps) {
             FAQ
           </Link>
           
+          <SearchBar />
+
           {/* Auth Link */}
           {!loading && (
             <Link
