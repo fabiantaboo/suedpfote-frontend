@@ -112,7 +112,7 @@ function ExpressCheckoutForm({ price, productTitle, variantId }: ExpressCheckout
             amazonPay: 'auto' as any,
             applePay: 'auto' as any,
             googlePay: 'auto' as any,
-            link: 'auto' as any,
+            link: 'never' as any,
           },
         }}
       />
