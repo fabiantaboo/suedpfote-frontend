@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useCart } from '@/context/CartContext';
 import Navigation from '@/components/Navigation';
 import CartDrawer from '@/components/CartDrawer';
 
 export default function CartToggle({ children }: { children: React.ReactNode }) {
-  const [showCart, setShowCart] = useState(false);
+  const { showCart, setShowCart } = useCart();
 
   return (
     <>

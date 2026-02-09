@@ -23,6 +23,8 @@ type CartContextType = {
   refreshCart: () => Promise<void>;
   totalItems: number;
   totalPrice: number;
+  showCart: boolean;
+  setShowCart: (show: boolean) => void;
   // Checkout functions
   updateShippingAddress: (address: medusa.Address, email: string) => Promise<void>;
   initializePayment: (email?: string) => Promise<string | null>; // Returns client_secret
@@ -38,6 +40,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [cartId, setCartId] = useState<string | null>(null);
   const [paymentCollectionId, setPaymentCollectionId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [showCart, setShowCart] = useState(false);
 
   // Transform Medusa cart to our format
   const transformCart = useCallback((medusaCart: medusa.Cart | null): CartItem[] => {
@@ -242,6 +245,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
         refreshCart,
         totalItems,
         totalPrice,
+        showCart,
+        setShowCart,
         updateShippingAddress,
         initializePayment,
         completeOrder,

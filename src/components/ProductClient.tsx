@@ -13,11 +13,14 @@ type Props = {
 export function AddToCartSection({ variantId, productTitle, price, thumbnail }: Props) {
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
-  const { addToCart } = useCart();
+  const { addToCart, setShowCart } = useCart();
 
   const handleAddToCart = () => {
     setAdded(true);
-    setTimeout(() => setAdded(false), 1500);
+    setTimeout(() => {
+      setAdded(false);
+      setShowCart(true);
+    }, 400);
     addToCart(variantId, productTitle, price, quantity, thumbnail);
   };
 

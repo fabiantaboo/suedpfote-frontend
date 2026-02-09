@@ -17,13 +17,16 @@ type Product = {
 
 export function ProductCard({ product, index, total }: { product: Product; index: number; total: number }) {
   const [added, setAdded] = useState(false);
-  const { addToCart } = useCart();
+  const { addToCart, setShowCart } = useCart();
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     setAdded(true);
-    setTimeout(() => setAdded(false), 1500);
+    setTimeout(() => {
+      setAdded(false);
+      setShowCart(true);
+    }, 400);
     addToCart(product.variantId, product.name, product.price, 1, product.image);
   };
 
