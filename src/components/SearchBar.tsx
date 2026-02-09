@@ -137,7 +137,8 @@ export default function SearchBar() {
           }}
           onKeyDown={handleKeyDown}
           placeholder="Suchen..."
-          className={`bg-transparent text-sm text-zinc-700 placeholder-zinc-400 outline-none transition-all duration-200 ${
+          style={{ fontSize: '16px' }}
+          className={`bg-transparent text-zinc-700 placeholder-zinc-400 outline-none transition-all duration-200 ${
             isFocused ? 'w-full pr-2' : 'w-0 sm:w-full sm:pr-2'
           }`}
         />
