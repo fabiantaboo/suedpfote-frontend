@@ -88,7 +88,7 @@ function ExpressCheckoutForm({ price, productTitle, variantId }: ExpressCheckout
       elements,
       clientSecret,
       confirmParams: {
-        return_url: `${window.location.origin}/kasse?success=true`,
+        return_url: `${window.location.origin}/bestellung-erfolgreich`,
       },
     });
 
