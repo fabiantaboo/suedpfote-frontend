@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { getAllProducts } from '@/lib/medusa-server';
-import { ProductCard } from '@/components/HomeClient';
+import ProductFilter from '@/components/ProductFilter';
 import CartToggle from '@/components/CartToggle';
 
 const bgColors = [
@@ -24,6 +24,7 @@ export default async function Home() {
     image: p.thumbnail || null,
     color: bgColors[i % bgColors.length],
     handle: p.handle || p.id,
+    tags: p.tags || [],
   }));
 
   const homepageSchema = {
@@ -187,17 +188,7 @@ export default async function Home() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {products.length === 0 ? (
-                <div className="col-span-full text-center py-12">
-                  <p className="text-[#8B7E74]">Keine Produkte gefunden.</p>
-                </div>
-              ) : (
-                products.map((product: any, index: number) => (
-                  <ProductCard key={product.id} product={product} index={index} total={products.length} />
-                ))
-              )}
-            </div>
+            <ProductFilter products={products} />
           </div>
         </section>
 
