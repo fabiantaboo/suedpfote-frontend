@@ -12,7 +12,7 @@ export const CATEGORIES: CategoryDefinition[] = [
     label: 'Schreibwaren',
     emoji: '✍️',
     description: 'Füller, Tintenroller, Kugelschreiber und Bleistifte – ergonomisch geformt für die linke Hand.',
-    keywords: ['füller', 'fueller', 'füllfeder', 'stift', 'kugelschreiber', 'tintenroller', 'pen', 'schreib', 'tinte', 'bleistift', 'druckbleistift', 'marker', 'textmarker', 'radierer', 'wachsmal'],
+    keywords: ['füller', 'fueller', 'füllfeder', 'kugelschreiber', 'tintenroller', 'schreiblernbleistift', 'schreiblernheft', 'bleistift', 'druckbleistift', 'marker', 'textmarker', 'radierer', 'wachsmal', 'füllhalter', 'fuellhalter'],
   },
   {
     slug: 'scheren',
@@ -26,7 +26,7 @@ export const CATEGORIES: CategoryDefinition[] = [
     label: 'Messer & Schneidwerkzeuge',
     emoji: '🔪',
     description: 'Brotmesser, Küchenmesser und Pizzaschneider mit linksseitigem Schliff.',
-    keywords: ['messer', 'brotmesser', 'küchenmesser', 'kuechenmesser', 'pizzaschneider', 'schneidwerkzeug'],
+    keywords: ['brotmesser', 'küchenmesser', 'kuechenmesser', 'pizzaschneider', 'schneidwerkzeug'],
   },
   {
     slug: 'kuechenhelfer',
@@ -40,21 +40,21 @@ export const CATEGORIES: CategoryDefinition[] = [
     label: 'Schulbedarf',
     emoji: '📐',
     description: 'Lineale, Geodreiecke, Hefte, Anspitzer und Collegeblöcke für linkshändige Schüler.',
-    keywords: ['lineal', 'spitzer', 'anspitzer', 'heft', 'schreiblernheft', 'geodreieck', 'geometrie', 'zirkel', 'college', 'collegeblock', 'block', 'mappe', 'schul', 'buntstifte', 'buntstift', 'easycolors', 'groove'],
+    keywords: ['lineal', 'spitzer', 'anspitzer', 'heft', 'schreiblernheft', 'geodreieck', 'geometrie', 'zirkel', 'collegeblock', 'mappe', 'buntstifte', 'buntstift', 'easycolors', 'groove'],
   },
   {
     slug: 'sport-freizeit',
     label: 'Sport & Freizeit',
     emoji: '⚾',
     description: 'Bumerangs, Baseballhandschuhe und Sportartikel für Linkshänder.',
-    keywords: ['bumerang', 'baseball', 'sport', 'freizeit', 'handschuh'],
+    keywords: ['bumerang', 'baseballhandschuh', 'baseball'],
   },
   {
     slug: 'haushalt-accessoires',
     label: 'Haushalt & Accessoires',
     emoji: '🏠',
     description: 'Geldbörsen, Messbecher und praktische Alltagshelfer für Linkshänder.',
-    keywords: ['geldbörse', 'geldboerse', 'portemonnaie', 'haushalt', 'bügel', 'buegel', 'werkzeug', 'maßband', 'massband', 'accessoire'],
+    keywords: ['geldbörse', 'geldboerse', 'portemonnaie'],
   },
 ];
 
@@ -79,9 +79,9 @@ type ProductLike = {
 export function categorizeProduct(product: ProductLike): string[] {
   const categories: string[] = [];
   const title = (product.title || product.name || '').toLowerCase();
-  const desc = (product.description || '').toLowerCase();
   const handle = (product.handle || '').toLowerCase();
-  const text = `${title} ${desc} ${handle}`;
+  // Only match on title + handle to avoid false positives from long descriptions
+  const text = `${title} ${handle}`;
 
   // Check tags first
   const tagValues = (product.tags || []).map((t) => t.value.toLowerCase());
