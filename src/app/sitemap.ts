@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import { getAllProducts } from '@/lib/medusa-server';
+import { CATEGORIES } from '@/lib/categories';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://suedpfote.de';
@@ -12,6 +13,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/datenschutz`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
     { url: `${baseUrl}/impressum`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
     { url: `${baseUrl}/widerruf`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
+    { url: `${baseUrl}/kategorien`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
+    ...CATEGORIES.map((cat) => ({
+      url: `${baseUrl}/kategorie/${cat.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+    })),
   ];
 
   try {

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { CATEGORIES } from '@/lib/categories';
 
 export default function Footer() {
   return (
@@ -23,8 +24,14 @@ export default function Footer() {
             <h4 className="font-semibold mb-4">Shop</h4>
             <ul className="space-y-2 text-[#A89888]">
               <li><Link href="/#produkte" className="hover:text-white transition">Alle Produkte</Link></li>
-              <li><Link href="/#produkte" className="hover:text-white transition">Bestseller</Link></li>
-              <li><Link href="/#produkte" className="hover:text-white transition">Neu eingetroffen</Link></li>
+              <li><Link href="/kategorien" className="hover:text-white transition">Kategorien</Link></li>
+              {CATEGORIES.slice(0, 4).map((cat) => (
+                <li key={cat.slug}>
+                  <Link href={`/kategorie/${cat.slug}`} className="hover:text-white transition">
+                    {cat.emoji} {cat.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
           <div>

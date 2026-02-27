@@ -59,6 +59,7 @@ export default function Navigation({ onCartClick }: NavigationProps) {
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-6">
           <Link href="/#produkte" className="text-sm text-[#6B5E52] hover:text-[#3D3329] transition">Produkte</Link>
+          <Link href="/kategorien" className="text-sm text-[#6B5E52] hover:text-[#3D3329] transition">Kategorien</Link>
           <Link href="/story" className="text-sm text-[#6B5E52] hover:text-[#3D3329] transition">Story</Link>
           <Link href="/faq" className="text-sm text-[#6B5E52] hover:text-[#3D3329] transition">FAQ</Link>
           <SearchBar />
@@ -85,6 +86,7 @@ export default function Navigation({ onCartClick }: NavigationProps) {
       {menuOpen && (
         <div className="md:hidden bg-[#F5F0EB] border-t border-[#EDE8E3] px-6 py-4 space-y-3">
           <Link href="/#produkte" onClick={() => setMenuOpen(false)} className="block text-sm text-[#6B5E52] hover:text-[#3D3329]">Produkte</Link>
+          <Link href="/kategorien" onClick={() => setMenuOpen(false)} className="block text-sm text-[#6B5E52] hover:text-[#3D3329]">Kategorien</Link>
           <Link href="/story" onClick={() => setMenuOpen(false)} className="block text-sm text-[#6B5E52] hover:text-[#3D3329]">Story</Link>
           <Link href="/faq" onClick={() => setMenuOpen(false)} className="block text-sm text-[#6B5E52] hover:text-[#3D3329]">FAQ</Link>
           {!loading && (
