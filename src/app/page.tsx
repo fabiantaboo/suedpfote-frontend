@@ -5,12 +5,12 @@ import { ProductCard } from '@/components/HomeClient';
 import CartToggle from '@/components/CartToggle';
 
 const bgColors = [
-  'bg-zinc-50',
-  'bg-amber-50/50',
-  'bg-emerald-50/50',
-  'bg-sky-50/50',
-  'bg-rose-50/50',
-  'bg-violet-50/50',
+  'bg-[#FFF8F3]',
+  'bg-[#FDF2E9]',
+  'bg-[#F5EDE4]',
+  'bg-[#FEF0E6]',
+  'bg-[#F9F0EA]',
+  'bg-[#FFF5EE]',
 ];
 
 export default async function Home() {
@@ -102,7 +102,7 @@ export default async function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#F5F0EB]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
@@ -111,30 +111,30 @@ export default async function Home() {
         {/* Hero */}
         <section className="pt-28 sm:pt-32 pb-16 sm:pb-20 px-4 sm:px-6 overflow-hidden">
           <div className="max-w-3xl mx-auto text-center relative">
-            <div className="absolute -top-10 -left-20 w-40 h-40 bg-gradient-to-br from-amber-100 to-orange-100 rounded-full blur-3xl opacity-50" />
-            <div className="absolute -bottom-10 -right-20 w-40 h-40 bg-gradient-to-br from-violet-100 to-purple-100 rounded-full blur-3xl opacity-50" />
+            <div className="absolute -top-10 -left-20 w-40 h-40 bg-gradient-to-br from-[#F5DEC5] to-[#F0C9A8] rounded-full blur-3xl opacity-50" />
+            <div className="absolute -bottom-10 -right-20 w-40 h-40 bg-gradient-to-br from-[#E8C5A8] to-[#D4A574] rounded-full blur-3xl opacity-40" />
 
-            <p className="text-sm font-medium text-zinc-400 uppercase tracking-widest mb-4 relative">
+            <p className="text-sm font-medium text-[#8B7E74] uppercase tracking-widest mb-4 relative">
               Für die anderen 10%
             </p>
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-zinc-900 tracking-tight leading-tight mb-6 relative">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-[#3D3329] tracking-tight leading-tight mb-6 relative">
               Linkshänder Produkte,{' '}
               <span className="block">die funktionieren.</span>
             </h1>
-            <p className="text-xl text-zinc-500 max-w-xl mx-auto leading-relaxed relative">
+            <p className="text-xl text-[#8B7E74] max-w-xl mx-auto leading-relaxed relative">
               Premium Produkte, designed für Linkshänder.
               Weil du es verdient hast, dass Dinge einfach funktionieren.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center relative">
               <a
                 href="#produkte"
-                className="inline-flex items-center justify-center px-8 py-4 bg-zinc-900 text-white rounded-full font-medium hover:bg-zinc-800 hover:scale-105 transition-all shadow-lg shadow-zinc-900/20"
+                className="inline-flex items-center justify-center px-8 py-4 bg-[#C4956A] text-white rounded-full font-medium hover:bg-[#B08459] hover:scale-105 transition-all shadow-lg shadow-[#C4956A]/20"
               >
                 Linkshänder-Produkte entdecken
               </a>
               <Link
                 href="/story"
-                className="inline-flex items-center justify-center px-8 py-4 bg-zinc-100 text-zinc-900 rounded-full font-medium hover:bg-zinc-200 transition"
+                className="inline-flex items-center justify-center px-8 py-4 bg-[#EDE8E3] text-[#3D3329] rounded-full font-medium hover:bg-[#E5DED7] transition"
               >
                 Unsere Story
               </Link>
@@ -143,10 +143,10 @@ export default async function Home() {
         </section>
 
         {/* Marquee */}
-        <section className="py-6 bg-zinc-900 overflow-hidden">
+        <section className="py-6 bg-[#3D3329] overflow-hidden">
           <div className="animate-marquee whitespace-nowrap flex gap-8">
             {[...Array(3)].map((_, i) => (
-              <div key={i} className="flex gap-8 text-zinc-400 text-sm font-medium">
+              <div key={i} className="flex gap-8 text-[#C4956A] text-sm font-medium">
                 <span>✂️ Linkshänder-Scheren die schneiden</span>
                 <span>✍️ Füller für Linkshänder</span>
                 <span>📐 Lineale die du lesen kannst</span>
@@ -159,29 +159,29 @@ export default async function Home() {
         </section>
 
         {/* Stats */}
-        <section className="py-16 border-b border-zinc-100">
+        <section className="py-16 border-b border-[#EDE8E3]">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-3 gap-4 sm:gap-8 text-center">
             <div className="group">
-              <p className="text-3xl sm:text-5xl font-bold text-zinc-900 group-hover:scale-110 transition-transform">8 Mio</p>
-              <p className="text-sm text-zinc-500 mt-2">Linkshänder in Deutschland</p>
+              <p className="text-3xl sm:text-5xl font-bold text-[#3D3329] group-hover:scale-110 transition-transform">8 Mio</p>
+              <p className="text-sm text-[#8B7E74] mt-2">Linkshänder in Deutschland</p>
             </div>
             <div className="group">
-              <p className="text-3xl sm:text-5xl font-bold text-zinc-900 group-hover:scale-110 transition-transform">10%</p>
-              <p className="text-sm text-zinc-500 mt-2">der Weltbevölkerung</p>
+              <p className="text-3xl sm:text-5xl font-bold text-[#3D3329] group-hover:scale-110 transition-transform">10%</p>
+              <p className="text-sm text-[#8B7E74] mt-2">der Weltbevölkerung</p>
             </div>
             <div className="group">
-              <p className="text-3xl sm:text-5xl font-bold text-zinc-900 group-hover:scale-110 transition-transform">100%</p>
-              <p className="text-sm text-zinc-500 mt-2">für Links designed</p>
+              <p className="text-3xl sm:text-5xl font-bold text-[#3D3329] group-hover:scale-110 transition-transform">100%</p>
+              <p className="text-sm text-[#8B7E74] mt-2">für Links designed</p>
             </div>
           </div>
         </section>
 
         {/* Products */}
-        <section id="produkte" className="py-16 sm:py-20 px-4 sm:px-6">
+        <section id="produkte" className="py-16 sm:py-20 px-4 sm:px-6 bg-[#FAF7F4]">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-bold text-zinc-900 mb-4">Unsere Linkshänder-Produkte</h2>
-              <p className="text-zinc-500 max-w-lg mx-auto text-lg">
+              <h2 className="text-3xl sm:text-4xl font-bold text-[#3D3329] mb-4">Unsere Linkshänder-Produkte</h2>
+              <p className="text-[#8B7E74] max-w-lg mx-auto text-lg">
                 Jedes Produkt wurde speziell für die linke Hand entwickelt.
                 Keine Kompromisse.
               </p>
@@ -190,7 +190,7 @@ export default async function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {products.length === 0 ? (
                 <div className="col-span-full text-center py-12">
-                  <p className="text-zinc-500">Keine Produkte gefunden.</p>
+                  <p className="text-[#8B7E74]">Keine Produkte gefunden.</p>
                 </div>
               ) : (
                 products.map((product: any, index: number) => (
@@ -202,14 +202,14 @@ export default async function Home() {
         </section>
 
         {/* Testimonial */}
-        <section className="py-20 px-6 bg-gradient-to-b from-zinc-50 to-white">
+        <section className="py-20 px-6 bg-gradient-to-b from-[#FFF8F3] to-[#F5F0EB]">
           <div className="max-w-4xl mx-auto text-center">
             <div className="text-6xl mb-8">💬</div>
-            <blockquote className="text-2xl md:text-3xl font-medium text-zinc-900 leading-relaxed mb-8">
+            <blockquote className="text-2xl md:text-3xl font-medium text-[#3D3329] leading-relaxed mb-8">
               &ldquo;Ich wusste gar nicht, wie viel Energie ich mein Leben lang verschwendet habe,
               nur weil meine Schere für die falsche Hand war.&rdquo;
             </blockquote>
-            <cite className="text-zinc-500 not-italic">
+            <cite className="text-[#8B7E74] not-italic">
               — Sarah, Lehrerin aus München
             </cite>
           </div>
@@ -217,16 +217,16 @@ export default async function Home() {
 
         {/* Mission CTA */}
         <section className="py-20 px-6">
-          <div className="max-w-4xl mx-auto bg-zinc-900 rounded-3xl p-12 md:p-16 text-center text-white">
+          <div className="max-w-4xl mx-auto bg-gradient-to-br from-[#3D3329] to-[#2C241E] rounded-3xl p-12 md:p-16 text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Du bist nicht falsch gebaut.
             </h2>
-            <p className="text-xl text-zinc-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-[#D4C4B0] mb-8 max-w-2xl mx-auto">
               Die Welt ist es. Zeit, das zu ändern.
             </p>
             <Link
               href="/story"
-              className="inline-flex items-center justify-center px-8 py-4 bg-white text-zinc-900 rounded-full font-medium hover:bg-zinc-100 transition"
+              className="inline-flex items-center justify-center px-8 py-4 bg-[#C4956A] text-white rounded-full font-medium hover:bg-[#B08459] transition"
             >
               Unsere Mission lesen →
             </Link>
@@ -234,76 +234,76 @@ export default async function Home() {
         </section>
 
         {/* Newsletter */}
-        <section className="py-16 sm:py-20 px-4 sm:px-6 border-t border-zinc-100">
+        <section className="py-16 sm:py-20 px-4 sm:px-6 border-t border-[#EDE8E3] bg-[#FFF8F3]">
           <div className="max-w-xl mx-auto text-center">
-            <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#3D3329] mb-4">
               Bleib auf dem Laufenden
             </h2>
-            <p className="text-zinc-500 mb-8 text-base sm:text-lg">
+            <p className="text-[#8B7E74] mb-8 text-base sm:text-lg">
               Neue Linkshänder-Produkte, Tipps für Linkshänder, und 10% auf deine erste Bestellung.
             </p>
             <form className="flex flex-col sm:flex-row gap-3">
               <input
                 type="email"
                 placeholder="deine@email.de"
-                className="flex-1 min-w-0 px-5 sm:px-6 py-3.5 sm:py-4 rounded-full border border-zinc-200 focus:outline-none focus:border-zinc-400 focus:ring-4 focus:ring-zinc-100 transition text-base sm:text-lg"
+                className="flex-1 min-w-0 px-5 sm:px-6 py-3.5 sm:py-4 rounded-full border border-[#D4C4B0] bg-white focus:outline-none focus:border-[#C4956A] focus:ring-4 focus:ring-[#C4956A]/10 transition text-base sm:text-lg"
               />
               <button
                 type="submit"
-                className="px-8 py-4 bg-zinc-900 text-white rounded-full font-medium hover:bg-zinc-700 transition text-lg"
+                className="px-8 py-4 bg-[#C4956A] text-white rounded-full font-medium hover:bg-[#B08459] transition text-lg"
               >
                 Anmelden
               </button>
             </form>
-            <p className="text-sm text-zinc-400 mt-4">
+            <p className="text-sm text-[#8B7E74] mt-4">
               Kein Spam. Versprochen. Jederzeit abmelden.
             </p>
           </div>
         </section>
 
         {/* Trust Badges */}
-        <section className="py-12 px-6 bg-zinc-50 border-t border-zinc-100">
+        <section className="py-12 px-6 bg-[#FAF7F4] border-t border-[#EDE8E3]">
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               <div className="flex flex-col items-center gap-2">
-                <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 bg-[#F5DEC5] rounded-full flex items-center justify-center">
                   <span className="text-2xl">🚚</span>
                 </div>
-                <p className="font-medium text-zinc-900">Kostenloser Versand</p>
-                <p className="text-sm text-zinc-500">Ab 39 € Bestellwert</p>
+                <p className="font-medium text-[#3D3329]">Kostenloser Versand</p>
+                <p className="text-sm text-[#8B7E74]">Ab 39 € Bestellwert</p>
               </div>
               <div className="flex flex-col items-center gap-2">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 bg-[#E8D5C4] rounded-full flex items-center justify-center">
                   <span className="text-2xl">↩️</span>
                 </div>
-                <p className="font-medium text-zinc-900">30 Tage Rückgabe</p>
-                <p className="text-sm text-zinc-500">Ohne Wenn und Aber</p>
+                <p className="font-medium text-[#3D3329]">30 Tage Rückgabe</p>
+                <p className="text-sm text-[#8B7E74]">Ohne Wenn und Aber</p>
               </div>
               <div className="flex flex-col items-center gap-2">
-                <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 bg-[#F0D9C0] rounded-full flex items-center justify-center">
                   <span className="text-2xl">🔒</span>
                 </div>
-                <p className="font-medium text-zinc-900">Sichere Zahlung</p>
-                <p className="text-sm text-zinc-500">SSL-verschlüsselt</p>
+                <p className="font-medium text-[#3D3329]">Sichere Zahlung</p>
+                <p className="text-sm text-[#8B7E74]">SSL-verschlüsselt</p>
               </div>
               <div className="flex flex-col items-center gap-2">
-                <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 bg-[#F5E0CC] rounded-full flex items-center justify-center">
                   <span className="text-2xl">💜</span>
                 </div>
-                <p className="font-medium text-zinc-900">Made for Lefties</p>
-                <p className="text-sm text-zinc-500">Von Linkshändern</p>
+                <p className="font-medium text-[#3D3329]">Made for Lefties</p>
+                <p className="text-sm text-[#8B7E74]">Von Linkshändern</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* FAQ Section */}
-        <section className="py-20 px-6 bg-zinc-50" id="faq">
+        <section className="py-20 px-6 bg-[#F5F0EB]" id="faq">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-center text-[#3D3329] mb-4">
               Häufig gestellte Fragen
             </h2>
-            <p className="text-zinc-600 text-center mb-12">
+            <p className="text-[#8B7E74] text-center mb-12">
               Alles was du über Linkshänder-Produkte wissen musst
             </p>
 
@@ -331,11 +331,11 @@ export default async function Home() {
                 },
               ].map((faq, i) => (
                 <details key={i} className="group bg-white rounded-2xl shadow-sm">
-                  <summary className="flex justify-between items-center cursor-pointer p-6 font-medium text-zinc-900">
+                  <summary className="flex justify-between items-center cursor-pointer p-6 font-medium text-[#3D3329]">
                     {faq.q}
-                    <span className="ml-4 text-zinc-400 group-open:rotate-180 transition-transform">▼</span>
+                    <span className="ml-4 text-[#C4956A] group-open:rotate-180 transition-transform">▼</span>
                   </summary>
-                  <p className="px-6 pb-6 text-zinc-600 leading-relaxed">{faq.a}</p>
+                  <p className="px-6 pb-6 text-[#6B5E52] leading-relaxed">{faq.a}</p>
                 </details>
               ))}
             </div>
@@ -343,25 +343,25 @@ export default async function Home() {
         </section>
 
         {/* Footer */}
-        <footer className="bg-zinc-900 text-white py-12 sm:py-16 px-4 sm:px-6">
+        <footer className="bg-[#2C241E] text-white py-12 sm:py-16 px-4 sm:px-6">
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-5 gap-8 sm:gap-12 mb-12">
               <div className="md:col-span-2">
                 <div className="mb-4">
                   <Image src="/logo-t.png" alt="Südpfote - Linkshänder Shop" width={140} height={46} />
                 </div>
-                <p className="text-zinc-400 max-w-sm mb-6">
+                <p className="text-[#A89888] max-w-sm mb-6">
                   Premium Produkte für Linkshänder. Weil 10% der Welt auch 100% verdienen.
                 </p>
                 <div className="flex gap-3">
-                  <span className="px-3 py-1 bg-zinc-800 rounded text-xs text-zinc-400">Visa</span>
-                  <span className="px-3 py-1 bg-zinc-800 rounded text-xs text-zinc-400">Mastercard</span>
-                  <span className="px-3 py-1 bg-zinc-800 rounded text-xs text-zinc-400">PayPal</span>
+                  <span className="px-3 py-1 bg-[#3D3329] rounded text-xs text-[#A89888]">Visa</span>
+                  <span className="px-3 py-1 bg-[#3D3329] rounded text-xs text-[#A89888]">Mastercard</span>
+                  <span className="px-3 py-1 bg-[#3D3329] rounded text-xs text-[#A89888]">PayPal</span>
                 </div>
               </div>
               <div>
                 <h4 className="font-semibold mb-4">Shop</h4>
-                <ul className="space-y-2 text-zinc-400">
+                <ul className="space-y-2 text-[#A89888]">
                   <li><a href="#produkte" className="hover:text-white transition">Alle Linkshänder-Produkte</a></li>
                   <li><a href="#produkte" className="hover:text-white transition">Linkshänder-Scheren</a></li>
                   <li><a href="#produkte" className="hover:text-white transition">Linkshänder-Füller</a></li>
@@ -369,7 +369,7 @@ export default async function Home() {
               </div>
               <div>
                 <h4 className="font-semibold mb-4">Über uns</h4>
-                <ul className="space-y-2 text-zinc-400">
+                <ul className="space-y-2 text-[#A89888]">
                   <li><Link href="/story" className="hover:text-white transition">Unsere Story</Link></li>
                   <li><Link href="/faq" className="hover:text-white transition">FAQ</Link></li>
                   <li><a href="mailto:hallo@suedpfote.de" className="hover:text-white transition">Kontakt</a></li>
@@ -377,7 +377,7 @@ export default async function Home() {
               </div>
               <div>
                 <h4 className="font-semibold mb-4">Rechtliches</h4>
-                <ul className="space-y-2 text-zinc-400">
+                <ul className="space-y-2 text-[#A89888]">
                   <li><Link href="/impressum" className="hover:text-white transition">Impressum</Link></li>
                   <li><Link href="/datenschutz" className="hover:text-white transition">Datenschutz</Link></li>
                   <li><Link href="/agb" className="hover:text-white transition">AGB</Link></li>
@@ -385,9 +385,9 @@ export default async function Home() {
                 </ul>
               </div>
             </div>
-            <div className="pt-8 border-t border-zinc-800 flex flex-col md:flex-row justify-between items-center gap-4">
-              <p className="text-sm text-zinc-500">© 2026 Südpfote. Alle Rechte vorbehalten.</p>
-              <p className="text-sm text-zinc-500">Made with 💜 by Fabian &amp; Nyx 🦞</p>
+            <div className="pt-8 border-t border-[#3D3329] flex flex-col md:flex-row justify-between items-center gap-4">
+              <p className="text-sm text-[#8B7E74]">© 2026 Südpfote. Alle Rechte vorbehalten.</p>
+              <p className="text-sm text-[#8B7E74]">Made with 💜 by Fabian &amp; Nyx 🦞</p>
             </div>
           </div>
         </footer>
