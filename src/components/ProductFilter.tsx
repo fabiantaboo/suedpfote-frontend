@@ -2,25 +2,13 @@
 
 import { useState, useMemo } from 'react';
 import { ProductCard } from '@/components/HomeClient';
+import { CATEGORIES, ALL_CATEGORY, categorizeProduct } from '@/lib/categories';
 
-const CATEGORIES = [
-  { id: 'alle', label: 'Alle Produkte', emoji: '🤚' },
-  { id: 'schreibwaren', label: 'Schreibwaren', emoji: '✍️' },
-  { id: 'scheren', label: 'Scheren', emoji: '✂️' },
-  { id: 'kueche', label: 'Küchenhelfer', emoji: '🍳' },
-  { id: 'schule', label: 'Schulbedarf', emoji: '📐' },
-  { id: 'haushalt', label: 'Haushalt', emoji: '🏠' },
-  { id: 'tech', label: 'Technik', emoji: '🖱️' },
+// Map for the filter UI - combine shared categories with the "all" option
+const FILTER_CATEGORIES = [
+  { id: ALL_CATEGORY.slug, label: ALL_CATEGORY.label, emoji: ALL_CATEGORY.emoji },
+  ...CATEGORIES.map((c) => ({ id: c.slug, label: c.label, emoji: c.emoji })),
 ];
-
-const KEYWORD_MAP: Record<string, string[]> = {
-  schreibwaren: ['füller', 'fueller', 'stift', 'kugelschreiber', 'tintenroller', 'pen', 'schreib', 'tinte', 'bleistift', 'marker', 'textmarker', 'radierer', 'füllfeder'],
-  scheren: ['schere', 'schneiden', 'scissors'],
-  kueche: ['messer', 'schäler', 'schaeler', 'dosenöffner', 'dosenoeffner', 'küche', 'kueche', 'korkenzieher', 'sparschäler', 'gemüse', 'kitchen', 'kochen', 'pfannenwender'],
-  schule: ['lineal', 'spitzer', 'heft', 'geodreieck', 'zirkel', 'college', 'block', 'mappe', 'schul', 'anspitzer'],
-  haushalt: ['haushalt', 'bügel', 'buegel', 'öffner', 'oeffner', 'werkzeug', 'maßband', 'massband'],
-  tech: ['maus', 'mouse', 'tastatur', 'keyboard', 'controller', 'gamepad', 'laptop', 'tech', 'computer', 'ergonomisch'],
-};
 
 type Product = {
   id: string;
@@ -34,40 +22,13 @@ type Product = {
   tags?: { value: string }[];
 };
 
-function categorizeProduct(product: Product): string[] {
-  const categories: string[] = [];
-
-  // Check tags first
-  if (product.tags && product.tags.length > 0) {
-    const tagValues = product.tags.map((t) => t.value.toLowerCase());
-    for (const [catId, keywords] of Object.entries(KEYWORD_MAP)) {
-      if (tagValues.some((tag) => keywords.some((kw) => tag.includes(kw)))) {
-        categories.push(catId);
-      }
-    }
-  }
-
-  // Keyword matching on title (always, as fallback or supplement)
-  const titleLower = product.name.toLowerCase();
-  const descLower = (product.description || '').toLowerCase();
-  const text = `${titleLower} ${descLower}`;
-
-  for (const [catId, keywords] of Object.entries(KEYWORD_MAP)) {
-    if (!categories.includes(catId) && keywords.some((kw) => text.includes(kw))) {
-      categories.push(catId);
-    }
-  }
-
-  return categories.length > 0 ? categories : ['alle'];
-}
-
 export default function ProductFilter({ products }: { products: Product[] }) {
   const [activeCategory, setActiveCategory] = useState('alle');
 
   const productCategories = useMemo(() => {
     const map = new Map<string, string[]>();
     for (const p of products) {
-      map.set(p.id, categorizeProduct(p));
+      map.set(p.id, categorizeProduct({ name: p.name, description: p.description, handle: p.handle, tags: p.tags }));
     }
     return map;
   }, [products]);
@@ -78,7 +39,7 @@ export default function ProductFilter({ products }: { products: Product[] }) {
     for (const cats of productCategories.values()) {
       cats.forEach((c) => catSet.add(c));
     }
-    return CATEGORIES.filter((c) => c.id === 'alle' || catSet.has(c.id));
+    return FILTER_CATEGORIES.filter((c) => c.id === 'alle' || catSet.has(c.id));
   }, [productCategories]);
 
   const filteredProducts = useMemo(() => {
