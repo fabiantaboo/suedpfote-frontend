@@ -22,8 +22,11 @@ type Product = {
   tags?: { value: string }[];
 };
 
+const INITIAL_SHOW = 9;
+
 export default function ProductFilter({ products }: { products: Product[] }) {
   const [activeCategory, setActiveCategory] = useState('alle');
+  const [showCount, setShowCount] = useState(INITIAL_SHOW);
 
   const productCategories = useMemo(() => {
     const map = new Map<string, string[]>();
@@ -50,6 +53,9 @@ export default function ProductFilter({ products }: { products: Product[] }) {
     });
   }, [products, activeCategory, productCategories]);
 
+  const visibleProducts = filteredProducts.slice(0, showCount);
+  const hasMore = showCount < filteredProducts.length;
+
   return (
     <>
       {/* Category Filter Pills */}
@@ -58,7 +64,7 @@ export default function ProductFilter({ products }: { products: Product[] }) {
           {availableCategories.map((cat) => (
             <button
               key={cat.id}
-              onClick={() => setActiveCategory(cat.id)}
+              onClick={() => { setActiveCategory(cat.id); setShowCount(INITIAL_SHOW); }}
               className={`
                 inline-flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2.5 rounded-full text-sm font-medium
                 whitespace-nowrap transition-all duration-200 cursor-pointer
@@ -94,11 +100,23 @@ export default function ProductFilter({ products }: { products: Product[] }) {
             </button>
           </div>
         ) : (
-          filteredProducts.map((product: Product, index: number) => (
-            <ProductCard key={product.id} product={product} index={index} total={filteredProducts.length} />
+          visibleProducts.map((product: Product, index: number) => (
+            <ProductCard key={product.id} product={product} index={index} total={visibleProducts.length} />
           ))
         )}
       </div>
+
+      {/* Load More Button */}
+      {hasMore && (
+        <div className="text-center mt-10">
+          <button
+            onClick={() => setShowCount((prev) => prev + 9)}
+            className="inline-block px-8 py-3 bg-[#2A2A2A] text-white text-[15px] font-medium rounded-full hover:bg-[#1a1a1a] transition cursor-pointer"
+          >
+            Mehr Produkte laden ({filteredProducts.length - showCount} weitere)
+          </button>
+        </div>
+      )}
     </>
   );
 }
