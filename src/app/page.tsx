@@ -103,88 +103,226 @@ export default async function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F5F0EB]">
+    <div className="min-h-screen bg-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <CartToggle>
-        {/* Hero */}
-        <section className="pt-28 sm:pt-32 pb-16 sm:pb-20 px-4 sm:px-6 overflow-hidden">
-          <div className="max-w-3xl mx-auto text-center relative">
-            <div className="absolute -top-10 -left-20 w-40 h-40 bg-gradient-to-br from-[#F5DEC5] to-[#F0C9A8] rounded-full blur-3xl opacity-50" />
-            <div className="absolute -bottom-10 -right-20 w-40 h-40 bg-gradient-to-br from-[#E8C5A8] to-[#D4A574] rounded-full blur-3xl opacity-40" />
-
-            <p className="text-sm font-medium text-[#8B7E74] uppercase tracking-widest mb-4 relative">
-              Für die anderen 10%
-            </p>
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-[#3D3329] tracking-tight leading-tight mb-6 relative">
-              Linkshänder Produkte,{' '}
-              <span className="block">die funktionieren.</span>
-            </h1>
-            <p className="text-xl text-[#8B7E74] max-w-xl mx-auto leading-relaxed relative">
-              Premium Produkte, designed für Linkshänder.
-              Weil du es verdient hast, dass Dinge einfach funktionieren.
-            </p>
-            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center relative">
+        {/* ==================== HERO SECTION ==================== */}
+        <section className="relative w-full h-[520px] sm:h-[600px] md:h-[680px] mt-16 md:mt-20 overflow-hidden">
+          {/* Background — lifestyle hero image */}
+          <div className="absolute inset-0">
+            <Image
+              src="/images/hero-lifestyle.jpg"
+              alt="Linkshänder Workspace — Südpfote"
+              fill
+              className="object-cover"
+              priority
+            />
+            {/* Soft overlay so text stays readable */}
+            <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-white/30 to-transparent" />
+          </div>
+          
+          {/* Text overlay LEFT */}
+          <div className="relative h-full flex items-center">
+            <div className="px-6 sm:px-10 md:px-16 lg:px-24 max-w-2xl">
+              <h1
+                className="text-[36px] sm:text-[44px] md:text-[52px] leading-[1.1] text-[#1A1A1A] mb-5"
+                style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+              >
+                Endlich für<br />
+                links gedacht.
+              </h1>
+              <p className="text-[16px] sm:text-[18px] text-[#555] leading-relaxed mb-8 max-w-md">
+                Die passenden Produkte für<br />
+                Schule, Alltag und Küche.
+              </p>
               <a
                 href="#produkte"
-                className="inline-flex items-center justify-center px-8 py-4 bg-[#C4956A] text-white rounded-full font-medium hover:bg-[#B08459] hover:scale-105 transition-all shadow-lg shadow-[#C4956A]/20"
+                className="inline-block px-7 py-3 bg-[#2A2A2A] text-white text-[15px] font-medium rounded-full hover:bg-[#1a1a1a] transition"
               >
-                Linkshänder-Produkte entdecken
+                Jetzt entdecken
               </a>
-              <Link
-                href="/story"
-                className="inline-flex items-center justify-center px-8 py-4 bg-[#EDE8E3] text-[#3D3329] rounded-full font-medium hover:bg-[#E5DED7] transition"
-              >
-                Unsere Story
+            </div>
+          </div>
+        </section>
+
+        {/* ==================== CATEGORY SECTION ==================== */}
+        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-white">
+          <div className="max-w-[1100px] mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+              {/* Für Kinder */}
+              <Link href="/kategorie/kinder" className="group block">
+                <div className="relative aspect-[1/1.1] rounded-2xl overflow-hidden bg-[#EAE6DF]">
+                  <Image
+                    src="/images/stabilo-easygraph-bleistift-linkshaender.jpg"
+                    alt="Für Kinder — Linkshänder Produkte"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <p
+                  className="text-center mt-4 text-[18px] sm:text-[20px] text-[#1A1A1A]"
+                  style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+                >
+                  Für Kinder
+                </p>
+              </Link>
+
+              {/* Alltag */}
+              <Link href="/kategorie/alltag" className="group block">
+                <div className="relative aspect-[1/1.1] rounded-2xl overflow-hidden bg-[#EAE6DF]">
+                  <Image
+                    src="/images/leuchtturm1917-notizbuch-linkshaender.jpg"
+                    alt="Alltag — Linkshänder Produkte"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <p
+                  className="text-center mt-4 text-[18px] sm:text-[20px] text-[#1A1A1A]"
+                  style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+                >
+                  Alltag
+                </p>
+              </Link>
+
+              {/* Küche */}
+              <Link href="/kategorie/kueche" className="group block">
+                <div className="relative aspect-[1/1.1] rounded-2xl overflow-hidden bg-[#EAE6DF]">
+                  <Image
+                    src="/images/linkshaender-kuechenmesser-20cm.jpg"
+                    alt="Küche — Linkshänder Produkte"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <p
+                  className="text-center mt-4 text-[18px] sm:text-[20px] text-[#1A1A1A]"
+                  style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+                >
+                  Küche
+                </p>
               </Link>
             </div>
           </div>
         </section>
 
-        {/* Marquee */}
-        <section className="py-6 bg-[#3D3329] overflow-hidden">
-          <div className="animate-marquee whitespace-nowrap flex gap-8">
-            {[...Array(3)].map((_, i) => (
-              <div key={i} className="flex gap-8 text-[#C4956A] text-sm font-medium">
-                <span>✂️ Linkshänder-Scheren die schneiden</span>
-                <span>✍️ Füller für Linkshänder</span>
-                <span>📐 Lineale die du lesen kannst</span>
-                <span>🍳 Küchenwerkzeug für Linkshänder</span>
-                <span>🖱️ Linkshänder-Maus &amp; Tech</span>
-                <span>❤️ Made for Lefties</span>
+        {/* ==================== PRODUCT HIGHLIGHTS ==================== */}
+        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-[#F0EBE3]">
+          <div className="max-w-[1100px] mx-auto">
+            <h2
+              className="text-[28px] sm:text-[36px] text-[#1A1A1A] mb-2"
+              style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+            >
+              Unsere Highlights für den Alltag
+            </h2>
+            <p className="text-[16px] text-[#888] italic mb-10">
+              Perfekt für den täglichen Gebrauch.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Product Card 1 — Linkshänder-Schere */}
+              <div className="bg-white rounded-[14px] p-6 flex items-center gap-6">
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-[17px] font-bold text-[#1A1A1A] mb-1">
+                    Linkshänder-Schere
+                  </h3>
+                  <p className="text-[16px] text-[#555] mb-4">€ 16,90</p>
+                  <a
+                    href="#produkte"
+                    className="inline-block px-5 py-2 bg-[#B5A87E] text-white text-[13px] font-medium rounded-full hover:bg-[#A49770] transition"
+                  >
+                    Entdecken
+                  </a>
+                </div>
+                <div className="relative w-28 h-28 flex-shrink-0 rounded-xl overflow-hidden bg-[#F6F5F2]">
+                  <Image
+                    src="/images/westcott-linkshaender-schere.jpg"
+                    alt="Linkshänder-Schere"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+
+              {/* Product Card 2 — Notizbuch */}
+              <div className="bg-white rounded-[14px] p-6 flex items-center gap-6">
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-[17px] font-bold text-[#1A1A1A] mb-1">
+                    Notizbuch für Linkshänder
+                  </h3>
+                  <p className="text-[16px] text-[#555] mb-4">€ 19,90</p>
+                  <a
+                    href="#produkte"
+                    className="inline-block px-5 py-2 bg-[#B5A87E] text-white text-[13px] font-medium rounded-full hover:bg-[#A49770] transition"
+                  >
+                    Entdecken
+                  </a>
+                </div>
+                <div className="relative w-28 h-28 flex-shrink-0 rounded-xl overflow-hidden bg-[#F6F5F2]">
+                  <Image
+                    src="/images/leuchtturm1917-notizbuch-linkshaender.jpg"
+                    alt="Notizbuch für Linkshänder"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ==================== SOCIAL PROOF / INSTAGRAM ==================== */}
+        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-white">
+          <div className="max-w-[1100px] mx-auto text-center mb-10">
+            <h2
+              className="text-[28px] sm:text-[36px] text-[#1A1A1A] mb-3"
+              style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+            >
+              Links praktisch — von Experten geprüft
+            </h2>
+            <p className="text-[16px] text-[#888]">
+              Folge uns auf Instagram 📷
+            </p>
+          </div>
+
+          {/* Instagram Grid — 5 squares, full-width, no gaps */}
+          <div className="grid grid-cols-5 w-full">
+            {[
+              '#E8DFD3',
+              '#D4C4AC',
+              '#EAE6DF',
+              '#F0EBE3',
+              '#D9CFC2',
+            ].map((color, i) => (
+              <div key={i} className="relative aspect-square" style={{ backgroundColor: color }}>
+                {/* Placeholder with subtle variation */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#B5A87E" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="opacity-30">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <circle cx="12" cy="12" r="5"/>
+                    <circle cx="17.5" cy="6.5" r="1.5"/>
+                  </svg>
+                </div>
               </div>
             ))}
           </div>
         </section>
 
-        {/* Stats */}
-        <section className="py-16 border-b border-[#EDE8E3]">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-3 gap-4 sm:gap-8 text-center">
-            <div className="group">
-              <p className="text-3xl sm:text-5xl font-bold text-[#3D3329] group-hover:scale-110 transition-transform">8 Mio</p>
-              <p className="text-sm text-[#8B7E74] mt-2">Linkshänder in Deutschland</p>
-            </div>
-            <div className="group">
-              <p className="text-3xl sm:text-5xl font-bold text-[#3D3329] group-hover:scale-110 transition-transform">10%</p>
-              <p className="text-sm text-[#8B7E74] mt-2">der Weltbevölkerung</p>
-            </div>
-            <div className="group">
-              <p className="text-3xl sm:text-5xl font-bold text-[#3D3329] group-hover:scale-110 transition-transform">100%</p>
-              <p className="text-sm text-[#8B7E74] mt-2">für Links designed</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Products */}
-        <section id="produkte" className="py-16 sm:py-20 px-4 sm:px-6 bg-[#FAF7F4]">
-          <div className="max-w-6xl mx-auto">
+        {/* ==================== PRODUCTS FROM MEDUSA ==================== */}
+        <section id="produkte" className="py-16 sm:py-20 px-4 sm:px-6 bg-[#F6F5F2]">
+          <div className="max-w-[1100px] mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-bold text-[#3D3329] mb-4">Unsere Linkshänder-Produkte</h2>
-              <p className="text-[#8B7E74] max-w-lg mx-auto text-lg">
-                Jedes Produkt wurde speziell für die linke Hand entwickelt.
-                Keine Kompromisse.
+              <h2
+                className="text-[28px] sm:text-[36px] text-[#1A1A1A] mb-4"
+                style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+              >
+                Unsere Linkshänder-Produkte
+              </h2>
+              <p className="text-[#888] max-w-lg mx-auto text-[16px]">
+                Jedes Produkt wurde speziell für die linke Hand entwickelt. Keine Kompromisse.
               </p>
             </div>
 
@@ -192,109 +330,16 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* Testimonial */}
-        <section className="py-20 px-6 bg-gradient-to-b from-[#FFF8F3] to-[#F5F0EB]">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="text-6xl mb-8">💬</div>
-            <blockquote className="text-2xl md:text-3xl font-medium text-[#3D3329] leading-relaxed mb-8">
-              &ldquo;Ich wusste gar nicht, wie viel Energie ich mein Leben lang verschwendet habe,
-              nur weil meine Schere für die falsche Hand war.&rdquo;
-            </blockquote>
-            <cite className="text-[#8B7E74] not-italic">
-              — Sarah, Lehrerin aus München
-            </cite>
-          </div>
-        </section>
-
-        {/* Mission CTA */}
-        <section className="py-20 px-6">
-          <div className="max-w-4xl mx-auto bg-gradient-to-br from-[#3D3329] to-[#2C241E] rounded-3xl p-12 md:p-16 text-center text-white">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Du bist nicht falsch gebaut.
-            </h2>
-            <p className="text-xl text-[#D4C4B0] mb-8 max-w-2xl mx-auto">
-              Die Welt ist es. Zeit, das zu ändern.
-            </p>
-            <Link
-              href="/story"
-              className="inline-flex items-center justify-center px-8 py-4 bg-[#C4956A] text-white rounded-full font-medium hover:bg-[#B08459] transition"
-            >
-              Unsere Mission lesen →
-            </Link>
-          </div>
-        </section>
-
-        {/* Newsletter */}
-        <section className="py-16 sm:py-20 px-4 sm:px-6 border-t border-[#EDE8E3] bg-[#FFF8F3]">
-          <div className="max-w-xl mx-auto text-center">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#3D3329] mb-4">
-              Bleib auf dem Laufenden
-            </h2>
-            <p className="text-[#8B7E74] mb-8 text-base sm:text-lg">
-              Neue Linkshänder-Produkte, Tipps für Linkshänder, und 10% auf deine erste Bestellung.
-            </p>
-            <form className="flex flex-col sm:flex-row gap-3">
-              <input
-                type="email"
-                placeholder="deine@email.de"
-                className="flex-1 min-w-0 px-5 sm:px-6 py-3.5 sm:py-4 rounded-full border border-[#D4C4B0] bg-white focus:outline-none focus:border-[#C4956A] focus:ring-4 focus:ring-[#C4956A]/10 transition text-base sm:text-lg"
-              />
-              <button
-                type="submit"
-                className="px-8 py-4 bg-[#C4956A] text-white rounded-full font-medium hover:bg-[#B08459] transition text-lg"
-              >
-                Anmelden
-              </button>
-            </form>
-            <p className="text-sm text-[#8B7E74] mt-4">
-              Kein Spam. Versprochen. Jederzeit abmelden.
-            </p>
-          </div>
-        </section>
-
-        {/* Trust Badges */}
-        <section className="py-12 px-6 bg-[#FAF7F4] border-t border-[#EDE8E3]">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-              <div className="flex flex-col items-center gap-2">
-                <div className="w-12 h-12 bg-[#F5DEC5] rounded-full flex items-center justify-center">
-                  <span className="text-2xl">🚚</span>
-                </div>
-                <p className="font-medium text-[#3D3329]">Kostenloser Versand</p>
-                <p className="text-sm text-[#8B7E74]">Ab 39 € Bestellwert</p>
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <div className="w-12 h-12 bg-[#E8D5C4] rounded-full flex items-center justify-center">
-                  <span className="text-2xl">↩️</span>
-                </div>
-                <p className="font-medium text-[#3D3329]">30 Tage Rückgabe</p>
-                <p className="text-sm text-[#8B7E74]">Ohne Wenn und Aber</p>
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <div className="w-12 h-12 bg-[#F0D9C0] rounded-full flex items-center justify-center">
-                  <span className="text-2xl">🔒</span>
-                </div>
-                <p className="font-medium text-[#3D3329]">Sichere Zahlung</p>
-                <p className="text-sm text-[#8B7E74]">SSL-verschlüsselt</p>
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <div className="w-12 h-12 bg-[#F5E0CC] rounded-full flex items-center justify-center">
-                  <span className="text-2xl">💜</span>
-                </div>
-                <p className="font-medium text-[#3D3329]">Made for Lefties</p>
-                <p className="text-sm text-[#8B7E74]">Von Linkshändern</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* FAQ Section */}
-        <section className="py-20 px-6 bg-[#F5F0EB]" id="faq">
+        {/* ==================== FAQ SECTION ==================== */}
+        <section className="py-20 px-6 bg-[#F6F5F2]" id="faq">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center text-[#3D3329] mb-4">
+            <h2
+              className="text-[28px] sm:text-[36px] text-center text-[#1A1A1A] mb-4"
+              style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+            >
               Häufig gestellte Fragen
             </h2>
-            <p className="text-[#8B7E74] text-center mb-12">
+            <p className="text-[#888] text-center mb-12">
               Alles was du über Linkshänder-Produkte wissen musst
             </p>
 
@@ -321,46 +366,53 @@ export default async function Home() {
                   a: 'Ja, 100%! Jedes Produkt bei Südpfote ist speziell für Linkshänder entwickelt oder ausgewählt. Wir testen alles selbst - denn wir sind auch Linkshänder.',
                 },
               ].map((faq, i) => (
-                <details key={i} className="group bg-white rounded-2xl shadow-sm">
-                  <summary className="flex justify-between items-center cursor-pointer p-6 font-medium text-[#3D3329]">
+                <details key={i} className="group bg-white rounded-2xl">
+                  <summary className="flex justify-between items-center cursor-pointer p-6 font-medium text-[#1A1A1A]">
                     {faq.q}
-                    <span className="ml-4 text-[#C4956A] group-open:rotate-180 transition-transform">▼</span>
+                    <span className="ml-4 text-[#A9A39A] group-open:rotate-180 transition-transform">▼</span>
                   </summary>
-                  <p className="px-6 pb-6 text-[#6B5E52] leading-relaxed">{faq.a}</p>
+                  <p className="px-6 pb-6 text-[#555] leading-relaxed">{faq.a}</p>
                 </details>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Footer */}
-        <footer className="bg-[#2C241E] text-white py-12 sm:py-16 px-4 sm:px-6">
-          <div className="max-w-6xl mx-auto">
+        {/* ==================== FOOTER ==================== */}
+        <footer className="bg-[#0F2E4F] text-white py-12 sm:py-16 px-4 sm:px-6">
+          <div className="max-w-[1100px] mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-5 gap-8 sm:gap-12 mb-12">
               <div className="md:col-span-2">
-                <div className="mb-4">
-                  <Image src="/logo-t.png" alt="Südpfote - Linkshänder Shop" width={140} height={46} />
+                <div className="mb-4 flex items-center gap-2">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-white">
+                    <path d="M12 21c-1.5 0-7-3.5-7-9.5C5 8 7.5 6 9 6c1 0 2 .5 3 2 1-1.5 2-2 3-2 1.5 0 4 2 4 5.5 0 6-5.5 9.5-7 9.5z" fill="currentColor"/>
+                    <circle cx="7" cy="5" r="2.5" fill="currentColor"/>
+                    <circle cx="17" cy="5" r="2.5" fill="currentColor"/>
+                    <circle cx="4" cy="9" r="2" fill="currentColor"/>
+                    <circle cx="20" cy="9" r="2" fill="currentColor"/>
+                  </svg>
+                  <span className="text-lg font-bold tracking-wide">SÜDPFOTE</span>
                 </div>
-                <p className="text-[#A89888] max-w-sm mb-6">
+                <p className="text-[#8BA3BE] max-w-sm mb-6">
                   Premium Produkte für Linkshänder. Weil 10% der Welt auch 100% verdienen.
                 </p>
                 <div className="flex gap-3">
-                  <span className="px-3 py-1 bg-[#3D3329] rounded text-xs text-[#A89888]">Visa</span>
-                  <span className="px-3 py-1 bg-[#3D3329] rounded text-xs text-[#A89888]">Mastercard</span>
-                  <span className="px-3 py-1 bg-[#3D3329] rounded text-xs text-[#A89888]">PayPal</span>
+                  <span className="px-3 py-1 bg-[#1A3E60] rounded text-xs text-[#8BA3BE]">Visa</span>
+                  <span className="px-3 py-1 bg-[#1A3E60] rounded text-xs text-[#8BA3BE]">Mastercard</span>
+                  <span className="px-3 py-1 bg-[#1A3E60] rounded text-xs text-[#8BA3BE]">PayPal</span>
                 </div>
               </div>
               <div>
                 <h4 className="font-semibold mb-4">Shop</h4>
-                <ul className="space-y-2 text-[#A89888]">
-                  <li><a href="#produkte" className="hover:text-white transition">Alle Linkshänder-Produkte</a></li>
-                  <li><a href="#produkte" className="hover:text-white transition">Linkshänder-Scheren</a></li>
-                  <li><a href="#produkte" className="hover:text-white transition">Linkshänder-Füller</a></li>
+                <ul className="space-y-2 text-[#8BA3BE]">
+                  <li><a href="#produkte" className="hover:text-white transition">Alle Produkte</a></li>
+                  <li><Link href="/kategorie/schule" className="hover:text-white transition">Schule</Link></li>
+                  <li><Link href="/kategorie/kueche" className="hover:text-white transition">Küche</Link></li>
                 </ul>
               </div>
               <div>
                 <h4 className="font-semibold mb-4">Über uns</h4>
-                <ul className="space-y-2 text-[#A89888]">
+                <ul className="space-y-2 text-[#8BA3BE]">
                   <li><Link href="/story" className="hover:text-white transition">Unsere Story</Link></li>
                   <li><Link href="/faq" className="hover:text-white transition">FAQ</Link></li>
                   <li><a href="mailto:hallo@suedpfote.de" className="hover:text-white transition">Kontakt</a></li>
@@ -368,7 +420,7 @@ export default async function Home() {
               </div>
               <div>
                 <h4 className="font-semibold mb-4">Rechtliches</h4>
-                <ul className="space-y-2 text-[#A89888]">
+                <ul className="space-y-2 text-[#8BA3BE]">
                   <li><Link href="/impressum" className="hover:text-white transition">Impressum</Link></li>
                   <li><Link href="/datenschutz" className="hover:text-white transition">Datenschutz</Link></li>
                   <li><Link href="/agb" className="hover:text-white transition">AGB</Link></li>
@@ -376,14 +428,13 @@ export default async function Home() {
                 </ul>
               </div>
             </div>
-            <div className="pt-8 border-t border-[#3D3329] flex flex-col md:flex-row justify-between items-center gap-4">
-              <p className="text-sm text-[#8B7E74]">© 2026 Südpfote. Alle Rechte vorbehalten.</p>
-              <p className="text-sm text-[#8B7E74]">Made with 💜 by Fabian &amp; Nyx 🦞</p>
+            <div className="pt-8 border-t border-[#1A3E60] flex flex-col md:flex-row justify-between items-center gap-4">
+              <p className="text-sm text-[#6B8DAB]">© 2026 Südpfote. Alle Rechte vorbehalten.</p>
+              <p className="text-sm text-[#6B8DAB]">Made with 💜 by Fabian &amp; Nyx 🦞</p>
             </div>
           </div>
         </footer>
       </CartToggle>
-
     </div>
   );
 }
