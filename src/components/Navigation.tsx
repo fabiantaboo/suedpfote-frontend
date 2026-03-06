@@ -24,13 +24,13 @@ export default function Navigation({ onCartClick }: NavigationProps) {
     <nav className="fixed top-0 left-0 right-0 z-40 bg-[#f2edeb]">
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 h-16 md:h-20 flex items-center justify-between">
         {/* Logo + Brand LEFT */}
-        <Link href="/" className="flex items-center gap-2.5 group">
+        <Link href="/" className="flex items-center gap-1.5 sm:gap-2.5 group min-w-0 shrink">
           <Image
             src="/logo-icon.png"
             alt="Südpfote Logo"
             width={44}
             height={44}
-            className="h-7 sm:h-[30px] w-auto"
+            className="h-6 sm:h-[30px] w-auto shrink-0"
             priority
           />
           <Image
@@ -38,7 +38,7 @@ export default function Navigation({ onCartClick }: NavigationProps) {
             alt="Südpfote"
             width={90}
             height={16}
-            className="h-4 sm:h-[18px] w-auto"
+            className="h-3.5 sm:h-[18px] w-auto"
             priority
           />
         </Link>
