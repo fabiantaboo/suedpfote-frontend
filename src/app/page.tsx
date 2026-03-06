@@ -267,7 +267,7 @@ export default async function Home() {
         </section>
 
         {/* ==================== PRODUCT HIGHLIGHTS ==================== */}
-        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-[#EDE5DA]">
+        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-[#ede5e1]">
           <div className="max-w-[1100px] mx-auto">
             <h2
               className="text-[28px] sm:text-[36px] text-[#1A1A1A] mb-2"
