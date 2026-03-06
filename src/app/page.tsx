@@ -417,7 +417,7 @@ export default async function Home() {
         </section>
 
         {/* ==================== FOOTER ==================== */}
-        <footer className="bg-[#ede5e1] text-[#3D3329] py-12 sm:py-16 px-4 sm:px-6">
+        <footer className="bg-[#f2edeb] text-[#3D3329] py-12 sm:py-16 px-4 sm:px-6">
           <div className="max-w-[1100px] mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-5 gap-8 sm:gap-12 mb-12">
               <div className="md:col-span-2">
