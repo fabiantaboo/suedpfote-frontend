@@ -20,7 +20,7 @@ export function SectionWrapper({
   const bgColors = {
     main: 'bg-[#F6F5F2]',
     soft: 'bg-[#EAE6DF]',
-    primary: 'bg-[#0F2E4F] text-white',
+    primary: 'bg-black text-white',
   };
 
   const spacings = {

@@ -55,7 +55,7 @@ export function ProductCard({
         
         {/* Badge */}
         {badge && (
-          <span className="absolute top-3 left-3 bg-[#0F2E4F] text-white text-xs font-medium px-3 py-1 rounded-full">
+          <span className="absolute top-3 left-3 bg-black text-white text-xs font-medium px-3 py-1 rounded-full">
             {badge}
           </span>
         )}
@@ -70,7 +70,7 @@ export function ProductCard({
 
       {/* Product Info */}
       <div className="mt-4">
-        <h3 className="text-[#111111] font-medium text-base line-clamp-2 group-hover:text-[#0F2E4F] transition-colors">
+        <h3 className="text-[#111111] font-medium text-base line-clamp-2 group-hover:text-black transition-colors">
           {title}
         </h3>
         

@@ -27,13 +27,13 @@ export function Button({
 
   const variants = {
     primary: `
-      bg-[#0F2E4F] text-white
-      hover:bg-[#1a4a7a] active:bg-[#0a1f36]
+      bg-black text-white
+      hover:bg-[#333] active:bg-black
     `,
     secondary: `
-      bg-transparent text-[#0F2E4F]
-      border-2 border-[#0F2E4F]
-      hover:bg-[#0F2E4F] hover:text-white
+      bg-transparent text-black
+      border-2 border-black
+      hover:bg-black hover:text-white
     `,
   };
 

@@ -38,24 +38,39 @@ export default function Navigation({ onCartClick }: NavigationProps) {
 
         {/* Nav CENTER — Desktop */}
         <div className="hidden md:flex items-center gap-9">
-          <Link href="/kategorie/kinder" className="text-[15px] text-[#444] hover:text-black transition">
-            Für Kinder
-          </Link>
-          <Link href="/kategorie/schule" className="text-[15px] text-[#444] hover:text-black transition">
-            Schule
-          </Link>
-          <button className="text-[15px] text-[#444] hover:text-black transition flex items-center gap-1">
-            Alltag
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" className="mt-0.5">
-              <path d="M2 4l3 3 3-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-          <Link href="/kategorie/kueche" className="text-[15px] text-[#444] hover:text-black transition">
-            Küche
-          </Link>
-          <Link href="/kategorie/sport" className="text-[15px] text-[#444] hover:text-black transition">
-            Sport
-          </Link>
+          {/* Unsere Produkte Dropdown */}
+          <div className="relative group">
+            <button className="text-[15px] text-[#444] hover:text-black transition flex items-center gap-1">
+              Unsere Produkte
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" className="mt-0.5">
+                <path d="M2 4l3 3 3-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+            <div className="absolute top-full left-0 mt-2 w-52 bg-white rounded-xl shadow-lg border border-gray-100 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <Link href="/kategorie/kinder" className="block px-4 py-2 text-[14px] text-[#444] hover:text-black hover:bg-gray-50 transition">Für Kinder</Link>
+              <Link href="/kategorie/alltag" className="block px-4 py-2 text-[14px] text-[#444] hover:text-black hover:bg-gray-50 transition">Alltag</Link>
+              <Link href="/kategorie/kueche" className="block px-4 py-2 text-[14px] text-[#444] hover:text-black hover:bg-gray-50 transition">Küche</Link>
+              <Link href="/kategorie/schule" className="block px-4 py-2 text-[14px] text-[#444] hover:text-black hover:bg-gray-50 transition">Schule</Link>
+              <Link href="/kategorie/sport" className="block px-4 py-2 text-[14px] text-[#444] hover:text-black hover:bg-gray-50 transition">Sport &amp; Freizeit</Link>
+              <Link href="/kategorien" className="block px-4 py-2 text-[14px] text-[#444] hover:text-black hover:bg-gray-50 transition border-t border-gray-100 mt-1 pt-3">Alle Produkte</Link>
+            </div>
+          </div>
+
+          {/* Über Südpfote Dropdown */}
+          <div className="relative group">
+            <button className="text-[15px] text-[#444] hover:text-black transition flex items-center gap-1">
+              Über Südpfote
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" className="mt-0.5">
+                <path d="M2 4l3 3 3-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+            <div className="absolute top-full left-0 mt-2 w-52 bg-white rounded-xl shadow-lg border border-gray-100 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <Link href="/story" className="block px-4 py-2 text-[14px] text-[#444] hover:text-black hover:bg-gray-50 transition">Unsere Story</Link>
+              <Link href="/faq" className="block px-4 py-2 text-[14px] text-[#444] hover:text-black hover:bg-gray-50 transition">FAQ</Link>
+              <Link href="/versand" className="block px-4 py-2 text-[14px] text-[#444] hover:text-black hover:bg-gray-50 transition">Lieferung &amp; Versand</Link>
+              <Link href="/kontakt" className="block px-4 py-2 text-[14px] text-[#444] hover:text-black hover:bg-gray-50 transition">Kontakt</Link>
+            </div>
+          </div>
         </div>
 
         {/* Icons RIGHT */}
@@ -84,7 +99,7 @@ export default function Navigation({ onCartClick }: NavigationProps) {
               <path d="M16 10a4 4 0 01-8 0"/>
             </svg>
             {totalItems > 0 && (
-              <span className="absolute -top-1.5 -right-1.5 bg-[#0F2E4F] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
+              <span className="absolute -top-1.5 -right-1.5 bg-black text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
                 {totalItems}
               </span>
             )}
@@ -111,12 +126,21 @@ export default function Navigation({ onCartClick }: NavigationProps) {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100 px-6 py-4 space-y-3">
-          <Link href="/kategorie/kinder" onClick={() => setMenuOpen(false)} className="block text-[15px] text-[#444] hover:text-black py-1">Für Kinder</Link>
-          <Link href="/kategorie/schule" onClick={() => setMenuOpen(false)} className="block text-[15px] text-[#444] hover:text-black py-1">Schule</Link>
-          <Link href="/kategorie/alltag" onClick={() => setMenuOpen(false)} className="block text-[15px] text-[#444] hover:text-black py-1">Alltag</Link>
-          <Link href="/kategorie/kueche" onClick={() => setMenuOpen(false)} className="block text-[15px] text-[#444] hover:text-black py-1">Küche</Link>
-          <Link href="/kategorie/sport" onClick={() => setMenuOpen(false)} className="block text-[15px] text-[#444] hover:text-black py-1">Sport</Link>
+        <div className="md:hidden bg-white border-t border-gray-100 px-6 py-4 space-y-1 max-h-[80vh] overflow-y-auto">
+          <p className="text-[12px] font-semibold text-[#999] uppercase tracking-wider pt-2 pb-1">Unsere Produkte</p>
+          <Link href="/kategorie/kinder" onClick={() => setMenuOpen(false)} className="block text-[15px] text-[#444] hover:text-black py-2">Für Kinder</Link>
+          <Link href="/kategorie/alltag" onClick={() => setMenuOpen(false)} className="block text-[15px] text-[#444] hover:text-black py-2">Alltag</Link>
+          <Link href="/kategorie/kueche" onClick={() => setMenuOpen(false)} className="block text-[15px] text-[#444] hover:text-black py-2">Küche</Link>
+          <Link href="/kategorie/schule" onClick={() => setMenuOpen(false)} className="block text-[15px] text-[#444] hover:text-black py-2">Schule</Link>
+          <Link href="/kategorie/sport" onClick={() => setMenuOpen(false)} className="block text-[15px] text-[#444] hover:text-black py-2">Sport &amp; Freizeit</Link>
+          <Link href="/kategorien" onClick={() => setMenuOpen(false)} className="block text-[15px] text-[#444] hover:text-black py-2">Alle Produkte</Link>
+          
+          <div className="border-t border-gray-100 my-2" />
+          <p className="text-[12px] font-semibold text-[#999] uppercase tracking-wider pt-2 pb-1">Über Südpfote</p>
+          <Link href="/story" onClick={() => setMenuOpen(false)} className="block text-[15px] text-[#444] hover:text-black py-2">Unsere Story</Link>
+          <Link href="/faq" onClick={() => setMenuOpen(false)} className="block text-[15px] text-[#444] hover:text-black py-2">FAQ</Link>
+          <Link href="/versand" onClick={() => setMenuOpen(false)} className="block text-[15px] text-[#444] hover:text-black py-2">Lieferung &amp; Versand</Link>
+          <Link href="/kontakt" onClick={() => setMenuOpen(false)} className="block text-[15px] text-[#444] hover:text-black py-2">Kontakt</Link>
         </div>
       )}
     </nav>

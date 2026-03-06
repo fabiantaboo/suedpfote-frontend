@@ -1,32 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { getAllProducts } from '@/lib/medusa-server';
-import ProductFilter from '@/components/ProductFilter';
 import CartToggle from '@/components/CartToggle';
 
-const bgColors = [
-  'bg-[#FFF8F3]',
-  'bg-[#FDF2E9]',
-  'bg-[#F5EDE4]',
-  'bg-[#FEF0E6]',
-  'bg-[#F9F0EA]',
-  'bg-[#FFF5EE]',
-];
-
 export default async function Home() {
-  const rawProducts = await getAllProducts();
-  const products = rawProducts.map((p: any, i: number) => ({
-    id: p.id,
-    variantId: p.variants?.[0]?.id || p.id,
-    name: p.title,
-    price: p.variants?.[0]?.calculated_price?.calculated_amount || 0,
-    description: p.description || '',
-    image: p.thumbnail || null,
-    color: bgColors[i % bgColors.length],
-    handle: p.handle || p.id,
-    tags: p.tags || [],
-  }));
-
   const homepageSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
@@ -138,12 +114,12 @@ export default async function Home() {
                 Die passenden Produkte für<br />
                 Schule, Alltag und Küche.
               </p>
-              <a
-                href="#produkte"
-                className="inline-block px-7 py-3 bg-[#2A2A2A] text-white text-[15px] font-medium rounded-full hover:bg-[#1a1a1a] transition"
+              <Link
+                href="/kategorien"
+                className="inline-block px-7 py-3 bg-black text-white text-[15px] font-medium rounded-full hover:bg-[#333] transition"
               >
                 Jetzt entdecken
-              </a>
+              </Link>
             </div>
           </div>
         </section>
@@ -206,6 +182,54 @@ export default async function Home() {
                 </p>
               </Link>
             </div>
+
+            {/* Second Category Grid: Schule, Sport & Freizeit, Alle Produkte */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mt-5">
+              {/* Schule */}
+              <Link href="/kategorie/schule" className="group block">
+                <div className="relative aspect-[1/1.1] rounded-2xl overflow-hidden bg-[#EAE6DF]">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-6xl">✏️</span>
+                  </div>
+                </div>
+                <p
+                  className="text-center mt-4 text-[18px] sm:text-[20px] text-[#1A1A1A]"
+                  style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+                >
+                  Schule
+                </p>
+              </Link>
+
+              {/* Sport & Freizeit */}
+              <Link href="/kategorie/sport" className="group block">
+                <div className="relative aspect-[1/1.1] rounded-2xl overflow-hidden bg-[#EAE6DF]">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-6xl">⚽</span>
+                  </div>
+                </div>
+                <p
+                  className="text-center mt-4 text-[18px] sm:text-[20px] text-[#1A1A1A]"
+                  style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+                >
+                  Sport &amp; Freizeit
+                </p>
+              </Link>
+
+              {/* Alle Produkte */}
+              <Link href="/kategorien" className="group block">
+                <div className="relative aspect-[1/1.1] rounded-2xl overflow-hidden bg-[#EAE6DF]">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-6xl">🤚</span>
+                  </div>
+                </div>
+                <p
+                  className="text-center mt-4 text-[18px] sm:text-[20px] text-[#1A1A1A]"
+                  style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+                >
+                  Alle Produkte
+                </p>
+              </Link>
+            </div>
           </div>
         </section>
 
@@ -230,12 +254,12 @@ export default async function Home() {
                     Linkshänder-Schere
                   </h3>
                   <p className="text-[16px] text-[#555] mb-4">€ 16,90</p>
-                  <a
-                    href="#produkte"
-                    className="inline-block px-5 py-2 bg-[#B5A87E] text-white text-[13px] font-medium rounded-full hover:bg-[#A49770] transition"
+                  <Link
+                    href="/kategorien"
+                    className="inline-block px-5 py-2 bg-black text-white text-[13px] font-medium rounded-full hover:bg-[#333] transition"
                   >
                     Entdecken
-                  </a>
+                  </Link>
                 </div>
                 <div className="relative w-28 h-28 flex-shrink-0 rounded-xl overflow-hidden bg-[#F6F5F2]">
                   <Image
@@ -254,12 +278,12 @@ export default async function Home() {
                     Notizbuch für Linkshänder
                   </h3>
                   <p className="text-[16px] text-[#555] mb-4">€ 19,90</p>
-                  <a
-                    href="#produkte"
-                    className="inline-block px-5 py-2 bg-[#B5A87E] text-white text-[13px] font-medium rounded-full hover:bg-[#A49770] transition"
+                  <Link
+                    href="/kategorien"
+                    className="inline-block px-5 py-2 bg-black text-white text-[13px] font-medium rounded-full hover:bg-[#333] transition"
                   >
                     Entdecken
-                  </a>
+                  </Link>
                 </div>
                 <div className="relative w-28 h-28 flex-shrink-0 rounded-xl overflow-hidden bg-[#F6F5F2]">
                   <Image
@@ -308,25 +332,6 @@ export default async function Home() {
                 </div>
               </div>
             ))}
-          </div>
-        </section>
-
-        {/* ==================== PRODUCTS FROM MEDUSA ==================== */}
-        <section id="produkte" className="py-16 sm:py-20 px-4 sm:px-6 bg-[#F6F5F2]">
-          <div className="max-w-[1100px] mx-auto">
-            <div className="text-center mb-16">
-              <h2
-                className="text-[28px] sm:text-[36px] text-[#1A1A1A] mb-4"
-                style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
-              >
-                Unsere Linkshänder-Produkte
-              </h2>
-              <p className="text-[#888] max-w-lg mx-auto text-[16px]">
-                Jedes Produkt wurde speziell für die linke Hand entwickelt. Keine Kompromisse.
-              </p>
-            </div>
-
-            <ProductFilter products={products} />
           </div>
         </section>
 
@@ -379,12 +384,12 @@ export default async function Home() {
         </section>
 
         {/* ==================== FOOTER ==================== */}
-        <footer className="bg-[#0F2E4F] text-white py-12 sm:py-16 px-4 sm:px-6">
+        <footer className="bg-[#EAE6DF] text-[#3D3329] py-12 sm:py-16 px-4 sm:px-6">
           <div className="max-w-[1100px] mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-5 gap-8 sm:gap-12 mb-12">
               <div className="md:col-span-2">
                 <div className="mb-4 flex items-center gap-2">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-white">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-[#3D3329]">
                     <path d="M12 21c-1.5 0-7-3.5-7-9.5C5 8 7.5 6 9 6c1 0 2 .5 3 2 1-1.5 2-2 3-2 1.5 0 4 2 4 5.5 0 6-5.5 9.5-7 9.5z" fill="currentColor"/>
                     <circle cx="7" cy="5" r="2.5" fill="currentColor"/>
                     <circle cx="17" cy="5" r="2.5" fill="currentColor"/>
@@ -393,44 +398,46 @@ export default async function Home() {
                   </svg>
                   <span className="text-lg font-bold tracking-wide">SÜDPFOTE</span>
                 </div>
-                <p className="text-[#8BA3BE] max-w-sm mb-6">
+                <p className="text-[#8B7E74] max-w-sm mb-6">
                   Premium Produkte für Linkshänder. Weil 10% der Welt auch 100% verdienen.
                 </p>
                 <div className="flex gap-3">
-                  <span className="px-3 py-1 bg-[#1A3E60] rounded text-xs text-[#8BA3BE]">Visa</span>
-                  <span className="px-3 py-1 bg-[#1A3E60] rounded text-xs text-[#8BA3BE]">Mastercard</span>
-                  <span className="px-3 py-1 bg-[#1A3E60] rounded text-xs text-[#8BA3BE]">PayPal</span>
+                  <span className="px-3 py-1 bg-[#D9D2C9] rounded text-xs text-[#6B5F53]">Visa</span>
+                  <span className="px-3 py-1 bg-[#D9D2C9] rounded text-xs text-[#6B5F53]">Mastercard</span>
+                  <span className="px-3 py-1 bg-[#D9D2C9] rounded text-xs text-[#6B5F53]">PayPal</span>
                 </div>
               </div>
               <div>
                 <h4 className="font-semibold mb-4">Shop</h4>
-                <ul className="space-y-2 text-[#8BA3BE]">
-                  <li><a href="#produkte" className="hover:text-white transition">Alle Produkte</a></li>
-                  <li><Link href="/kategorie/schule" className="hover:text-white transition">Schule</Link></li>
-                  <li><Link href="/kategorie/kueche" className="hover:text-white transition">Küche</Link></li>
+                <ul className="space-y-2 text-[#8B7E74]">
+                  <li><Link href="/kategorien" className="hover:text-[#3D3329] transition">Alle Produkte</Link></li>
+                  <li><Link href="/kategorie/schule" className="hover:text-[#3D3329] transition">Schule</Link></li>
+                  <li><Link href="/kategorie/kueche" className="hover:text-[#3D3329] transition">Küche</Link></li>
+                  <li><Link href="/kategorie/sport" className="hover:text-[#3D3329] transition">Sport &amp; Freizeit</Link></li>
                 </ul>
               </div>
               <div>
                 <h4 className="font-semibold mb-4">Über uns</h4>
-                <ul className="space-y-2 text-[#8BA3BE]">
-                  <li><Link href="/story" className="hover:text-white transition">Unsere Story</Link></li>
-                  <li><Link href="/faq" className="hover:text-white transition">FAQ</Link></li>
-                  <li><a href="mailto:hallo@suedpfote.de" className="hover:text-white transition">Kontakt</a></li>
+                <ul className="space-y-2 text-[#8B7E74]">
+                  <li><Link href="/story" className="hover:text-[#3D3329] transition">Unsere Story</Link></li>
+                  <li><Link href="/faq" className="hover:text-[#3D3329] transition">FAQ</Link></li>
+                  <li><Link href="/versand" className="hover:text-[#3D3329] transition">Lieferung &amp; Versand</Link></li>
+                  <li><a href="mailto:hallo@suedpfote.de" className="hover:text-[#3D3329] transition">Kontakt</a></li>
                 </ul>
               </div>
               <div>
                 <h4 className="font-semibold mb-4">Rechtliches</h4>
-                <ul className="space-y-2 text-[#8BA3BE]">
-                  <li><Link href="/impressum" className="hover:text-white transition">Impressum</Link></li>
-                  <li><Link href="/datenschutz" className="hover:text-white transition">Datenschutz</Link></li>
-                  <li><Link href="/agb" className="hover:text-white transition">AGB</Link></li>
-                  <li><Link href="/widerruf" className="hover:text-white transition">Widerruf</Link></li>
+                <ul className="space-y-2 text-[#8B7E74]">
+                  <li><Link href="/impressum" className="hover:text-[#3D3329] transition">Impressum</Link></li>
+                  <li><Link href="/datenschutz" className="hover:text-[#3D3329] transition">Datenschutz</Link></li>
+                  <li><Link href="/agb" className="hover:text-[#3D3329] transition">AGB</Link></li>
+                  <li><Link href="/widerruf" className="hover:text-[#3D3329] transition">Widerruf</Link></li>
                 </ul>
               </div>
             </div>
-            <div className="pt-8 border-t border-[#1A3E60] flex flex-col md:flex-row justify-between items-center gap-4">
-              <p className="text-sm text-[#6B8DAB]">© 2026 Südpfote. Alle Rechte vorbehalten.</p>
-              <p className="text-sm text-[#6B8DAB]">Made with 💜 by Fabian &amp; Nyx 🦞</p>
+            <div className="pt-8 border-t border-[#D9D2C9] flex flex-col md:flex-row justify-between items-center gap-4">
+              <p className="text-sm text-[#8B7E74]">© 2026 Südpfote. Alle Rechte vorbehalten.</p>
+              <p className="text-sm text-[#8B7E74]">Made with 💜 by Fabian &amp; Nyx 🦞</p>
             </div>
           </div>
         </footer>

@@ -87,7 +87,7 @@ export async function createCart(): Promise<Cart> {
 
 export async function getCart(cartId: string): Promise<Cart | null> {
   try {
-    const { cart } = await medusaFetch<{ cart: Cart }>(`/store/carts/${cartId}?fields=*payment_collection`);
+    const { cart } = await medusaFetch<{ cart: Cart }>(`/store/carts/${cartId}?fields=*items,*payment_collection`);
     return cart;
   } catch {
     return null;
@@ -122,11 +122,16 @@ export async function updateLineItem(
 }
 
 export async function removeLineItem(cartId: string, lineItemId: string): Promise<Cart> {
-  const { cart } = await medusaFetch<{ cart: Cart }>(
+  const response = await medusaFetch<{ cart?: Cart; parent?: Cart }>(
     `/store/carts/${cartId}/line-items/${lineItemId}`,
     { method: 'DELETE' }
   );
-  return cart;
+  // Medusa v2 may return { parent: cart } or { cart } on DELETE
+  const cart = response.cart || response.parent;
+  if (cart) return cart;
+  // Fallback: re-fetch the cart
+  const refreshed = await getCart(cartId);
+  return refreshed || { id: cartId, items: [], total: 0, subtotal: 0, shipping_total: 0, tax_total: 0 };
 }
 
 export async function updateCart(

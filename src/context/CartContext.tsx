@@ -44,17 +44,19 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   // Transform Medusa cart to our format
   const transformCart = useCallback((medusaCart: medusa.Cart | null): CartItem[] => {
-    if (!medusaCart || !medusaCart.items) {
+    if (!medusaCart || !medusaCart.items || !Array.isArray(medusaCart.items)) {
       return [];
     }
-    return medusaCart.items.map(item => ({
-      id: item.id,
-      variantId: item.variant_id,
-      name: item.title,
-      price: item.unit_price, // Medusa v2 uses full precision (EUR, not cents)
-      quantity: item.quantity,
-      image: item.thumbnail || null,
-    }));
+    return medusaCart.items
+      .filter(item => item && item.id) // skip malformed items
+      .map(item => ({
+        id: item.id,
+        variantId: item.variant_id,
+        name: item.title || 'Produkt',
+        price: item.unit_price ?? 0, // Medusa v2 uses full precision (EUR, not cents)
+        quantity: item.quantity ?? 1,
+        image: item.thumbnail || null,
+      }));
   }, []);
 
   // Load cart from Medusa on mount
@@ -65,14 +67,18 @@ export function CartProvider({ children }: { children: ReactNode }) {
       
       if (savedCartId) {
         const existingCart = await medusa.getCart(savedCartId);
-        if (existingCart && existingCart.items.length > 0) {
+        if (existingCart && Array.isArray(existingCart.items) && existingCart.items.length > 0) {
           setCartId(savedCartId);
           setCart(transformCart(existingCart));
           if (existingCart.payment_collection) {
             setPaymentCollectionId(existingCart.payment_collection.id);
           }
+        } else if (existingCart) {
+          // Cart exists but empty — keep the cartId so adding works
+          setCartId(savedCartId);
+          setCart([]);
         } else {
-          // Cart expired or empty, clear it
+          // Cart expired / not found, clear it
           localStorage.removeItem(CART_ID_KEY);
         }
       }
