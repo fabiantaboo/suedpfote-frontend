@@ -150,7 +150,7 @@ export default async function Home() {
               <Link href="/kategorie/alltag" className="group block">
                 <div className="relative aspect-[1/1.1] rounded-2xl overflow-hidden bg-[#EAE6DF]">
                   <Image
-                    src="/images/categories/alltag.png"
+                    src="/images/categories/alltag.jpg"
                     alt="Alltag — Linkshänder Produkte"
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
@@ -225,7 +225,7 @@ export default async function Home() {
               <Link href="/kategorien" className="group block">
                 <div className="relative aspect-[1/1.1] rounded-2xl overflow-hidden bg-[#EAE6DF]">
                   <Image
-                    src="/images/categories/alle-produkte.jpg"
+                    src="/images/categories/alle-produkte.png"
                     alt="Alle Produkte — Linkshänder Shop"
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
