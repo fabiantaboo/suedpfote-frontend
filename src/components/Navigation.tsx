@@ -33,7 +33,14 @@ export default function Navigation({ onCartClick }: NavigationProps) {
             className="h-9 sm:h-10 w-auto"
             priority
           />
-          <span className="text-[20px] sm:text-[22px] font-semibold text-black tracking-tight">Südpfote</span>
+          <Image
+            src="/logo-suedpfote.png"
+            alt="Südpfote"
+            width={120}
+            height={21}
+            className="h-5 sm:h-6 w-auto"
+            priority
+          />
         </Link>
 
         {/* Nav CENTER — Desktop: direct category links */}
