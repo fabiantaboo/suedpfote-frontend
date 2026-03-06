@@ -30,15 +30,15 @@ export default function Navigation({ onCartClick }: NavigationProps) {
             alt="Südpfote Logo"
             width={44}
             height={44}
-            className="h-9 sm:h-10 w-auto"
+            className="h-7 sm:h-[30px] w-auto"
             priority
           />
           <Image
             src="/logo-suedpfote.png"
             alt="Südpfote"
-            width={120}
-            height={21}
-            className="h-5 sm:h-6 w-auto"
+            width={90}
+            height={16}
+            className="h-4 sm:h-[18px] w-auto"
             priority
           />
         </Link>
