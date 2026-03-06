@@ -136,7 +136,7 @@ export default async function Home() {
                       src="/images/categories/kinder.jpg"
                       alt="Für Kinder — Linkshänder Produkte"
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="object-cover scale-[1.03] group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>
                 </div>
@@ -158,7 +158,7 @@ export default async function Home() {
                       src="/images/categories/alltag.jpg"
                       alt="Alltag — Linkshänder Produkte"
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="object-cover scale-[1.03] group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>
                 </div>
@@ -180,7 +180,7 @@ export default async function Home() {
                       src="/images/categories/kueche.png"
                       alt="Küche — Linkshänder Produkte"
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="object-cover scale-[1.03] group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>
                 </div>
@@ -205,7 +205,7 @@ export default async function Home() {
                       src="/images/categories/schule.jpg"
                       alt="Schule — Linkshänder Produkte"
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="object-cover scale-[1.03] group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>
                 </div>
@@ -227,7 +227,7 @@ export default async function Home() {
                       src="/images/categories/sport.jpg"
                       alt="Sport & Freizeit — Linkshänder Produkte"
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="object-cover scale-[1.03] group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>
                 </div>
@@ -249,7 +249,7 @@ export default async function Home() {
                       src="/images/categories/alle-produkte.png"
                       alt="Alle Produkte — Linkshänder Shop"
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="object-cover scale-[1.03] group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>
                 </div>
