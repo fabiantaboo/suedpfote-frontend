@@ -79,7 +79,7 @@ export default async function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F5F3F0]">
+    <div className="min-h-screen bg-[#f6f2ef]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
@@ -125,13 +125,13 @@ export default async function Home() {
         </section>
 
         {/* ==================== CATEGORY SECTION ==================== */}
-        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-[#F5F3F0]">
+        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-[#f6f2ef]">
           <div className="max-w-[1100px] mx-auto">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
               {/* Für Kinder */}
               <Link href="/kategorie/kinder" className="group block">
                 <div className="overflow-hidden rounded-t-2xl">
-                  <div className="relative aspect-[1/1.1] overflow-hidden bg-[#EEEAE6]">
+                  <div className="relative aspect-[1/1.1] overflow-hidden bg-[#ede5e1]">
                     <Image
                       src="/images/categories/kinder.jpg"
                       alt="Für Kinder — Linkshänder Produkte"
@@ -140,7 +140,7 @@ export default async function Home() {
                     />
                   </div>
                 </div>
-                <div className="bg-[#EEEAE6] rounded-b-2xl py-4">
+                <div className="bg-[#ede5e1] rounded-b-2xl py-4">
                   <p
                     className="text-center text-[18px] sm:text-[20px] text-[#1A1A1A]"
                     style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif", fontWeight: 700 }}
@@ -153,7 +153,7 @@ export default async function Home() {
               {/* Alltag */}
               <Link href="/kategorie/alltag" className="group block">
                 <div className="overflow-hidden rounded-t-2xl">
-                  <div className="relative aspect-[1/1.1] overflow-hidden bg-[#EEEAE6]">
+                  <div className="relative aspect-[1/1.1] overflow-hidden bg-[#ede5e1]">
                     <Image
                       src="/images/categories/alltag.jpg"
                       alt="Alltag — Linkshänder Produkte"
@@ -162,7 +162,7 @@ export default async function Home() {
                     />
                   </div>
                 </div>
-                <div className="bg-[#EEEAE6] rounded-b-2xl py-4">
+                <div className="bg-[#ede5e1] rounded-b-2xl py-4">
                   <p
                     className="text-center text-[18px] sm:text-[20px] text-[#1A1A1A]"
                     style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif", fontWeight: 700 }}
@@ -175,7 +175,7 @@ export default async function Home() {
               {/* Küche */}
               <Link href="/kategorie/kueche" className="group block">
                 <div className="overflow-hidden rounded-t-2xl">
-                  <div className="relative aspect-[1/1.1] overflow-hidden bg-[#EEEAE6]">
+                  <div className="relative aspect-[1/1.1] overflow-hidden bg-[#ede5e1]">
                     <Image
                       src="/images/categories/kueche.png"
                       alt="Küche — Linkshänder Produkte"
@@ -184,7 +184,7 @@ export default async function Home() {
                     />
                   </div>
                 </div>
-                <div className="bg-[#EEEAE6] rounded-b-2xl py-4">
+                <div className="bg-[#ede5e1] rounded-b-2xl py-4">
                   <p
                     className="text-center text-[18px] sm:text-[20px] text-[#1A1A1A]"
                     style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif", fontWeight: 700 }}
@@ -200,7 +200,7 @@ export default async function Home() {
               {/* Schule */}
               <Link href="/kategorie/schule" className="group block">
                 <div className="overflow-hidden rounded-t-2xl">
-                  <div className="relative aspect-[1/1.1] overflow-hidden bg-[#EEEAE6]">
+                  <div className="relative aspect-[1/1.1] overflow-hidden bg-[#ede5e1]">
                     <Image
                       src="/images/categories/schule.jpg"
                       alt="Schule — Linkshänder Produkte"
@@ -209,7 +209,7 @@ export default async function Home() {
                     />
                   </div>
                 </div>
-                <div className="bg-[#EEEAE6] rounded-b-2xl py-4">
+                <div className="bg-[#ede5e1] rounded-b-2xl py-4">
                   <p
                     className="text-center text-[18px] sm:text-[20px] text-[#1A1A1A]"
                     style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif", fontWeight: 700 }}
@@ -222,7 +222,7 @@ export default async function Home() {
               {/* Sport & Freizeit */}
               <Link href="/kategorie/sport" className="group block">
                 <div className="overflow-hidden rounded-t-2xl">
-                  <div className="relative aspect-[1/1.1] overflow-hidden bg-[#EEEAE6]">
+                  <div className="relative aspect-[1/1.1] overflow-hidden bg-[#ede5e1]">
                     <Image
                       src="/images/categories/sport.jpg"
                       alt="Sport & Freizeit — Linkshänder Produkte"
@@ -231,7 +231,7 @@ export default async function Home() {
                     />
                   </div>
                 </div>
-                <div className="bg-[#EEEAE6] rounded-b-2xl py-4">
+                <div className="bg-[#ede5e1] rounded-b-2xl py-4">
                   <p
                     className="text-center text-[18px] sm:text-[20px] text-[#1A1A1A]"
                     style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif", fontWeight: 700 }}
@@ -244,7 +244,7 @@ export default async function Home() {
               {/* Alle Produkte */}
               <Link href="/kategorien" className="group block">
                 <div className="overflow-hidden rounded-t-2xl">
-                  <div className="relative aspect-[1/1.1] overflow-hidden bg-[#EEEAE6]">
+                  <div className="relative aspect-[1/1.1] overflow-hidden bg-[#ede5e1]">
                     <Image
                       src="/images/categories/alle-produkte.png"
                       alt="Alle Produkte — Linkshänder Shop"
@@ -253,7 +253,7 @@ export default async function Home() {
                     />
                   </div>
                 </div>
-                <div className="bg-[#EEEAE6] rounded-b-2xl py-4">
+                <div className="bg-[#ede5e1] rounded-b-2xl py-4">
                   <p
                     className="text-center text-[18px] sm:text-[20px] text-[#1A1A1A]"
                     style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif", fontWeight: 700 }}
@@ -289,12 +289,12 @@ export default async function Home() {
                   <p className="text-[16px] text-[#555] mb-4">€ 16,90</p>
                   <Link
                     href="/kategorien"
-                    className="inline-block px-5 py-2 bg-[#B79B7A] text-white text-[13px] font-medium rounded-full hover:bg-[#A68B6C] transition"
+                    className="inline-block px-5 py-2 bg-[#ab9b83] text-white text-[13px] font-medium rounded-full hover:bg-[#9A8B75] transition"
                   >
                     Entdecken
                   </Link>
                 </div>
-                <div className="relative w-28 h-28 flex-shrink-0 rounded-xl overflow-hidden bg-[#F5F3F0]">
+                <div className="relative w-28 h-28 flex-shrink-0 rounded-xl overflow-hidden bg-[#f6f2ef]">
                   <Image
                     src="/images/westcott-linkshaender-schere.jpg"
                     alt="Linkshänder-Schere"
@@ -313,12 +313,12 @@ export default async function Home() {
                   <p className="text-[16px] text-[#555] mb-4">€ 19,90</p>
                   <Link
                     href="/kategorien"
-                    className="inline-block px-5 py-2 bg-[#B79B7A] text-white text-[13px] font-medium rounded-full hover:bg-[#A68B6C] transition"
+                    className="inline-block px-5 py-2 bg-[#ab9b83] text-white text-[13px] font-medium rounded-full hover:bg-[#9A8B75] transition"
                   >
                     Entdecken
                   </Link>
                 </div>
-                <div className="relative w-28 h-28 flex-shrink-0 rounded-xl overflow-hidden bg-[#F5F3F0]">
+                <div className="relative w-28 h-28 flex-shrink-0 rounded-xl overflow-hidden bg-[#f6f2ef]">
                   <Image
                     src="/images/leuchtturm1917-notizbuch-linkshaender.jpg"
                     alt="Notizbuch für Linkshänder"
@@ -332,7 +332,7 @@ export default async function Home() {
         </section>
 
         {/* ==================== SOCIAL PROOF / INSTAGRAM ==================== */}
-        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-[#F5F3F0]">
+        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-[#f6f2ef]">
           <div className="max-w-[1100px] mx-auto text-center mb-10">
             <h2
               className="text-[28px] sm:text-[36px] text-[#1A1A1A] mb-3"
@@ -369,7 +369,7 @@ export default async function Home() {
         </section>
 
         {/* ==================== FAQ SECTION ==================== */}
-        <section className="py-20 px-6 bg-[#F5F3F0]" id="faq">
+        <section className="py-20 px-6 bg-[#f6f2ef]" id="faq">
           <div className="max-w-4xl mx-auto">
             <h2
               className="text-[28px] sm:text-[36px] text-center text-[#1A1A1A] mb-4"
@@ -417,7 +417,7 @@ export default async function Home() {
         </section>
 
         {/* ==================== FOOTER ==================== */}
-        <footer className="bg-[#EEEAE6] text-[#3D3329] py-12 sm:py-16 px-4 sm:px-6">
+        <footer className="bg-[#ede5e1] text-[#3D3329] py-12 sm:py-16 px-4 sm:px-6">
           <div className="max-w-[1100px] mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-5 gap-8 sm:gap-12 mb-12">
               <div className="md:col-span-2">
