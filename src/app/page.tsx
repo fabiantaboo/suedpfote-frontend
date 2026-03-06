@@ -289,7 +289,7 @@ export default async function Home() {
                   <p className="text-[16px] text-[#555] mb-4">€ 16,90</p>
                   <Link
                     href="/kategorien"
-                    className="inline-block px-5 py-2 bg-[#FAF8F6] text-[#2F2F2A] text-[13px] font-medium rounded-full hover:bg-[#F0EDE9] border border-[#E0DBD5] transition"
+                    className="inline-block px-5 py-2 bg-[#B79B7A] text-white text-[13px] font-medium rounded-full hover:bg-[#A68B6C] transition"
                   >
                     Entdecken
                   </Link>
@@ -313,7 +313,7 @@ export default async function Home() {
                   <p className="text-[16px] text-[#555] mb-4">€ 19,90</p>
                   <Link
                     href="/kategorien"
-                    className="inline-block px-5 py-2 bg-[#FAF8F6] text-[#2F2F2A] text-[13px] font-medium rounded-full hover:bg-[#F0EDE9] border border-[#E0DBD5] transition"
+                    className="inline-block px-5 py-2 bg-[#B79B7A] text-white text-[13px] font-medium rounded-full hover:bg-[#A68B6C] transition"
                   >
                     Entdecken
                   </Link>
