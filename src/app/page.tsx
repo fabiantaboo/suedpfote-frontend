@@ -421,20 +421,20 @@ export default async function Home() {
           <div className="max-w-[1100px] mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-5 gap-8 sm:gap-12 mb-12">
               <div className="md:col-span-2">
-                <div className="mb-4 flex items-center gap-2">
+                <div className="mb-4 flex items-center gap-1.5">
                   <Image
                     src="/logo-icon.png"
                     alt="Südpfote Logo"
-                    width={32}
-                    height={32}
-                    className="h-6 sm:h-7 w-auto"
+                    width={28}
+                    height={28}
+                    className="!h-5 sm:!h-6 !w-auto max-h-5 sm:max-h-6"
                   />
                   <Image
                     src="/logo-suedpfote.png"
                     alt="Südpfote"
-                    width={90}
-                    height={16}
-                    className="h-4 sm:h-5 w-auto"
+                    width={80}
+                    height={14}
+                    className="!h-3 sm:!h-4 !w-auto max-h-3 sm:max-h-4"
                   />
                 </div>
                 <p className="text-[#8B7E74] max-w-sm mb-6">
