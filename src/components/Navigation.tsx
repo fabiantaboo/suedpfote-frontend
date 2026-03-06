@@ -26,7 +26,7 @@ export default function Navigation({ onCartClick }: NavigationProps) {
         {/* Logo + Brand LEFT */}
         <Link href="/" className="flex items-center gap-2.5 group">
           <Image
-            src="/logo-icon.jpg"
+            src="/logo-icon.png"
             alt="Südpfote Logo"
             width={44}
             height={44}
