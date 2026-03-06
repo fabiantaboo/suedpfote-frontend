@@ -21,7 +21,7 @@ export default function Navigation({ onCartClick }: NavigationProps) {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-40 bg-[#EAE6DF]">
+    <nav className="fixed top-0 left-0 right-0 z-40 bg-white">
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 h-16 md:h-20 flex items-center justify-between">
         {/* Logo + Brand LEFT */}
         <Link href="/" className="flex items-center gap-2.5 group">

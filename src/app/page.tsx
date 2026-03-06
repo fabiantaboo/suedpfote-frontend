@@ -79,7 +79,7 @@ export default async function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F6F5F2]">
+    <div className="min-h-screen bg-[#F5F0EB]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
@@ -116,7 +116,7 @@ export default async function Home() {
               </p>
               <Link
                 href="/kategorien"
-                className="inline-block px-7 py-3 bg-[#A9A39A] text-white text-[15px] font-medium rounded-full hover:bg-[#938D84] transition"
+                className="inline-block px-7 py-3 bg-[#2F2F2A] text-white text-[15px] font-medium rounded-full hover:bg-[#3D3D36] transition"
               >
                 Jetzt entdecken
               </Link>
@@ -125,7 +125,7 @@ export default async function Home() {
         </section>
 
         {/* ==================== CATEGORY SECTION ==================== */}
-        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-[#F6F5F2]">
+        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-[#F5F0EB]">
           <div className="max-w-[1100px] mx-auto">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
               {/* Für Kinder */}
@@ -140,7 +140,7 @@ export default async function Home() {
                     />
                   </div>
                 </div>
-                <div className="bg-[#EAE6DF] rounded-b-2xl py-4">
+                <div className="bg-white rounded-b-2xl py-4">
                   <p
                     className="text-center text-[18px] sm:text-[20px] text-[#1A1A1A]"
                     style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
@@ -162,7 +162,7 @@ export default async function Home() {
                     />
                   </div>
                 </div>
-                <div className="bg-[#EAE6DF] rounded-b-2xl py-4">
+                <div className="bg-white rounded-b-2xl py-4">
                   <p
                     className="text-center text-[18px] sm:text-[20px] text-[#1A1A1A]"
                     style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
@@ -184,7 +184,7 @@ export default async function Home() {
                     />
                   </div>
                 </div>
-                <div className="bg-[#EAE6DF] rounded-b-2xl py-4">
+                <div className="bg-white rounded-b-2xl py-4">
                   <p
                     className="text-center text-[18px] sm:text-[20px] text-[#1A1A1A]"
                     style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
@@ -209,7 +209,7 @@ export default async function Home() {
                     />
                   </div>
                 </div>
-                <div className="bg-[#EAE6DF] rounded-b-2xl py-4">
+                <div className="bg-white rounded-b-2xl py-4">
                   <p
                     className="text-center text-[18px] sm:text-[20px] text-[#1A1A1A]"
                     style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
@@ -231,7 +231,7 @@ export default async function Home() {
                     />
                   </div>
                 </div>
-                <div className="bg-[#EAE6DF] rounded-b-2xl py-4">
+                <div className="bg-white rounded-b-2xl py-4">
                   <p
                     className="text-center text-[18px] sm:text-[20px] text-[#1A1A1A]"
                     style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
@@ -253,7 +253,7 @@ export default async function Home() {
                     />
                   </div>
                 </div>
-                <div className="bg-[#EAE6DF] rounded-b-2xl py-4">
+                <div className="bg-white rounded-b-2xl py-4">
                   <p
                     className="text-center text-[18px] sm:text-[20px] text-[#1A1A1A]"
                     style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
@@ -267,7 +267,7 @@ export default async function Home() {
         </section>
 
         {/* ==================== PRODUCT HIGHLIGHTS ==================== */}
-        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-[#EAE6DF]">
+        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-[#EDE5DA]">
           <div className="max-w-[1100px] mx-auto">
             <h2
               className="text-[28px] sm:text-[36px] text-[#1A1A1A] mb-2"
@@ -289,12 +289,12 @@ export default async function Home() {
                   <p className="text-[16px] text-[#555] mb-4">€ 16,90</p>
                   <Link
                     href="/kategorien"
-                    className="inline-block px-5 py-2 bg-[#A9A39A] text-white text-[13px] font-medium rounded-full hover:bg-[#938D84] transition"
+                    className="inline-block px-5 py-2 bg-[#B8956A] text-white text-[13px] font-medium rounded-full hover:bg-[#A6845C] transition"
                   >
                     Entdecken
                   </Link>
                 </div>
-                <div className="relative w-28 h-28 flex-shrink-0 rounded-xl overflow-hidden bg-[#F6F5F2]">
+                <div className="relative w-28 h-28 flex-shrink-0 rounded-xl overflow-hidden bg-[#F5F0EB]">
                   <Image
                     src="/images/westcott-linkshaender-schere.jpg"
                     alt="Linkshänder-Schere"
@@ -313,12 +313,12 @@ export default async function Home() {
                   <p className="text-[16px] text-[#555] mb-4">€ 19,90</p>
                   <Link
                     href="/kategorien"
-                    className="inline-block px-5 py-2 bg-[#A9A39A] text-white text-[13px] font-medium rounded-full hover:bg-[#938D84] transition"
+                    className="inline-block px-5 py-2 bg-[#B8956A] text-white text-[13px] font-medium rounded-full hover:bg-[#A6845C] transition"
                   >
                     Entdecken
                   </Link>
                 </div>
-                <div className="relative w-28 h-28 flex-shrink-0 rounded-xl overflow-hidden bg-[#F6F5F2]">
+                <div className="relative w-28 h-28 flex-shrink-0 rounded-xl overflow-hidden bg-[#F5F0EB]">
                   <Image
                     src="/images/leuchtturm1917-notizbuch-linkshaender.jpg"
                     alt="Notizbuch für Linkshänder"
@@ -332,7 +332,7 @@ export default async function Home() {
         </section>
 
         {/* ==================== SOCIAL PROOF / INSTAGRAM ==================== */}
-        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-[#F6F5F2]">
+        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-[#F5F0EB]">
           <div className="max-w-[1100px] mx-auto text-center mb-10">
             <h2
               className="text-[28px] sm:text-[36px] text-[#1A1A1A] mb-3"
@@ -369,7 +369,7 @@ export default async function Home() {
         </section>
 
         {/* ==================== FAQ SECTION ==================== */}
-        <section className="py-20 px-6 bg-[#F6F5F2]" id="faq">
+        <section className="py-20 px-6 bg-[#F5F0EB]" id="faq">
           <div className="max-w-4xl mx-auto">
             <h2
               className="text-[28px] sm:text-[36px] text-center text-[#1A1A1A] mb-4"
