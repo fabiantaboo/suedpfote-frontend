@@ -79,7 +79,7 @@ export default async function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#F6F5F2]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
@@ -116,7 +116,7 @@ export default async function Home() {
               </p>
               <Link
                 href="/kategorien"
-                className="inline-block px-7 py-3 bg-black text-white text-[15px] font-medium rounded-full hover:bg-[#333] transition"
+                className="inline-block px-7 py-3 bg-[#A9A39A] text-white text-[15px] font-medium rounded-full hover:bg-[#938D84] transition"
               >
                 Jetzt entdecken
               </Link>
@@ -125,61 +125,73 @@ export default async function Home() {
         </section>
 
         {/* ==================== CATEGORY SECTION ==================== */}
-        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-white">
+        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-[#F6F5F2]">
           <div className="max-w-[1100px] mx-auto">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
               {/* Für Kinder */}
               <Link href="/kategorie/kinder" className="group block">
-                <div className="relative aspect-[1/1.1] rounded-2xl overflow-hidden bg-[#EAE6DF]">
-                  <Image
-                    src="/images/categories/kinder.jpg"
-                    alt="Für Kinder — Linkshänder Produkte"
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+                <div className="overflow-hidden rounded-t-2xl">
+                  <div className="relative aspect-[1/1.1] overflow-hidden bg-[#EAE6DF]">
+                    <Image
+                      src="/images/categories/kinder.jpg"
+                      alt="Für Kinder — Linkshänder Produkte"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
                 </div>
-                <p
-                  className="text-center mt-4 text-[18px] sm:text-[20px] text-[#1A1A1A]"
-                  style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
-                >
-                  Für Kinder
-                </p>
+                <div className="bg-[#EAE6DF] rounded-b-2xl py-4">
+                  <p
+                    className="text-center text-[18px] sm:text-[20px] text-[#1A1A1A]"
+                    style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+                  >
+                    Für Kinder
+                  </p>
+                </div>
               </Link>
 
               {/* Alltag */}
               <Link href="/kategorie/alltag" className="group block">
-                <div className="relative aspect-[1/1.1] rounded-2xl overflow-hidden bg-[#EAE6DF]">
-                  <Image
-                    src="/images/categories/alltag.jpg"
-                    alt="Alltag — Linkshänder Produkte"
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+                <div className="overflow-hidden rounded-t-2xl">
+                  <div className="relative aspect-[1/1.1] overflow-hidden bg-[#EAE6DF]">
+                    <Image
+                      src="/images/categories/alltag.jpg"
+                      alt="Alltag — Linkshänder Produkte"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
                 </div>
-                <p
-                  className="text-center mt-4 text-[18px] sm:text-[20px] text-[#1A1A1A]"
-                  style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
-                >
-                  Alltag
-                </p>
+                <div className="bg-[#EAE6DF] rounded-b-2xl py-4">
+                  <p
+                    className="text-center text-[18px] sm:text-[20px] text-[#1A1A1A]"
+                    style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+                  >
+                    Alltag
+                  </p>
+                </div>
               </Link>
 
               {/* Küche */}
               <Link href="/kategorie/kueche" className="group block">
-                <div className="relative aspect-[1/1.1] rounded-2xl overflow-hidden bg-[#EAE6DF]">
-                  <Image
-                    src="/images/categories/kueche.png"
-                    alt="Küche — Linkshänder Produkte"
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+                <div className="overflow-hidden rounded-t-2xl">
+                  <div className="relative aspect-[1/1.1] overflow-hidden bg-[#EAE6DF]">
+                    <Image
+                      src="/images/categories/kueche.png"
+                      alt="Küche — Linkshänder Produkte"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
                 </div>
-                <p
-                  className="text-center mt-4 text-[18px] sm:text-[20px] text-[#1A1A1A]"
-                  style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
-                >
-                  Küche
-                </p>
+                <div className="bg-[#EAE6DF] rounded-b-2xl py-4">
+                  <p
+                    className="text-center text-[18px] sm:text-[20px] text-[#1A1A1A]"
+                    style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+                  >
+                    Küche
+                  </p>
+                </div>
               </Link>
             </div>
 
@@ -187,63 +199,75 @@ export default async function Home() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mt-5">
               {/* Schule */}
               <Link href="/kategorie/schule" className="group block">
-                <div className="relative aspect-[1/1.1] rounded-2xl overflow-hidden bg-[#EAE6DF]">
-                  <Image
-                    src="/images/categories/schule.jpg"
-                    alt="Schule — Linkshänder Produkte"
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+                <div className="overflow-hidden rounded-t-2xl">
+                  <div className="relative aspect-[1/1.1] overflow-hidden bg-[#EAE6DF]">
+                    <Image
+                      src="/images/categories/schule.jpg"
+                      alt="Schule — Linkshänder Produkte"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
                 </div>
-                <p
-                  className="text-center mt-4 text-[18px] sm:text-[20px] text-[#1A1A1A]"
-                  style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
-                >
-                  Schule
-                </p>
+                <div className="bg-[#EAE6DF] rounded-b-2xl py-4">
+                  <p
+                    className="text-center text-[18px] sm:text-[20px] text-[#1A1A1A]"
+                    style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+                  >
+                    Schule
+                  </p>
+                </div>
               </Link>
 
               {/* Sport & Freizeit */}
               <Link href="/kategorie/sport" className="group block">
-                <div className="relative aspect-[1/1.1] rounded-2xl overflow-hidden bg-[#EAE6DF]">
-                  <Image
-                    src="/images/categories/sport.jpg"
-                    alt="Sport & Freizeit — Linkshänder Produkte"
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+                <div className="overflow-hidden rounded-t-2xl">
+                  <div className="relative aspect-[1/1.1] overflow-hidden bg-[#EAE6DF]">
+                    <Image
+                      src="/images/categories/sport.jpg"
+                      alt="Sport & Freizeit — Linkshänder Produkte"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
                 </div>
-                <p
-                  className="text-center mt-4 text-[18px] sm:text-[20px] text-[#1A1A1A]"
-                  style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
-                >
-                  Sport &amp; Freizeit
-                </p>
+                <div className="bg-[#EAE6DF] rounded-b-2xl py-4">
+                  <p
+                    className="text-center text-[18px] sm:text-[20px] text-[#1A1A1A]"
+                    style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+                  >
+                    Sport &amp; Freizeit
+                  </p>
+                </div>
               </Link>
 
               {/* Alle Produkte */}
               <Link href="/kategorien" className="group block">
-                <div className="relative aspect-[1/1.1] rounded-2xl overflow-hidden bg-[#EAE6DF]">
-                  <Image
-                    src="/images/categories/alle-produkte.png"
-                    alt="Alle Produkte — Linkshänder Shop"
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+                <div className="overflow-hidden rounded-t-2xl">
+                  <div className="relative aspect-[1/1.1] overflow-hidden bg-[#EAE6DF]">
+                    <Image
+                      src="/images/categories/alle-produkte.png"
+                      alt="Alle Produkte — Linkshänder Shop"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
                 </div>
-                <p
-                  className="text-center mt-4 text-[18px] sm:text-[20px] text-[#1A1A1A]"
-                  style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
-                >
-                  Alle Produkte
-                </p>
+                <div className="bg-[#EAE6DF] rounded-b-2xl py-4">
+                  <p
+                    className="text-center text-[18px] sm:text-[20px] text-[#1A1A1A]"
+                    style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+                  >
+                    Alle Produkte
+                  </p>
+                </div>
               </Link>
             </div>
           </div>
         </section>
 
         {/* ==================== PRODUCT HIGHLIGHTS ==================== */}
-        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-[#F0EBE3]">
+        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-[#EAE6DF]">
           <div className="max-w-[1100px] mx-auto">
             <h2
               className="text-[28px] sm:text-[36px] text-[#1A1A1A] mb-2"
@@ -265,7 +289,7 @@ export default async function Home() {
                   <p className="text-[16px] text-[#555] mb-4">€ 16,90</p>
                   <Link
                     href="/kategorien"
-                    className="inline-block px-5 py-2 bg-black text-white text-[13px] font-medium rounded-full hover:bg-[#333] transition"
+                    className="inline-block px-5 py-2 bg-[#A9A39A] text-white text-[13px] font-medium rounded-full hover:bg-[#938D84] transition"
                   >
                     Entdecken
                   </Link>
@@ -289,7 +313,7 @@ export default async function Home() {
                   <p className="text-[16px] text-[#555] mb-4">€ 19,90</p>
                   <Link
                     href="/kategorien"
-                    className="inline-block px-5 py-2 bg-black text-white text-[13px] font-medium rounded-full hover:bg-[#333] transition"
+                    className="inline-block px-5 py-2 bg-[#A9A39A] text-white text-[13px] font-medium rounded-full hover:bg-[#938D84] transition"
                   >
                     Entdecken
                   </Link>
@@ -308,7 +332,7 @@ export default async function Home() {
         </section>
 
         {/* ==================== SOCIAL PROOF / INSTAGRAM ==================== */}
-        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-white">
+        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-[#F6F5F2]">
           <div className="max-w-[1100px] mx-auto text-center mb-10">
             <h2
               className="text-[28px] sm:text-[36px] text-[#1A1A1A] mb-3"
