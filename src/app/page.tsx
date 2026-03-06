@@ -90,7 +90,7 @@ export default async function Home() {
           {/* Background — lifestyle hero image */}
           <div className="absolute inset-0">
             <Image
-              src="/images/hero-lifestyle.jpg"
+              src="/images/hero-banner.png"
               alt="Linkshänder Workspace — Südpfote"
               fill
               className="object-cover"
@@ -132,7 +132,7 @@ export default async function Home() {
               <Link href="/kategorie/kinder" className="group block">
                 <div className="relative aspect-[1/1.1] rounded-2xl overflow-hidden bg-[#EAE6DF]">
                   <Image
-                    src="/images/stabilo-easygraph-bleistift-linkshaender.jpg"
+                    src="/images/categories/kinder.jpg"
                     alt="Für Kinder — Linkshänder Produkte"
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
@@ -150,7 +150,7 @@ export default async function Home() {
               <Link href="/kategorie/alltag" className="group block">
                 <div className="relative aspect-[1/1.1] rounded-2xl overflow-hidden bg-[#EAE6DF]">
                   <Image
-                    src="/images/leuchtturm1917-notizbuch-linkshaender.jpg"
+                    src="/images/categories/alltag.png"
                     alt="Alltag — Linkshänder Produkte"
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
@@ -168,7 +168,7 @@ export default async function Home() {
               <Link href="/kategorie/kueche" className="group block">
                 <div className="relative aspect-[1/1.1] rounded-2xl overflow-hidden bg-[#EAE6DF]">
                   <Image
-                    src="/images/linkshaender-kuechenmesser-20cm.jpg"
+                    src="/images/categories/kueche.png"
                     alt="Küche — Linkshänder Produkte"
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
@@ -188,9 +188,12 @@ export default async function Home() {
               {/* Schule */}
               <Link href="/kategorie/schule" className="group block">
                 <div className="relative aspect-[1/1.1] rounded-2xl overflow-hidden bg-[#EAE6DF]">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-6xl">✏️</span>
-                  </div>
+                  <Image
+                    src="/images/categories/schule.jpg"
+                    alt="Schule — Linkshänder Produkte"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
                 <p
                   className="text-center mt-4 text-[18px] sm:text-[20px] text-[#1A1A1A]"
@@ -203,9 +206,12 @@ export default async function Home() {
               {/* Sport & Freizeit */}
               <Link href="/kategorie/sport" className="group block">
                 <div className="relative aspect-[1/1.1] rounded-2xl overflow-hidden bg-[#EAE6DF]">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-6xl">⚽</span>
-                  </div>
+                  <Image
+                    src="/images/categories/sport.jpg"
+                    alt="Sport & Freizeit — Linkshänder Produkte"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
                 <p
                   className="text-center mt-4 text-[18px] sm:text-[20px] text-[#1A1A1A]"
@@ -218,9 +224,12 @@ export default async function Home() {
               {/* Alle Produkte */}
               <Link href="/kategorien" className="group block">
                 <div className="relative aspect-[1/1.1] rounded-2xl overflow-hidden bg-[#EAE6DF]">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-6xl">🤚</span>
-                  </div>
+                  <Image
+                    src="/images/categories/alle-produkte.jpg"
+                    alt="Alle Produkte — Linkshänder Shop"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
                 <p
                   className="text-center mt-4 text-[18px] sm:text-[20px] text-[#1A1A1A]"
@@ -388,15 +397,14 @@ export default async function Home() {
           <div className="max-w-[1100px] mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-5 gap-8 sm:gap-12 mb-12">
               <div className="md:col-span-2">
-                <div className="mb-4 flex items-center gap-2">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-[#3D3329]">
-                    <path d="M12 21c-1.5 0-7-3.5-7-9.5C5 8 7.5 6 9 6c1 0 2 .5 3 2 1-1.5 2-2 3-2 1.5 0 4 2 4 5.5 0 6-5.5 9.5-7 9.5z" fill="currentColor"/>
-                    <circle cx="7" cy="5" r="2.5" fill="currentColor"/>
-                    <circle cx="17" cy="5" r="2.5" fill="currentColor"/>
-                    <circle cx="4" cy="9" r="2" fill="currentColor"/>
-                    <circle cx="20" cy="9" r="2" fill="currentColor"/>
-                  </svg>
-                  <span className="text-lg font-bold tracking-wide">SÜDPFOTE</span>
+                <div className="mb-4">
+                  <Image
+                    src="/logo-suedpfote.png"
+                    alt="Südpfote"
+                    width={140}
+                    height={35}
+                    className="h-8 w-auto"
+                  />
                 </div>
                 <p className="text-[#8B7E74] max-w-sm mb-6">
                   Premium Produkte für Linkshänder. Weil 10% der Welt auch 100% verdienen.

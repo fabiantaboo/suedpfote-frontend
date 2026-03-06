@@ -47,40 +47,55 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                 {cart.map((item) => (
                   <div 
                     key={item.id} 
-                    className="flex items-center gap-4 p-4 bg-zinc-50 rounded-2xl"
+                    className="relative p-4 bg-zinc-50 rounded-2xl"
                   >
-                    <div className="w-20 h-20 rounded-xl bg-zinc-100 flex items-center justify-center overflow-hidden p-3">
-                      {item.image ? (
-                        <img 
-                          src={item.image}
-                          alt={item.name}
-                          className="w-full h-full object-contain"
-                        />
-                      ) : (
-                        <HandIcon className="w-8 h-8 text-zinc-400" />
-                      )}
+                    {/* Remove button — always visible */}
+                    <button
+                      onClick={() => removeFromCart(item.id)}
+                      className="absolute top-2 right-2 w-7 h-7 rounded-full bg-zinc-200 hover:bg-red-100 hover:text-red-500 flex items-center justify-center text-zinc-400 transition z-10"
+                      aria-label="Entfernen"
+                    >
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                      </svg>
+                    </button>
+
+                    <div className="flex items-center gap-3">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 rounded-xl bg-zinc-100 flex items-center justify-center overflow-hidden p-2">
+                        {item.image ? (
+                          <img 
+                            src={item.image}
+                            alt={item.name}
+                            className="w-full h-full object-contain"
+                          />
+                        ) : (
+                          <HandIcon className="w-8 h-8 text-zinc-400" />
+                        )}
+                      </div>
+                      <div className="flex-1 min-w-0 pr-6">
+                        <h4 className="font-medium text-zinc-900 text-sm sm:text-base line-clamp-2">
+                          {item.name}
+                        </h4>
+                        <p className="text-zinc-500 text-sm">
+                          €{(item.price * item.quantity).toFixed(2)}
+                        </p>
+                      </div>
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className="font-medium text-zinc-900 truncate">
-                        {item.name}
-                      </h4>
-                      <p className="text-zinc-500">
-                        €{(item.price * item.quantity).toFixed(2)}
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-2">
+
+                    {/* Quantity controls — below on mobile for more space */}
+                    <div className="flex items-center justify-end gap-2 mt-3">
                       <button
                         onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                        className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center hover:bg-zinc-100 transition"
+                        className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center hover:bg-zinc-100 active:bg-zinc-200 transition"
                       >
                         −
                       </button>
-                      <span className="w-6 text-center font-medium">
+                      <span className="w-6 text-center font-medium text-sm">
                         {item.quantity}
                       </span>
                       <button
                         onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center hover:bg-zinc-100 transition"
+                        className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center hover:bg-zinc-100 active:bg-zinc-200 transition"
                       >
                         +
                       </button>

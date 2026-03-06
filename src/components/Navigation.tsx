@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useCart } from '@/context/CartContext';
 
 type NavigationProps = {
@@ -23,17 +24,15 @@ export default function Navigation({ onCartClick }: NavigationProps) {
     <nav className="fixed top-0 left-0 right-0 z-40 bg-white">
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 h-16 md:h-20 flex items-center justify-between">
         {/* Logo LEFT */}
-        <Link href="/" className="flex items-center gap-2 group">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" className="text-[#111]">
-            <path d="M12 21c-1.5 0-7-3.5-7-9.5C5 8 7.5 6 9 6c1 0 2 .5 3 2 1-1.5 2-2 3-2 1.5 0 4 2 4 5.5 0 6-5.5 9.5-7 9.5z" fill="currentColor"/>
-            <circle cx="7" cy="5" r="2.5" fill="currentColor"/>
-            <circle cx="17" cy="5" r="2.5" fill="currentColor"/>
-            <circle cx="4" cy="9" r="2" fill="currentColor"/>
-            <circle cx="20" cy="9" r="2" fill="currentColor"/>
-          </svg>
-          <span className="text-lg font-bold tracking-wide text-black" style={{ fontFamily: "'Manrope', sans-serif" }}>
-            SÜDPFOTE
-          </span>
+        <Link href="/" className="flex items-center group">
+          <Image
+            src="/logo-suedpfote.png"
+            alt="Südpfote — Linkshänder Shop"
+            width={160}
+            height={40}
+            className="h-8 sm:h-9 w-auto"
+            priority
+          />
         </Link>
 
         {/* Nav CENTER — Desktop */}
