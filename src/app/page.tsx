@@ -105,7 +105,7 @@ export default async function Home() {
             <div className="px-6 sm:px-10 md:px-16 lg:px-24 max-w-2xl">
               <h1
                 className="text-[36px] sm:text-[44px] md:text-[52px] leading-[1.1] text-[#1A1A1A] mb-5"
-                style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+                style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif", fontWeight: 700 }}
               >
                 Endlich für<br />
                 links gedacht.
@@ -143,7 +143,7 @@ export default async function Home() {
                 <div className="bg-white rounded-b-2xl py-4">
                   <p
                     className="text-center text-[18px] sm:text-[20px] text-[#1A1A1A]"
-                    style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+                    style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif", fontWeight: 700 }}
                   >
                     Für Kinder
                   </p>
@@ -165,7 +165,7 @@ export default async function Home() {
                 <div className="bg-white rounded-b-2xl py-4">
                   <p
                     className="text-center text-[18px] sm:text-[20px] text-[#1A1A1A]"
-                    style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+                    style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif", fontWeight: 700 }}
                   >
                     Alltag
                   </p>
@@ -187,7 +187,7 @@ export default async function Home() {
                 <div className="bg-white rounded-b-2xl py-4">
                   <p
                     className="text-center text-[18px] sm:text-[20px] text-[#1A1A1A]"
-                    style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+                    style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif", fontWeight: 700 }}
                   >
                     Küche
                   </p>
@@ -212,7 +212,7 @@ export default async function Home() {
                 <div className="bg-white rounded-b-2xl py-4">
                   <p
                     className="text-center text-[18px] sm:text-[20px] text-[#1A1A1A]"
-                    style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+                    style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif", fontWeight: 700 }}
                   >
                     Schule
                   </p>
@@ -234,7 +234,7 @@ export default async function Home() {
                 <div className="bg-white rounded-b-2xl py-4">
                   <p
                     className="text-center text-[18px] sm:text-[20px] text-[#1A1A1A]"
-                    style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+                    style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif", fontWeight: 700 }}
                   >
                     Sport &amp; Freizeit
                   </p>
@@ -256,7 +256,7 @@ export default async function Home() {
                 <div className="bg-white rounded-b-2xl py-4">
                   <p
                     className="text-center text-[18px] sm:text-[20px] text-[#1A1A1A]"
-                    style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+                    style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif", fontWeight: 700 }}
                   >
                     Alle Produkte
                   </p>
@@ -271,7 +271,7 @@ export default async function Home() {
           <div className="max-w-[1100px] mx-auto">
             <h2
               className="text-[28px] sm:text-[36px] text-[#1A1A1A] mb-2"
-              style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+              style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif", fontWeight: 700 }}
             >
               Unsere Highlights für den Alltag
             </h2>
@@ -336,7 +336,7 @@ export default async function Home() {
           <div className="max-w-[1100px] mx-auto text-center mb-10">
             <h2
               className="text-[28px] sm:text-[36px] text-[#1A1A1A] mb-3"
-              style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+              style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif", fontWeight: 700 }}
             >
               Links praktisch — von Experten geprüft
             </h2>
@@ -373,7 +373,7 @@ export default async function Home() {
           <div className="max-w-4xl mx-auto">
             <h2
               className="text-[28px] sm:text-[36px] text-center text-[#1A1A1A] mb-4"
-              style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
+              style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif", fontWeight: 700 }}
             >
               Häufig gestellte Fragen
             </h2>
